@@ -85,7 +85,9 @@ export const updateUserById = async (req, res) => {
     const { ID,USUARIO, CONTRASEÑA, NOMBRE, CORREO } = req.body;
   
     // validating
-    if (description == null || name == null || quantity == null) {
+    if(USUARIO == null || CONTRASEÑA == null ||  NOMBRE == null || CORREO == null
+      || !regex.test(CORREO)
+      || CONTRASEÑA.length<5 ) {
       return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
     }
   

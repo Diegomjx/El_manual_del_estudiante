@@ -9,9 +9,21 @@ Content-Type: application/json
   "CONTRASEÑA":"123456"
 }
 
-####
+####     
 GET {{api}}
 
 
 ###
-DELETE  {{api}}/370
+DELETE  {{api}}/5
+
+###
+PUT {{api}}
+Content-Type: application/json
+
+{ 
+    "ID": "1",
+    "USUARIO": "cambio",
+    "CONTRASEÑA": "123456",
+    "NOMBRE": "Pablo",
+    "CORREO": "hola@gmail.com"
+}
