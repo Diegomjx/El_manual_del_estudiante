@@ -3,12 +3,14 @@ import { delUserById, getUser, getUserByPasswordandUser, updateUserById } from "
 import { addUser,getApuntesById } from "../controllers/querys.controlers";
 
 const router = Router()
-
+//Usuario
 router.get('/User', getUser);
 router.post('/User', addUser);
 router.post('/UserLogin', getUserByPasswordandUser);
 router.delete("/User/:ID", delUserById);
 router.put("/User", updateUserById );
-
+// Apuntes
 router.get('/Apuntes:id', getApuntesById);
+//Listas
+//Historial
 export default router;
