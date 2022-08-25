@@ -1,4 +1,4 @@
-import { getConnection, sql } from "../database/connection";
+import {getConnection, sql} from "../database"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------
 const regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -12,7 +12,8 @@ export const getUser = async(req, res) => {
     res.json(result.recordset);
 
     }catch(error){
-        console.error(error);
+        res.status(500);
+        res.send(error.message);
     }
 };
 
@@ -22,7 +23,7 @@ export const addUser = async(req, res) => {
         if(USUARIO == null || CONTRASEÑA == null ||  NOMBRE == null || CORREO == null
             || !regex.test(CORREO)
             || CONTRASEÑA.length<5 ){
-            return res.json({status:400 , msg: "Bad Reques"});
+            return res.json({status:400 , msg: "Contraseña o nombre de Usuario incorrecto"});
         
           }
         const pool = await getConnection();
@@ -35,7 +36,77 @@ export const addUser = async(req, res) => {
         .query("INSERT INTO Perfil (USUARIO,CONTRASEÑA,NOMBRE,CORREO) VALUES (@USUARIO,@CONTRASEÑA,@NOMBRE,@CORREO); ");
         return res.json({ status:1, msg: "usuario insertado satisfactoriamente"});
     }catch(error){
-        console.error(error);
+        res.status(500);
+        res.send(error.message);
     }
-}
+};
 
+
+export const getUserByPasswordandUser = async(req, res) =>{
+    try{
+        const{USUARIO, CONTRASEÑA}=req.body;
+        if(USUARIO == null || CONTRASEÑA == null ){
+            return res.json({status:400 , msg: "Bad Reques"});
+        
+          }
+        const pool = await getConnection();
+        const result =await pool
+                    .request()
+                    .input("USUARIO", sql.VarChar, USUARIO)
+                    .input("CONTRASEÑA", sql.VarChar, CONTRASEÑA)
+                    .query("SELECT * FROM Perfil WHERE USUARIO = @USUARIO and CONTRASEÑA = @CONTRASEÑA;");
+        return res.send(result.recordset[0]);
+    }catch(error){
+        res.status(500);
+        res.send(error.message);
+    }
+};
+
+export const delUserById = async(req, res)=>{
+    try{
+        const{ ID } = req.params;
+
+        const pool = await getConnection();
+        const result = await pool
+        .request()
+        .input("ID",ID)
+        .query("DELETE FROM [Manual].[dbo].[Perfil] WHERE ID = @ID");
+
+        if (result.rowsAffected[0] === 0) return res.sendStatus(404);
+        return res.sendStatus(204);
+
+    }catch(error){
+        res.status(500);
+        res.send(error.message);
+    }
+};
+
+export const updateUserById = async (req, res) => {
+    const { ID,USUARIO, CONTRASEÑA, NOMBRE, CORREO } = req.body;
+  
+    // validating
+    if (description == null || name == null || quantity == null) {
+      return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
+    }
+  
+    try {
+      const pool = await getConnection();
+      await pool
+        .request()
+        .input("USUARIO", sql.VarChar, USUARIO)
+        .input("CONTRASEÑA", sql.VarChar, CONTRASEÑA)
+        .input("NOMBRE", sql.VarChar, NOMBRE)
+        .input("CORREO", sql.VarChar, CORREO)
+        .input("ID",ID)
+        .query("UPDATE  [Manual].[dbo].[Perfil] SET USUARIO = @USUARIO, CONTRASEÑA = @CONTRASEÑA, NOMBRE = @NOMBRE, CORREO =@CORREO WHERE ID = @ID");
+      res.json({ ID,USUARIO, CONTRASEÑA, NOMBRE, CORREO });
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  };
+
+
+export const getApuntesById = async(req,res)=>{
+    const {id} =req.params;
+};

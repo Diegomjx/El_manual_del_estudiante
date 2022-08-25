@@ -1,15 +1,17 @@
 @api = http://localhost:4000/User
 
-## get user
-POST {{api}}
+### get user
+POST http://localhost:4000/UserLogin
 Content-Type: application/json
 
 { 
-  "USUARIO": "hola",
-  "CONTRASEÑA": "123456",
-  "NOMBRE": "Pablo",
-  "CORREO": "hola@gmail.com"
+  "USUARIO": "admin",
+  "CONTRASEÑA":"123456"
 }
 
-###
+####
 GET {{api}}
+
+
+###
+DELETE  {{api}}/370
