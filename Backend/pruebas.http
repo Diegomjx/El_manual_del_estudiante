@@ -1,0 +1,15 @@
+@api = http://localhost:4000/User
+
+## get user
+POST {{api}}
+Content-Type: application/json
+
+{ 
+  "USUARIO": "hola",
+  "CONTRASEÑA": "123456",
+  "NOMBRE": "Pablo",
+  "CORREO": "hola@gmail.com"
+}
+
+###
+GET {{api}}
