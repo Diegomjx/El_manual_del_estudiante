@@ -1,0 +1,36 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.example-icon{
+    color: "primary";
+}
+
+.example-container {
+  width: 100%; //500px;
+  height: 100%;//300px;
+//  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.tab {
+    display: inline-block;
+    margin-left: 70px;
+}
+
+    .padd{
+        padding-top: 40px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-left: 30px;
+    }
