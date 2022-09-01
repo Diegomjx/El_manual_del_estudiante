@@ -1,12 +1,12 @@
-@api = http://localhost:4000/User
+@api = http://localhost:9000/User
 
 ### get user
-POST http://localhost:4000/UserLogin
+POST http://localhost:9000/UserLogin
 Content-Type: application/json
 
 { 
-  "USUARIO": "admin",
-  "CONTRASEÑA":"123456"
+  "CONTRASEÑA": "123456",
+"USUARIO": "cambio"
 }
 
 ####     

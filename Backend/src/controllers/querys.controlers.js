@@ -18,7 +18,7 @@ export const getUser = async(req, res) => {
 };
 
 export const addUser = async(req, res) => {
-    try{
+    try{ 
         const{USUARIO, CONTRASEÑA, NOMBRE, CORREO}=req.body;
         if(USUARIO == null || CONTRASEÑA == null ||  NOMBRE == null || CORREO == null
             || !regex.test(CORREO)
@@ -55,7 +55,7 @@ export const getUserByPasswordandUser = async(req, res) =>{
                     .input("USUARIO", sql.VarChar, USUARIO)
                     .input("CONTRASEÑA", sql.VarChar, CONTRASEÑA)
                     .query("SELECT * FROM Perfil WHERE USUARIO = @USUARIO and CONTRASEÑA = @CONTRASEÑA;");
-        return res.send(result.recordset[0]);
+        return res.json({status:1, msg: "ok", result:result.recordset});
     }catch(error){
         res.status(500);
         res.send(error.message);

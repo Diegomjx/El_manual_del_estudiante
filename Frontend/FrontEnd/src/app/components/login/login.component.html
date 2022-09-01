@@ -1,10 +1,10 @@
 <mat-card>
-
-
+  <form class="form" method="post" action="#">
+  <form [formGroup]="form">
       <p>
         <mat-form-field appearance="fill">
           <mat-label>Usuario</mat-label>
-          <input matInput placeholder="Placeholder">
+          <input matInput placeholder="Placeholder" required="" formControlName="USUARIO">
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>Hint</mat-hint>
         </mat-form-field>
@@ -12,13 +12,15 @@
       <p>
         <mat-form-field appearance="fill">
           <mat-label>Contraseña</mat-label>
-          <input matInput placeholder="Placeholder">
+          <input matInput placeholder="Placeholder" required="" formControlName="CONTRASEÑA" >
           <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           <mat-hint>Hint</mat-hint>
         </mat-form-field>
       </p>
+    </form>
+    
       <div>
-        <button mat-raised-button color="accent">Log In</button>
+        <button mat-raised-button color="accent" (click)="getUser()" >Log In</button>
         <span class="tab"></span>
         <button mat-raised-button (click)="register()">Registrar</button>
       </div>
@@ -26,7 +28,7 @@
       <div class="padd">
       <button mat-raised-button color="warn">Olvide mi contreseña</button>
       </div>
-      
+    </form>
 
 
 
