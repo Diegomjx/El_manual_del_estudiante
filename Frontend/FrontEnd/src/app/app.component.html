@@ -15,9 +15,19 @@
 
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-      <p>Auto-resizing sidenav</p>
-      <p>MENU DE TODO EL SITIO</p>
-    </mat-drawer>
+      <h1>#USUARIO</h1>
+      
+      <mat-list>
+          <mat-list-item><button mat-button (click)="upload()">Upload</button></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><button mat-button>Apuntes</button></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><button mat-button>Apuntes</button></mat-list-item>
+        </mat-list>
+        <button mat-button color="warn">Logout</button>
+      </mat-drawer>
+
+
   
     <div class="example-sidenav-content">
     <router-outlet> </router-outlet>

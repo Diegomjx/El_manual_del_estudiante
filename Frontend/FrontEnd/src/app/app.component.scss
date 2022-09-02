@@ -34,3 +34,7 @@
         padding-bottom: 10px;
         padding-left: 30px;
     }
+
+.mat-form-field + .mat-form-field {
+      margin-left: 8px;
+    }

@@ -20,6 +20,14 @@ import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
+
+
+
 
 
 
@@ -29,7 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     MainNavigationComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserProfileComponent,
+    UploadFileComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +56,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDividerModule,
+    MatListModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

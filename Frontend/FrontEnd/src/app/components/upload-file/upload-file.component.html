@@ -1,0 +1,2 @@
+<input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event)" accept=".pdf"/>
+<button mat-flat-button color="primary" (click)="csvInput.click()">Choose A File (PDF)</button>

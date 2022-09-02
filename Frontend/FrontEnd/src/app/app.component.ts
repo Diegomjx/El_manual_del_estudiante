@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'FrontEnd';
+  panelOpenState = false;
 
   constructor(private router:Router ) { }
 
@@ -16,7 +17,12 @@ export class AppComponent {
     this.router.navigateByUrl('/login');
   }
 
-
+  upload(){
+    this.router.navigateByUrl('/upload')
+  }
+  
 }
+
+
 
 
