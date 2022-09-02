@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addUser, LoginUser, response, userList } from '../models/models';
+import { addPDF, addUser, LoginUser, response, userList } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -26,6 +26,13 @@ export class BackendService {
   
   let url: string = BE_API+"/User";
   let Content: addUser = new addUser(USUARIO,CONTRASEÑA,NOMBRE,CORREO);
+  console.log(Content);
+  return this.http.post<response>(url,Content, httpOptions);
+ }
+
+ addPDF(FILE: File, NAME:string){
+  let url: string = BE_API+"/PDF";
+  let Content: addPDF = new addPDF(FILE,NAME);
   console.log(Content);
   return this.http.post<response>(url,Content, httpOptions);
  }

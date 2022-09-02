@@ -112,3 +112,7 @@ export const updateUserById = async (req, res) => {
 export const getApuntesById = async(req,res)=>{
     const {id} =req.params;
 };
+
+export const addPDF = async(req, res) =>{
+  console.log(res.body);
+}

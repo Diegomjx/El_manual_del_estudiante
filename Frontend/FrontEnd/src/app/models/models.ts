@@ -52,6 +52,18 @@ export class addUser {
                 }
 }
 
+export class addPDF{
+    FILE:File;
+    NAME:string;
+    constructor(FILE:File,
+                NAME:string,
+                 ){
+            this.FILE=FILE;
+            this.NAME=NAME;
+
+                }
+}
+
 
 //------------------Response------------
 

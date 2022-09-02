@@ -1,2 +1,25 @@
-<input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event)" accept=".pdf"/>
-<button mat-flat-button color="primary" (click)="csvInput.click()">Choose A File (PDF)</button>
+<mat-card>
+
+    
+  <form class="form" method="post" action="#">
+    <form [formGroup]="form">
+
+    <mat-form-field appearance="fill">
+
+        <mat-label>Nombre del PDF</mat-label>
+        <input matInput placeholder="Placeholder" required="" formControlName="NAME">
+        <mat-hint>default: nombre de archivo</mat-hint>
+        <input matInput>
+     </mat-form-field>
+    <div class="space"></div>
+    <input #PDFInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event)" accept=".pdf"/>
+    <button mat-flat-button color="primary" (click)="PDFInput.click()" class="button"><mat-icon>upload_file</mat-icon></button>
+    <div *ngIf=file_name> <mat-label>"{{file_name}}"</mat-label></div>
+    <button mat-flat-button color="secondary" (click)="uploadFile()" class="button">SUBIR ARCHIVO</button>
+    </form>
+  </form>
+
+  
+
+
+</mat-card>
