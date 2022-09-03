@@ -53,9 +53,9 @@ export class addUser {
 }
 
 export class addPDF{
-    FILE:File;
+    FILE:Blob;
     NAME:string;
-    constructor(FILE:File,
+    constructor(FILE:Blob,
                 NAME:string,
                  ){
             this.FILE=FILE;

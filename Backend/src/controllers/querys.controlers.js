@@ -114,5 +114,28 @@ export const getApuntesById = async(req,res)=>{
 };
 
 export const addPDF = async(req, res) =>{
-  console.log(res.body);
+  /*const { FILE,NAME} = req.body;
+  
+  try {
+    console.log()
+
+  //  var buffer = new Buffer(getFilesizeInBytes(FILE));
+  //  const file_size = getFilesizeInBytes(FILE);
+
+    const pool = await getConnection();
+    await pool
+      .request()
+   //   .input("NOMBRE", sql.VarChar, NAME)
+   //   .input("PDFsize", sql.VarBinary, file_size)
+      .input("PDF", sql.VarBinary(sql.MAX), FILE )
+      .input("ID",1)
+      .query("INSERT INTO Apuntes (ID,NOMBRE,PDF) VALUES (@ID,@NOMBRE,PDF); "); //file_type,file_size,file
+      return res.json({status:1, msg: "ok"});
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }*/
+
+  
+
 }

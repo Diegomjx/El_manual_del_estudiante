@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { delUserById, getUser, getUserByPasswordandUser, updateUserById } from "../controllers/querys.controlers";
 import { addUser,getApuntesById, addPDF } from "../controllers/querys.controlers";
-
+import multer  from "multer";
 
 const router = Router()
 //Usuario
@@ -15,5 +15,5 @@ router.get('/Apuntes:id', getApuntesById);
 //Listas
 //Historial
 //PDF
-router.post('/PDF', addPDF);
+//router.post('/PDF', addPDF);
 export default router;
