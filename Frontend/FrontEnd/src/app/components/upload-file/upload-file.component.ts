@@ -77,19 +77,24 @@ export class UploadFileComponent implements OnInit {
 
   uploadFile(): any{
     try{
+    const id = localStorage.getItem("id") || "-1";
+    if(id != "-1" && this.form.controls['NAME'].value != '' ){
     const formularioDeDatos = new FormData();
     formularioDeDatos.append('files',this.fileTemp.fileRaw, this.fileTemp.fileName);
+    formularioDeDatos.append('NAME', this.form.controls['NAME'].value);
+    formularioDeDatos.append('ID', id );
    //agregar un apend 
     this.BackendService.addPDF(
       formularioDeDatos
     ).subscribe((res:any)=>{
-      if (res.msg == "usuario insertado satisfactoriamente") {
+      if (res.msg == "ok") {
         alert(res.msg);
         this.router.navigateByUrl('/login');
       }else{
         alert(res.msg);
       }
     });
+  }
   }catch(e){
     console.log('ERROR',e);
   }

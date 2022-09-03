@@ -15,7 +15,7 @@ CREATE TABLE Apuntes (
 	ID_PDF bigint identity(1,123) primary key,
 	ID bigint,
 	NOMBRE varchar(100),
-	PDF VARBINARY(MAX),
+	PDF varchar(MAX),
 	FOREIGN KEY(ID) REFERENCES Perfil,
 
 );
