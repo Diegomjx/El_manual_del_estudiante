@@ -25,6 +25,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { NgxToastNotifierModule } from 'ngx-toast-notifier';
+
 
 
 
@@ -59,7 +61,10 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
     HttpClientModule,
     MatDividerModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxToastNotifierModule.forRoot(),
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

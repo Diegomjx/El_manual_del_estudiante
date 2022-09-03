@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BackendService } from 'src/app/services/backend.service';
 import { userItem } from 'src/app/models/models';
+import { NgxToastService } from 'ngx-toast-notifier';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
     userItem:  userItem;
   constructor(private router:Router,
               private BackendService: BackendService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private ngxToastService: NgxToastService) {
                 this.form = this.fb.group({
                   USUARIO: [''],
                   CONTRASEÑA: [''],
@@ -40,12 +42,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("name", this.userItem.USUARIO);
         //alert(this.userItem.ID);
         this.router.navigateByUrl('/');
+        this.ngxToastService.onSuccess(' bienvenido',this.userItem.USUARIO);
       }
-      alert(res.status);
+      else
+      this.ngxToastService.onWarning('Denegado','Usuario o contraseña incorrecto');
       
          
     });
-    console.log(this.form.value);
+   // console.log(this.form.value);
   }
 
 

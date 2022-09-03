@@ -39,10 +39,8 @@
       margin-left: 8px;
     }
 
-
-.alerta{
-  position: fixed;
-  max-width: 500px;
-  top: 55px;
-  right: 24px;
-}
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }

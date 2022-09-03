@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertService } from './services/alert.service';
+
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent {
   panelOpenState = false;
   showAlert = false;
 
-  constructor(private router:Router, private alertServive: AlertService ) { }
+  constructor(private router:Router ) { }
 
 
   login(){
@@ -23,9 +23,6 @@ export class AppComponent {
     this.router.navigateByUrl('/upload')
   }
 
-  ngOnInit(){
-    this.alertServive.alert$.subscribe((res) => (this.showAlert =true) )
-  }
   
 }
 
