@@ -26,7 +26,18 @@ export const addUser = async(req, res) => {
             return res.json({status:400 , msg: "Contraseña o nombre de Usuario incorrecto"});
         
           }
+
+        
         const pool = await getConnection();
+
+        const result =await pool
+                    .request()
+                    .input("USUARIO", sql.VarChar, USUARIO)
+                    .input("CORREO", sql.VarChar, CORREO)
+                    .query("SELECT * FROM Perfil WHERE USUARIO = @USUARIO or CORREO = @CORREO;");
+        if(result.recordset.length > 0)
+        return res.json({ status:0, msg: "NOP"});
+
         await pool
         .request()
         .input("USUARIO", sql.VarChar, USUARIO)
@@ -55,7 +66,10 @@ export const getUserByPasswordandUser = async(req, res) =>{
                     .input("USUARIO", sql.VarChar, USUARIO)
                     .input("CONTRASEÑA", sql.VarChar, CONTRASEÑA)
                     .query("SELECT * FROM Perfil WHERE USUARIO = @USUARIO and CONTRASEÑA = @CONTRASEÑA;");
+        if(result.recordset.length > 0)
         return res.json({status:1, msg: "ok", result:result.recordset});
+        else
+        return res.json({status:0, msg: "Inaceptable"});
     }catch(error){
         res.status(500);
         res.send(error.message);

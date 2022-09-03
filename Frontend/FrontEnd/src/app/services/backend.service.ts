@@ -29,17 +29,6 @@ export class BackendService {
   console.log(Content);
   return this.http.post<response>(url,Content, httpOptions);
  }
-/*
- addPDF(FILE: File, NAME:string){
-  let url: string = BE_API+"/PDF";
-  var blob = new Blob([FILE], {
-    type: 'application/pdf'
-  });
-  let Content: addPDF = new addPDF(blob,NAME);
-  console.log(Content);
-  return this.http.post<response>(url,Content,httpOptions);
- }*/
-
 
  addPDF(body:FormData){
   let url: string = BE_API+"/PDF";

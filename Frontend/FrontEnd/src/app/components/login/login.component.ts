@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
         //alert(this.userItem.ID);
         this.router.navigateByUrl('/');
       }
+      alert(res.status);
       
          
     });
