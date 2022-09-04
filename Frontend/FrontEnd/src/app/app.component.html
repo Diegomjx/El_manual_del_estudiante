@@ -1,3 +1,4 @@
+<ngx-toast-notifier></ngx-toast-notifier>
 <mat-toolbar>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
@@ -15,7 +16,7 @@
 
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-      <h1>#USUARIO</h1>
+      <h1>{{name}}</h1>
       
       <mat-list>
           <mat-list-item><button mat-button (click)="upload()">Upload</button></mat-list-item>
@@ -24,13 +25,14 @@
           <mat-divider></mat-divider>
           <mat-list-item><button mat-button>Apuntes</button></mat-list-item>
         </mat-list>
-        <button mat-button color="warn">Logout</button>
+        <button mat-button (click)="Logout()" color="warn">Logout</button>
       </mat-drawer>
 
 
   
     <div class="example-sidenav-content">
     <router-outlet> </router-outlet>
+
     </div>
   
   </mat-drawer-container>

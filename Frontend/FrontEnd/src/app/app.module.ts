@@ -29,6 +29,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
+import { NgxToastNotifierModule } from 'ngx-toast-notifier';
+
 
 
 
@@ -65,6 +67,7 @@ import { TextEditorComponent } from './components/text-editor/text-editor.compon
     MatDividerModule,
     MatListModule,
     MatExpansionModule,
+    NgxToastNotifierModule.forRoot(),
     QuillModule
   ],
   providers: [],
