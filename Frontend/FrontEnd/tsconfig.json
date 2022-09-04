@@ -11,6 +11,10 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    //esto era para quill, ya se arreglo pero para posteridad
+    //"esModuleInterop": true,
+    //esto es para declarar sin inizializar variables, PARA TEST!!
+    "strictPropertyInitialization": false,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

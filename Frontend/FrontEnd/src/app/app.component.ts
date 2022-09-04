@@ -23,6 +23,10 @@ export class AppComponent {
     this.router.navigateByUrl('/upload')
   }
 
+  textEditor(){
+    this.router.navigateByUrl('/textEditor')
+  }
+
   ngOnInit(){
     this.alertServive.alert$.subscribe((res) => (this.showAlert =true) )
   }

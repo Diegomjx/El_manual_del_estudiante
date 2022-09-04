@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { LoginComponent } from './components/login/login.component';
 
+//QUILL
+import{QuillModule} from 'ngx-quill';
+
 //material
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -25,6 +28,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { TextEditorComponent } from './components/text-editor/text-editor.component';
 
 
 
@@ -39,7 +43,8 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
     LoginComponent,
     RegisterComponent,
     UserProfileComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    TextEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,8 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
     HttpClientModule,
     MatDividerModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    QuillModule
   ],
   providers: [],
   bootstrap: [AppComponent]
