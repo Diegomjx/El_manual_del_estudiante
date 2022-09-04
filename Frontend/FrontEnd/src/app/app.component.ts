@@ -25,6 +25,10 @@ export class AppComponent   {
     this.name = localStorage.getItem('name') || 'User';
   }
 
+  home(){
+    this.router.navigateByUrl('/');
+  }
+
   upload(){
     this.router.navigateByUrl('/upload')
   }

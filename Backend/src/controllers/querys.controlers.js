@@ -123,6 +123,85 @@ export const updateUserById = async (req, res) => {
   };
 
 
-export const getApuntesById = async(req,res)=>{
-    const {id} =req.params;
+export const getApuntes = async(req,res)=>{
+    try{
+      
+        const pool = await getConnection();
+        const result =await pool
+                    .request()
+                    .query("SELECT * FROM Apuntes;");
+        return res.json({status:1, msg: "almacenados",result:result.recordset});
+
+
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
 };
+
+export const getApuntesByIdUser = async(req,res)=>{
+  try{
+      const {ID} = req.body;
+      if(ID == null){
+        return res.json({status:0, msg: "no ID"});
+      }
+
+      const pool = await getConnection();
+      const result =await pool
+                  .request()
+                  .input("ID", sql.BigInt, ID)
+                  .query("SELECT * FROM Apuntes WHERE ID = @ID;");
+      return res.json({status:1, msg: "almacenados en user",result:result.recordset});
+
+
+}catch(error){
+    res.status(500);
+    res.send(error.message);
+}
+};
+
+export const getApuntesByIdUserIdPDF = async(req,res)=>{
+  try{
+      const {ID, ID_PDF} = req.body;
+      if(ID == null || ID_PDF == null  ){
+        return res.json({status:0, msg: "no ID's"});
+      }
+
+      const pool = await getConnection();
+      const result =await pool
+                  .request()
+                  .input("ID", ID)
+                  .input("ID_PDF",  ID_PDF)
+                  .query("SELECT * FROM Apuntes WHERE ID = @ID and ID_PDF = @ID_PDF;");
+      return res.json({status:1, msg: "almacenados en user",result:result.recordset});
+
+
+}catch(error){
+    res.status(500);
+    res.send(error.message);
+}
+};
+
+export const addPDF = async(req, res) => {
+  const file = req.file.filename;
+  const NAME = req.body.NAME;
+  const ID = req.body.ID;
+  try {
+    const pool = await getConnection();
+    await pool
+      .request()
+      .input("NOMBRE", sql.VarChar, NAME)
+      .input("ID",ID)
+      .input("PDF", sql.VarChar, file)
+      .query("INSERT INTO Apuntes (ID,NOMBRE,PDF) VALUES (@ID,@NOMBRE,@PDF) ");
+      res.json({ status:1, msg: "ok" });
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+
+  
+};
+
+
+

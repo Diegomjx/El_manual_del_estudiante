@@ -55,25 +55,7 @@ export class UploadFileComponent implements OnInit {
   pdf_name(){
     return this.file_name;
   }
-/*
-  uploadFile(): any{
-    try{
-    const formularioDeDatos = new FormData();
-    formularioDeDatos.append('files',this.files_);
-    this.BackendService.addPDF(
-      this.files_,
-      this.form.controls['NAME'].value
-    ).subscribe((res:any)=>{
-      if (res.msg == "usuario insertado satisfactoriamente") {
-        alert(res.msg);
-        this.router.navigateByUrl('/login');
-      }else{
-        alert(res.msg);
-      }
-    });
-  }catch(e){
-    console.log('ERROR',e);
-  }*/
+
 
   uploadFile(): any{
     try{
@@ -89,7 +71,7 @@ export class UploadFileComponent implements OnInit {
     ).subscribe((res:any)=>{
       if (res.msg == "ok") {
         alert(res.msg);
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/');
       }else{
         alert(res.msg);
       }
