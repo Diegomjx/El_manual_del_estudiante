@@ -21,6 +21,23 @@ export class userItem {
 }
 
 
+export class ApuntesItem {
+    ID_PDF:number;
+    ID:number;
+    NOMBRE : string;
+    PDF: string;
+    constructor(ID_PDF:number,
+        ID:number,
+        NOMBRE : string,
+        PDF: string){
+            this.ID =ID;
+            this.NOMBRE=NOMBRE;
+            this.PDF = PDF;
+        }
+    
+}
+
+
 //----------------Get-------------------
 
 
@@ -83,6 +100,21 @@ export class userList{
     constructor(status:number,
                 msg:string,
                 result:Array<userItem>) {
+                        this.status=status;
+                        this.msg=msg;
+                        this.result = result;
+    }
+
+}
+
+
+export class ApuntesList{
+    status: number;
+    msg: string;
+    result:Array<ApuntesItem>;
+    constructor(status:number,
+                msg:string,
+                result:Array<ApuntesItem>) {
                         this.status=status;
                         this.msg=msg;
                         this.result = result;

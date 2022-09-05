@@ -6,7 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 
-const routes: Routes = [//{ path: '', redirectTo: '/home', pathMatch: 'full' },
+const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         { path: 'home', component: MainNavigationComponent },
                         { path: 'login', component: LoginComponent },
                         { path: 'register', component: RegisterComponent},

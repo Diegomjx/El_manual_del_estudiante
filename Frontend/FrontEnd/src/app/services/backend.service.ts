@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addPDF, addUser, LoginUser, response, userList } from '../models/models';
+import { addPDF, addUser, ApuntesList, LoginUser, response, userList } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -34,6 +34,11 @@ export class BackendService {
   let url: string = BE_API+"/PDF";
   console.log(body);
   return this.http.post<response>(url,body);
+ }
+
+ getPDFs(){
+  let url: string = BE_API + "/Apuntes";
+  return this.http.get<ApuntesList>(url,httpOptions);
  }
 
 }

@@ -136,6 +136,7 @@ export const getApuntes = async(req,res)=>{
   }catch(error){
       res.status(500);
       res.send(error.message);
+      console.log(error.message);
   }
 };
 
@@ -162,8 +163,8 @@ export const getApuntesByIdUser = async(req,res)=>{
 
 export const getApuntesByIdUserIdPDF = async(req,res)=>{
   try{
-      const {ID, ID_PDF} = req.body;
-      if(ID == null || ID_PDF == null  ){
+      const {ID_PDF} = req.body;
+      if(ID_PDF == null  ){
         return res.json({status:0, msg: "no ID's"});
       }
 
@@ -172,7 +173,7 @@ export const getApuntesByIdUserIdPDF = async(req,res)=>{
                   .request()
                   .input("ID", ID)
                   .input("ID_PDF",  ID_PDF)
-                  .query("SELECT * FROM Apuntes WHERE ID = @ID and ID_PDF = @ID_PDF;");
+                  .query("SELECT * FROM Apuntes WHERE ID_PDF = @ID_PDF;");
       return res.json({status:1, msg: "almacenados en user",result:result.recordset});
 
 

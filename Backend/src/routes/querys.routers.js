@@ -12,7 +12,7 @@ router.post('/UserLogin', getUserByPasswordandUser);
 router.delete("/User/:ID", delUserById);
 router.put("/User", updateUserById );
 // Apuntes
-router.post('/Apuntes', getApuntes); //PDF general
+router.get('/Apuntes', getApuntes); //PDF general
 router.post('/Apuntes/User', getApuntesByIdUser); //PDF's por el ID
 router.post('/Apuntes/User/ID', getApuntesByIdUserIdPDF); // PDF especifico, por el ID y ID_PDF
 
