@@ -5,6 +5,7 @@ import { ApuntesItem } from 'src/app/models/models';
 import { BackendService } from 'src/app/services/backend.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser"; 
+import { ComunicacionService } from 'src/app/services/comunicacion.service';
 @Component({
   selector: 'app-main-navigation',
   templateUrl: './main-navigation.component.html',
@@ -13,10 +14,11 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class MainNavigationComponent implements OnInit, PipeTransform  {
   Apuntes: ApuntesItem[];
   displayedColumns: string[] = ['1'];
-
+ 
 
   constructor(private backend: BackendService,
               private router:Router,
+              private data: ComunicacionService,
               private sanitizer: DomSanitizer) { 
               this.Apuntes = [];
 
@@ -32,6 +34,11 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
       console.log(this.Apuntes);
     });
   
+  }
+
+  SHOW(APUNTE:ApuntesItem){
+    this.data.showNotes(APUNTE);
+    this.router.navigateByUrl("/LookPDF");
   }
 
 

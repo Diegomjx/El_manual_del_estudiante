@@ -5,6 +5,7 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { RegisterComponent } from './components/register/register.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { LookPDFComponent } from './look-pdf/look-pdf.component';
 import { MiNotesComponent } from './mi-notes/mi-notes.component';
 
 const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'upload', component: UploadFileComponent},
                         {path: 'textEditor', component: TextEditorComponent},
                         {path: 'MiNotes', component: MiNotesComponent},
+                        {path: 'LookPDF', component: LookPDFComponent},
                       ];
 
 @NgModule({

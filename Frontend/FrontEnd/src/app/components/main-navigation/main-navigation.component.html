@@ -18,7 +18,7 @@
     </mat-grid-tile>
 
 </mat-grid-list>
---
+-- 
 <table class="example-table mat-elevation-z8" mat-table recycleRows [dataSource]="Apuntes" ALIGN="center">
   <-- Position Column --
   
@@ -77,7 +77,7 @@
         <mat-card-actions>
           <button mat-button>LIKE</button>
           <button mat-button>SHARE</button>
-          <button mat-button>SHOW</button>
+          <button mat-button (click)="SHOW(Apuntes)" >SHOW</button>
         </mat-card-actions>
       </mat-card>
 

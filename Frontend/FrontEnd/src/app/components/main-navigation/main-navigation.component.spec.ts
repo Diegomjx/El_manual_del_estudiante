@@ -9,7 +9,7 @@ describe('MainNavigationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ MainNavigationComponent ]
-    })
+    }) 
     .compileComponents();
 
     fixture = TestBed.createComponent(MainNavigationComponent);
