@@ -1,31 +1,93 @@
-<mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>El manual del estudiante</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with home icon">
-    <mat-icon>home</mat-icon>
-  </button>
-  <button mat-fab class="login" aria-label="button for login" (click)="login()">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-</mat-toolbar>
+
+<!--
+  <iframe src="http://localhost:9000/1662253715283.HT5.pdf#toolbar=0&navpanes=0&scrollbar=0" 
+  class="foo" 
+  scrolling="no"
+  frameborder="0" >
+</iframe>
 
 
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <mat-list>
-      <mat-list-item>Item 1</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 3</mat-list-item>
-    </mat-list>
-  </mat-drawer>
+<mat-grid-list cols="2" rowHeight="1:1" gutterSize= "8" [dataSource]="Apuntes" >
 
-  <div class="example-sidenav-content">
-    COMPONENTE2
-  </div>
+  <mat-grid-tile *ngFor="let Apuntes of Apuntes">      
+    <iframe [src]="transform(Apuntes.PDF)"  
+         class="foo" 
+          scrolling="no"
+            frameborder="0" >
+              </iframe>
+    </mat-grid-tile>
 
-</mat-drawer-container>
+</mat-grid-list>
+--
+<table class="example-table mat-elevation-z8" mat-table recycleRows [dataSource]="Apuntes" ALIGN="center">
+  <-- Position Column --
+  
+  <ng-container matColumnDef="1">
+    <th mat-header-cell *matHeaderCellDef>editorial</th>
+    <td mat-cell *matCellDef="let Apuntes">
+      <iframe [src]="transform(Apuntes.PDF)"  
+      
+      class="foo" 
+      scrolling="no"
+      frameborder="0" >
+      </iframe>
+    </td>
+
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>1</mat-grid-tile>
+  <mat-grid-tile>2</mat-grid-tile>
+  <mat-grid-tile>3</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile>
+</mat-grid-list>  -->
+
+
+<div class="row">
+  <ul>
+    <li *ngFor="let Apuntes of Apuntes">
+
+<div class="line">
+
+
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>
+            <div class="contenedor"> 
+               {{Apuntes.NOMBRE}}
+            </div>
+            </mat-card-title>
+        </mat-card-header>
+        <iframe [src]="transform(Apuntes.PDF)"  
+        class="tn" 
+         scrolling="no"
+           frameborder="0" >
+             </iframe>
+      <!--  <mat-card-content>
+          <p>
+            {{Apuntes.NOMBRE}}
+          </p>
+        </mat-card-content>
+      -->
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+          <button mat-button>LOOK</button>
+        </mat-card-actions>
+      </mat-card>
+
+      </div>
+    
+
+<!------------------Card--------------------------->
+
+  
+      
+
+  </li></ul>
+</div>

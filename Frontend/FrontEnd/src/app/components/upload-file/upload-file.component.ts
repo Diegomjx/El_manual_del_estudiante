@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { response } from 'src/app/models/models';
 import { BackendService } from 'src/app/services/backend.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgxToastService } from 'ngx-toast-notifier';
 
 @Component({
   selector: 'app-upload-file',
@@ -22,7 +23,8 @@ export class UploadFileComponent implements OnInit {
   constructor(
               private router:Router,
               private BackendService:BackendService,
-              private fb: FormBuilder
+              private fb: FormBuilder,
+              private ngxToastService: NgxToastService
               ) {this.form = this.fb.group({
                 File: [this.files_],
                 NAME: ['']
@@ -55,30 +57,12 @@ export class UploadFileComponent implements OnInit {
   pdf_name(){
     return this.file_name;
   }
-/*
-  uploadFile(): any{
-    try{
-    const formularioDeDatos = new FormData();
-    formularioDeDatos.append('files',this.files_);
-    this.BackendService.addPDF(
-      this.files_,
-      this.form.controls['NAME'].value
-    ).subscribe((res:any)=>{
-      if (res.msg == "usuario insertado satisfactoriamente") {
-        alert(res.msg);
-        this.router.navigateByUrl('/login');
-      }else{
-        alert(res.msg);
-      }
-    });
-  }catch(e){
-    console.log('ERROR',e);
-  }*/
+
 
   uploadFile(): any{
     try{
     const id = localStorage.getItem("id") || "-1";
-    if(id != "-1" && this.form.controls['NAME'].value != '' ){
+    if(id != "-1" && this.form.controls['NAME'].value != '' && this.fileTemp != null){
     const formularioDeDatos = new FormData();
     formularioDeDatos.append('files',this.fileTemp.fileRaw, this.fileTemp.fileName);
     formularioDeDatos.append('NAME', this.form.controls['NAME'].value);
@@ -88,12 +72,14 @@ export class UploadFileComponent implements OnInit {
       formularioDeDatos
     ).subscribe((res:any)=>{
       if (res.msg == "ok") {
-        alert(res.msg);
-        this.router.navigateByUrl('/login');
+        this.ngxToastService.onSuccess('Enviado','Se envio satisfactoriamente los datos');
+        this.router.navigateByUrl('/');
       }else{
-        alert(res.msg);
+        this.ngxToastService.onDanger('Error','No se pudo enviar los datos');
       }
     });
+  }else{
+    this.ngxToastService.onWarning('Fail','por favor Ingrese los datos');
   }
   }catch(e){
     console.log('ERROR',e);

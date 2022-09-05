@@ -27,3 +27,12 @@ Content-Type: application/json
     "NOMBRE": "Pablo",
     "CORREO": "hola@gmail.com"
 }
+
+###
+POST http://localhost:9000/Apuntes/User/ID
+Content-Type: application/json
+
+{ 
+  "ID": "1",
+  "ID_PDF":"247"
+}

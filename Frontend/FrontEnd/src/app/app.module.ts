@@ -30,11 +30,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { NgxToastNotifierModule } from 'ngx-toast-notifier';
+import {MatTableModule} from '@angular/material/table';
 
+import {MatRadioModule} from '@angular/material/radio';
 
-
-
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -68,7 +68,12 @@ import { NgxToastNotifierModule } from 'ngx-toast-notifier';
     MatListModule,
     MatExpansionModule,
     NgxToastNotifierModule.forRoot(),
-    QuillModule
+    QuillModule,
+    //-----
+    MatTableModule,
+    MatRadioModule ,
+    MatGridListModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
