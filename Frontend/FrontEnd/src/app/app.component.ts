@@ -1,5 +1,6 @@
 import { Component, ViewChild, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxToastService } from 'ngx-toast-notifier';
 import { LoginComponent } from './components/login/login.component';
 import { ComunicacionService } from './services/comunicacion.service';
 
@@ -17,7 +18,8 @@ export class AppComponent   {
 
   constructor(
     private serviceComunicate: ComunicacionService,
-    private router:Router ) { }
+    private router:Router,
+    private ngxToastService: NgxToastService ) { }
 
 
   login(){
@@ -30,7 +32,10 @@ export class AppComponent   {
   }
 
   upload(){
-    this.router.navigateByUrl('/upload')
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/upload');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
   }
   ngOnInit(): void {
     this.serviceComunicate.enviarnombreobservable.subscribe(nombre=>{
@@ -41,7 +46,12 @@ export class AppComponent   {
 
 
   textEditor(){
-    this.router.navigateByUrl('/textEditor')
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/textEditor');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+    
+
   }
 
   ngOnChange(): void {
@@ -49,11 +59,13 @@ export class AppComponent   {
   }
 
   Logout(){
+    if(localStorage.getItem("id") != null){
     localStorage.removeItem("id");
         localStorage.removeItem("type");
         localStorage.removeItem("name");
         this.name = localStorage.getItem('name') || 'User';
-
+    }
+    this.router.navigateByUrl('/');
   }
 
   

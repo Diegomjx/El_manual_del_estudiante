@@ -57,7 +57,11 @@
       <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{Apuntes.NOMBRE}}</mat-card-title>
+          <mat-card-title>
+            <div class="contenedor"> 
+               {{Apuntes.NOMBRE}}
+            </div>
+            </mat-card-title>
         </mat-card-header>
         <iframe [src]="transform(Apuntes.PDF)"  
         class="tn" 
@@ -73,6 +77,7 @@
         <mat-card-actions>
           <button mat-button>LIKE</button>
           <button mat-button>SHARE</button>
+          <button mat-button>LOOK</button>
         </mat-card-actions>
       </mat-card>
 
