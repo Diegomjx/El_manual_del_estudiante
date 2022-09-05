@@ -35,6 +35,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatRadioModule} from '@angular/material/radio';
 
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MiNotesComponent } from './mi-notes/mi-notes.component';
 
 
 
@@ -46,7 +47,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     RegisterComponent,
     UserProfileComponent,
     UploadFileComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    MiNotesComponent
   ],
   imports: [
     BrowserModule,

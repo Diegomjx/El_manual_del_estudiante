@@ -20,6 +20,19 @@ export class userItem {
                 }
 }
 
+export class IDItem{
+    ID: number;
+    constructor(ID:number){
+        this.ID = ID;
+    }
+}
+
+export class ID_PDFItem{
+    ID_PDF: number;
+    constructor(ID_PDF:number){
+        this.ID_PDF = ID_PDF;
+    }
+}
 
 export class ApuntesItem {
     ID_PDF:number;

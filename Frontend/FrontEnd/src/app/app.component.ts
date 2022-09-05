@@ -50,8 +50,13 @@ export class AppComponent   {
     this.router.navigateByUrl('/textEditor');
     else
     this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
-    
+  }
 
+  MyNotes(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/MiNotes');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
   }
 
   ngOnChange(): void {
