@@ -20,7 +20,7 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'textEditor', component: TextEditorComponent},
                         {path: 'MiNotes', component: MiNotesComponent},
                         {path: 'LookPDF', component: LookPDFComponent},
-                        {path: 'search', component: SearchComponent}
+                        {path: 'search', component: SearchComponent},
                         {path: 'addList', component: CreteListComponent},
                         {path: 'LookList', component: LookListComponent},
                         {path: 'MisListas', component:MisListasComponent}
