@@ -6,6 +6,7 @@ import { LookListComponent } from './components/look-list/look-list.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { MisListasComponent } from './components/mis-listas/mis-listas.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SearchComponent } from './components/search/search.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { LookPDFComponent } from './look-pdf/look-pdf.component';
@@ -19,6 +20,7 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'textEditor', component: TextEditorComponent},
                         {path: 'MiNotes', component: MiNotesComponent},
                         {path: 'LookPDF', component: LookPDFComponent},
+                        {path: 'search', component: SearchComponent}
                         {path: 'addList', component: CreteListComponent},
                         {path: 'LookList', component: LookListComponent},
                         {path: 'MisListas', component:MisListasComponent}

@@ -35,7 +35,10 @@ export class MiNotesComponent implements OnInit {
       this.Apuntes = x.result;
       console.log(this.Apuntes);
     });
-  
+
+    }
+    SHOW(Apuntes:any){ 
+      
   }
 
   SHOW(APUNTE:ApuntesItem){

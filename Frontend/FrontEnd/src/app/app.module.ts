@@ -37,6 +37,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MiNotesComponent } from './mi-notes/mi-notes.component';
 import { LookPDFComponent } from './look-pdf/look-pdf.component';
+import { SearchComponent } from './components/search/search.component';
 import { CreteListComponent } from './components/crete-list/crete-list.component';
 import { LookListComponent } from './components/look-list/look-list.component';
 import { MisListasComponent } from './components/mis-listas/mis-listas.component';
@@ -54,6 +55,7 @@ import { MisListasComponent } from './components/mis-listas/mis-listas.component
     TextEditorComponent,
     MiNotesComponent,
     LookPDFComponent,
+    SearchComponent,
     CreteListComponent,
     LookListComponent,
     MisListasComponent

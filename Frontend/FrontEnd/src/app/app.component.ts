@@ -94,6 +94,9 @@ export class AppComponent   {
     }
     this.router.navigateByUrl('/');
   }
+  search(){
+    this.router.navigateByUrl('/search');
+  }
 
   refresh(){
     const id = localStorage.getItem("id") || "-1";
