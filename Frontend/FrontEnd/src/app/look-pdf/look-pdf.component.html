@@ -1,21 +1,49 @@
-<p>look-pdf works!</p>
+<br>
+<br>
 
-
+<div class="line"> 
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>
+        <div class="contenedor"> 
+          {{ShowApunte.NOMBRE}}
+        </div>
+        </mat-card-title>
+    </mat-card-header>
     <iframe [src]="transform(ShowApunte.PDF)"  
-    class="show" 
-     scrolling="no"
-       frameborder="0" >
+    width="800px" height="760px" frameborder="1" >
          </iframe>
-<!--
-<p>otra forma de mostrar un pdf</p>
 
-<h1> Angular 10 PDF Viewer</h1>
+    <mat-card-actions> 
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+              <!--Agregar a la lista-->
+              <mat-form-field appearance="outline" style="width: 80px;">
+                <mat-label>Listas</mat-label>
+                <mat-select>
+                  <div >
+                  <mat-option *ngFor="let Lista of Lista" [value]="Lista.ID">
+ <!--
+                  <div If ="checkboxes(Lista.ID_LISTA); then thenBlock else elseBlock"></div>
+                  <ng-template #thenBlock>
+                    <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)" checked> {{Lista.NOMBRE}}</label>
+                  </ng-template>
+                    <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)"> {{Lista.NOMBRE}}</label>
+                  <ng-template #elseBlock>
+                    <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)"> {{Lista.NOMBRE}}</label>
+                  </ng-template>
 
-<div class="container">
-  <textarea [(ngModel)] = "pdfSource"></textarea>
+                    <input type="checkbox" name={{Lista.NOMBRE}} (click)="addToList(Lista,Apuntes)" ngModel required>
+                    <button  mat-button (click)="checkboxes(Lista.ID_LISTA)"> {{Lista.NOMBRE}} </button> 
+                           -->
+                    <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)" checked='false'> {{Lista.NOMBRE}}</label>
+    
+                  </mat-option>
+                </div>
+                </mat-select>
+              </mat-form-field>
+    </mat-card-actions>
+  </mat-card>
 
-  <pdf-viewer [src]="transform(ShowApunte.PDF)"
-              [original-size]="false"
-  ></pdf-viewer>
-</div>
--->
+  </div>

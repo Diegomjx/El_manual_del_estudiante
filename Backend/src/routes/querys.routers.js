@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { delUserById, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getUser, getUserByPasswordandUser, updateUserById } from "../controllers/querys.controlers";
+import { addList, delUserById, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getExistInList, getListById, getListByPDFandID, getUser, getUserByPasswordandUser, updateUserById } from "../controllers/querys.controlers";
 import { addUser, addPDF } from "../controllers/querys.controlers";
 
 const upload =  require("../utils/handleStorage");
@@ -18,6 +18,11 @@ router.post('/Apuntes/User/ID', getApuntesByIdUserIdPDF); // PDF especifico, por
 
 
 router.post("/PDF", upload.single("files"), addPDF);
+
+
+router.post('/List', addList); //agregar lista
+router.post('/List/ID', getListById);   //todas las listas de un usuario
+router.post('/List/IDPDF',getExistInList);
 
 //Listas
 //Historial

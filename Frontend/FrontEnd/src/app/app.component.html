@@ -1,6 +1,6 @@
 <ngx-toast-notifier></ngx-toast-notifier>
 <mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+    <button mat-icon-button class="example-icon" (click)="refresh()" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <span>El manual del estudiante</span>
@@ -24,7 +24,23 @@
           <mat-list-item><button mat-button (click)="textEditor()">Editor de Texto</button></mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item><button mat-button (click)="MyNotes()">My Notes</button></mat-list-item>
+          <mat-divider></mat-divider>
+
+
+          <mat-list-item><button mat-button (click)="CreateList()">Crear lista</button></mat-list-item>
+          <!--Ver Mas-->
         </mat-list>
+        <mat-list *ngFor="let Lista of Lista">
+          <mat-list-item><button mat-button (click)="ListSelected(Lista)">{{Lista.NOMBRE}}</button></mat-list-item>
+          <!----------->
+
+          <!--fin-->
+
+
+          
+
+        </mat-list>
+        <mat-divider></mat-divider>
         <button mat-button (click)="Logout()" color="warn">Logout</button>
       </mat-drawer>
 

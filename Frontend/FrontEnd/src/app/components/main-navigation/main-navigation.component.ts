@@ -1,11 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApuntesItem } from 'src/app/models/models';
+import { ApuntesItem, IDItem, ListItem } from 'src/app/models/models';
 import { BackendService } from 'src/app/services/backend.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser"; 
 import { ComunicacionService } from 'src/app/services/comunicacion.service';
+
 @Component({
   selector: 'app-main-navigation',
   templateUrl: './main-navigation.component.html',
@@ -13,6 +14,8 @@ import { ComunicacionService } from 'src/app/services/comunicacion.service';
 })
 export class MainNavigationComponent implements OnInit, PipeTransform  {
   Apuntes: ApuntesItem[];
+
+  isChecked = false;
   displayedColumns: string[] = ['1'];
  
 
@@ -21,6 +24,7 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
               private data: ComunicacionService,
               private sanitizer: DomSanitizer) { 
               this.Apuntes = [];
+              
 
               }
   transform(url:string) {
@@ -33,6 +37,10 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
       this.Apuntes = x.result;
       console.log(this.Apuntes);
     });
+
+
+
+
   
   }
 
@@ -40,6 +48,8 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
     this.data.showNotes(APUNTE);
     this.router.navigateByUrl("/LookPDF");
   }
+
+
 
 
 

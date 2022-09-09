@@ -2,6 +2,8 @@ import { Component, ViewChild, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxToastService } from 'ngx-toast-notifier';
 import { LoginComponent } from './components/login/login.component';
+import { IDItem, ListItem } from './models/models';
+import { BackendService } from './services/backend.service';
 import { ComunicacionService } from './services/comunicacion.service';
 
 
@@ -15,11 +17,15 @@ export class AppComponent   {
   panelOpenState = false;
   showAlert = false;
   name = localStorage.getItem('name') || 'User';
+  Lista: ListItem[];
 
   constructor(
+    private BackendService:BackendService,
     private serviceComunicate: ComunicacionService,
     private router:Router,
-    private ngxToastService: NgxToastService ) { }
+    private ngxToastService: NgxToastService ) {
+      this.Lista = [];
+     }
 
 
   login(){
@@ -37,6 +43,22 @@ export class AppComponent   {
     else
     this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
   }
+
+  CreateList(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/addList');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+
+  }
+
+  dellList(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/dellList');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+  
   ngOnInit(): void {
     this.serviceComunicate.enviarnombreobservable.subscribe(nombre=>{
       this.name = nombre;
@@ -71,6 +93,24 @@ export class AppComponent   {
         this.name = localStorage.getItem('name') || 'User';
     }
     this.router.navigateByUrl('/');
+  }
+
+  refresh(){
+    const id = localStorage.getItem("id") || "-1";
+    this.BackendService.getLists( 
+      new IDItem(parseInt(id))
+    ).subscribe((x:any)=>{
+      if(x.msg == "ok"){
+        this.Lista = x.result;
+      }
+    });
+
+  }
+
+  ListSelected(List:ListItem){
+    this.serviceComunicate.showList(List);
+    this.router.navigateByUrl('/LookList');
+
   }
 
   

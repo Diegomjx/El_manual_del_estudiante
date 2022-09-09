@@ -1,0 +1,19 @@
+<mat-card>
+
+    
+    <form class="form" method="post" action="#">
+      <form [formGroup]="form">
+  
+      <mat-form-field appearance="fill">
+  
+          <mat-label>Nombre De la nueva Lista</mat-label>
+          <input matInput placeholder="Placeholder" required="" formControlName="NOMBRE">
+          <mat-hint>hint: El nombre de las Listas tiene un tamño maximo.</mat-hint>
+          <input matInput>
+       </mat-form-field>
+      <div class="space"></div>
+      <button mat-flat-button color="secondary" (click)="CreateList()" class="button">Crear</button>
+      </form>
+    </form>
+  
+  </mat-card>
