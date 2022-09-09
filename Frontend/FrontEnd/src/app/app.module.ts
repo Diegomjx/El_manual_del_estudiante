@@ -37,6 +37,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MiNotesComponent } from './mi-notes/mi-notes.component';
 import { LookPDFComponent } from './look-pdf/look-pdf.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 
@@ -50,7 +51,8 @@ import { LookPDFComponent } from './look-pdf/look-pdf.component';
     UploadFileComponent,
     TextEditorComponent,
     MiNotesComponent,
-    LookPDFComponent
+    LookPDFComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

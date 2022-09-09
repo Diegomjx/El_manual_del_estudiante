@@ -10,6 +10,16 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class TextEditorComponent implements OnInit {
 
   editorForm: FormGroup;
+  maxLenghtNumber:number = 100;
+
+  editorStyle={
+    height: '600px',
+    flex: 1,
+    //width: '1200px'
+    
+
+  }
+
   
 
   constructor() {
@@ -26,5 +36,12 @@ export class TextEditorComponent implements OnInit {
   onSubmit(){
     console.log(this.editorForm.get('editor')?.value);
 
+  }
+
+  maxLenght(e:any){
+    //console.log(e);
+    if(e.editor.getLength()>this.maxLenghtNumber){
+       e.editor.deleteText(this.maxLenghtNumber, e.editor.getLength());
+    }
   }
 }

@@ -1,0 +1,128 @@
+<div class="search_section">
+<mat-card>
+    <div class="section">
+    <form class="search">
+        <mat-form-field class="search" appearance="fill">
+          <mat-label>Buscar
+            <mat-icon color="accent">search</mat-icon>
+          </mat-label>
+          <input matInput placeholder="Buscar..." value="">
+        </mat-form-field>
+        <button mat-flat-button color="accent" class="searchButton" matSuffix (click)="Search()"><mat-icon>search</mat-icon></button>
+      </form>
+    </div>
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <div class="section">
+        <mat-accordion class="section">
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Opciones Avanzadas
+                </mat-panel-title>
+                <mat-panel-description>
+                  Utilizar filtros mas especificos para la busqueda
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-grid-list cols="3" rowHeight="1:0.2">
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class="notfull">
+                        <mat-label>Nombre Del Autor</mat-label>
+                        <input matInput placeholder="Nombre a buscar">
+                        <mat-hint>i.e nombre de usuario</mat-hint>
+                      </mat-form-field>
+
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class="notfull">
+                        <mat-label>Nombre Del Archivo</mat-label>
+                        <input matInput placeholder="Nombre del archivo">
+                        <mat-hint>e.g Fisica V - Electromagnetismo</mat-hint>
+                      </mat-form-field>
+
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class="notfull">
+                        <mat-label>Clase o Materia</mat-label>
+                        <input matInput placeholder="Materia">
+                        <mat-hint>i.e Matematica</mat-hint>
+                      </mat-form-field>
+
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class="notfull">
+                        <mat-label>Año o Ciclo Escolar</mat-label>
+                        <input matInput placeholder="Intervalo de tiempo escolar">
+                        <mat-hint>e.g Cuarto año o Primer ciclo o tercer semestre</mat-hint>
+                      </mat-form-field>
+
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class="notfull">
+                        <mat-label>Año Publicado</mat-label>
+                        <input matInput placeholder="Buscar año especifico">
+                        <mat-hint>e.i  El año el cual se subieron los archivos a esta pagina</mat-hint>
+                      </mat-form-field>
+
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class="notfull">
+                        <mat-label>No contiene</mat-label>
+                        <input matInput placeholder="Palabra excluida">
+                        <mat-hint>e.i Las palabras que se quieren excluir de la busqueda</mat-hint>
+                      </mat-form-field>
+
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-expansion-panel>
+          </mat-accordion>
+    </div>
+</mat-card>
+</div>
+<div class="search_section">
+
+<mat-card class="topPadd">
+    <mat-form-field appearance="outline" class="notfull">
+        <mat-label>Filtrar</mat-label>
+        <input matInput placeholder="Filtrar los datos de busqueda">
+        <mat-hint>buscar entre los datos de la busqueda</mat-hint>
+      </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="full">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+      
+
+</mat-card>
+</div>
