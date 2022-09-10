@@ -1,24 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface PeriodicElement {
-  name: string;
-  position: number;
+  UserName: string;
+  DocumentName: string;
   weight: number;
   symbol: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {DocumentName: 'Doc',     UserName: 'Julio', weight: 1.0079, symbol: 'H'},
+  {DocumentName: 'Doc-123', UserName: 'Diego', weight: 4.0026, symbol: 'He'},
+  {DocumentName: 'Docssss', UserName: 'Mario', weight: 6.941, symbol: 'Li'},
+  {DocumentName: 'PDF- mate - Algebra', UserName: 'Elias', weight: 9.0122, symbol: 'Be'},
+  {DocumentName: 'SS- Conquista', UserName: 'Baron', weight: 10.811, symbol: 'B'},
+  {DocumentName: 'sadfsadfsadf', UserName: 'Donald', weight: 12.0107, symbol: 'C'},
+  {DocumentName: 'Quimica Organica', UserName: 'Donald', weight: 14.0067, symbol: 'N'},
+  {DocumentName: 'doc(1)(1)', UserName: 'Elias', weight: 15.9994, symbol: 'O'},
+  {DocumentName: 'default', UserName: 'Flu', weight: 18.9984, symbol: 'F'},
+  {DocumentName: 'Doc1', UserName: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
+
 
 
 @Component({
@@ -27,8 +29,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['DocumentName', 'UserName', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource( ELEMENT_DATA);
 
   constructor() { }
 
@@ -36,6 +38,11 @@ export class SearchComponent implements OnInit {
   }
 
   Search(){
+
+  }
+
+  applyFilter(filterValue: string){
+    this.dataSource.filter =filterValue.trim().toLowerCase();
 
   }
 
