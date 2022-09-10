@@ -52,6 +52,83 @@ export const addUser = async(req, res) => {
     }
 };
 
+export const addList = async(req, res) => {
+  try{ 
+
+    const NOMBRE = req.body.NOMBRE;
+    const ID = req.body.ID;
+    console.log(NOMBRE);
+      if(ID == null ||  NOMBRE == null ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      const result =await pool
+                  .request()
+                  .input("NOMBRE", sql.VarChar, NOMBRE)
+                  .query("SELECT * FROM Lista WHERE NOMBRE = @NOMBRE;");
+      if(result.recordset.length > 0)
+      return res.json({ status:0, msg: "List name is taken"});
+
+      await pool
+      .request()
+      .input("ID", sql.BigInt, ID)
+      .input("NOMBRE", sql.VarChar, NOMBRE)
+      .query("INSERT INTO Lista (ID,NOMBRE) VALUES (@ID,@NOMBRE); ");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
+
+export const getListById = async(req, res)=>{
+  try{
+    const {ID} = req.body;
+    if(ID == null){
+      return res.json({status:0, msg: "no ID"});
+    }
+
+    const pool = await getConnection();
+    const result =await pool
+                .request()
+                .input("ID", sql.BigInt, ID)
+                .query("SELECT * FROM Lista WHERE ID = @ID;");
+    return res.json({status:1, msg: "ok",result:result.recordset});
+
+
+}catch(error){
+  res.status(500);
+  res.send(error.message);
+}
+};
+
+export const getExistInList = async(req, res)=>{
+  try{
+    const {ID_LISTA,ID,ID_PDF} = req.body;
+    if(ID == null || ID_LISTA == null  || ID_PDF == null){
+      return res.json({status:0, msg: "no ID"});
+    }
+
+    const pool = await getConnection();
+    const result =await pool
+                .request()
+                .input("ID_PDF", sql.BigInt, ID_PDF)
+                .input("ID", sql.BigInt, ID)
+                .input("ID_LISTA", sql.BigInt, ID_LISTA)
+                .query("SELECT CASE WHEN EXISTS ( SELECT * FROM Lista L , ListaContieneApuntes LCA  WHERE L.ID = @ID and L.ID_LISTA = LCA.ID_LISTA and LCA.ID_PDF = @ID_PDF and L.ID_LISTA = @ID_LISTA ) THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END AS bool  ");
+    return res.json({status:1, msg: "ok",result:result.recordset});
+
+
+}catch(error){
+  res.status(500);
+  res.send(error.message);
+}
+};
+
 
 export const getUserByPasswordandUser = async(req, res) =>{
     try{
@@ -129,7 +206,7 @@ export const getApuntes = async(req,res)=>{
         const pool = await getConnection();
         const result =await pool
                     .request()
-                    .query("SELECT * FROM Apuntes;");
+                    .query("SELECT * FROM Apuntes WHERE APRUBE = 1;");
         return res.json({status:1, msg: "almacenados",result:result.recordset});
 
 
@@ -194,7 +271,7 @@ export const addPDF = async(req, res) => {
       .input("NOMBRE", sql.VarChar, NAME)
       .input("ID",ID)
       .input("PDF", sql.VarChar, file)
-      .query("INSERT INTO Apuntes (ID,NOMBRE,PDF) VALUES (@ID,@NOMBRE,@PDF) ");
+      .query("INSERT INTO Apuntes (ID,NOMBRE,PDF,APRUBE) VALUES (@ID,@NOMBRE,@PDF,1) ");
       res.json({ status:1, msg: "ok" });
   } catch (error) {
     res.status(500);
@@ -204,5 +281,56 @@ export const addPDF = async(req, res) => {
   
 };
 
+
+export const createList = async(req, res) => {
+  const NAME = req.body.NAME;
+  const ID = req.body.ID;
+  try {
+
+    if(ID == null ||   NOMBRE == null  )
+      {
+        return res.json({status:400 , msg: "Falta nombre"});
+      }
+      
+    const pool = await getConnection();
+    await pool
+      .request()
+      .input("NOMBRE", sql.VarChar, NAME)
+      .input("ID",ID)
+      .query("INSERT INTO Lista (ID,NOMBRE) VALUES (@ID,@NOMBRE) ");
+      res.json({ status:1, msg: "ok" });
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+
+  
+};
+
+
+export const InsertIntoList = async(req, res) => {
+  const NAME = req.body.NAME;
+  const ID = req.body.ID;
+  try {
+
+    if(ID == null ||   NOMBRE == null  )
+      {
+        return res.json({status:400 , msg: "Falta nombre"});
+      }
+      
+    const pool = await getConnection();
+    await pool
+      .request()
+      .input("NOMBRE", sql.VarChar, NAME)
+      .input("ID",ID)
+      .query("INSERT INTO List (ID,NOMBRE) VALUES (@ID,@NOMBRE) ");
+      res.json({ status:1, msg: "ok" });
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+
+  
+};
 
 

@@ -38,6 +38,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MiNotesComponent } from './mi-notes/mi-notes.component';
 import { LookPDFComponent } from './look-pdf/look-pdf.component';
 import { SearchComponent } from './components/search/search.component';
+import { CreteListComponent } from './components/crete-list/crete-list.component';
+import { LookListComponent } from './components/look-list/look-list.component';
+import { MisListasComponent } from './components/mis-listas/mis-listas.component';
 
 
 
@@ -53,7 +56,10 @@ import { SearchComponent } from './components/search/search.component';
     TextEditorComponent,
     MiNotesComponent,
     LookPDFComponent,
-    SearchComponent
+    SearchComponent,
+    CreteListComponent,
+    LookListComponent,
+    MisListasComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,7 @@ import { SearchComponent } from './components/search/search.component';
     //-----
     MatTableModule,
     MatRadioModule ,
-    MatGridListModule
+    MatGridListModule,
 
   ],
   providers: [],

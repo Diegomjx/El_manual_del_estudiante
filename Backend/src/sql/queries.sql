@@ -16,9 +16,32 @@ CREATE TABLE Apuntes (
 	ID bigint,
 	NOMBRE varchar(100),
 	PDF varchar(MAX),
-	FOREIGN KEY(ID) REFERENCES Perfil,
+	APRUBE tinyint,
+	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,
 
 );
+
+CREATE TABLE Lista (
+	ID_LISTA bigint identity(1,123) primary key,
+	ID bigint,
+	NOMBRE varchar(100),
+	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,
+
+);
+
+CREATE TABLE ListaContieneApuntes (
+	ID_LISTA bigint,
+	ID_PDF bigint,
+	FOREIGN KEY(ID_LISTA) REFERENCES Lista,
+	FOREIGN KEY(ID_PDF) REFERENCES Apuntes ON DELETE CASCADE,
+);
+
+
+
+
+
+
+
 
 ---Listas---
 ---Historial---

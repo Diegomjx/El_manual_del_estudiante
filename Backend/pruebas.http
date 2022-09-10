@@ -29,10 +29,21 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:9000/Apuntes/User/ID
+POST http://localhost:9000/Apuntes/User
 Content-Type: application/json
 
 { 
-  "ID": "1",
-  "ID_PDF":"247"
+  "ID": "1"
+
+}
+###
+POST http://localhost:9000/List/IDPDF
+Content-Type: application/json
+
+{ 
+   "ID_LISTA": "1",
+    "ID":"1477",
+    "ID_PDF":"124"
+
+
 }

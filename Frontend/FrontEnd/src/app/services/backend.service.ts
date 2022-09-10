@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addPDF, addUser, ApuntesList, IDItem, LoginUser, response, userList } from '../models/models';
+import { addPDF, addUser, ApuntesList, ExistInList, IDItem, ListItem, ListItemsend, ListList, LoginUser, response, responseExistInList, userList } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -36,6 +36,16 @@ export class BackendService {
   return this.http.post<response>(url,body);
  }
 
+ addList(body:ListItemsend){
+  let url: string = BE_API+"/List";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ getLists(body:IDItem){
+  let url: string = BE_API+"/List/ID";
+  return this.http.post<ListList>(url, body, httpOptions);
+ }
+
  getPDFs(){
   let url: string = BE_API + "/Apuntes";
   return this.http.get<ApuntesList>(url,httpOptions);
@@ -45,6 +55,11 @@ export class BackendService {
   let url: string = BE_API + "/Apuntes/User";
   let Content: IDItem = new IDItem(ID); 
   return this.http.post<ApuntesList>(url,Content,httpOptions);
+ }
+
+ getExistInList(body:ExistInList){       //devolver una lista de booleanos
+  let url: string = BE_API+"/List/IDPDF";
+  return this.http.post<responseExistInList>(url, body, httpOptions);
  }
 
 }
