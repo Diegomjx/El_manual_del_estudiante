@@ -1,27 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ApuntesItem, ExistInList, IDItem, ListItem } from '../models/models';
+import { ApuntesItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem, ListItem, LIstofListwhithPDFItem } from '../models/models';
 import { ComunicacionService } from '../services/comunicacion.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { BackendService } from '../services/backend.service';
+import { NgxToastService } from 'ngx-toast-notifier';
+
+export interface IHash {
+  [details:number] : boolean;
+}
 
 @Component({
   selector: 'app-look-pdf',
   templateUrl: './look-pdf.component.html',
   styleUrls: ['./look-pdf.component.scss']
 })
+
 export class LookPDFComponent implements OnInit,PipeTransform {
   ShowApunte: ApuntesItem;
   form:FormGroup;
   isChecked = false;
-  Lista: ListItem[];
+  Lista: LIstofListwhithPDFItem[];
+  myhash: IHash={};
 
   constructor(
     private backend: BackendService,
     private fb: FormBuilder,
     private data: ComunicacionService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private ngxToastService: NgxToastService
   ) { 
     this.ShowApunte = new ApuntesItem(0,0,'PDF de muestra','muestra.pdf',0);
     this.form = this.fb.group({
@@ -32,7 +40,7 @@ export class LookPDFComponent implements OnInit,PipeTransform {
     });
 
     this.Lista = [];
-
+    let esperar = -1;
     this.data.currentAPUNTE.subscribe(x => {
       if(x.PDF != '')
       this.form = this.fb.group({
@@ -46,16 +54,20 @@ export class LookPDFComponent implements OnInit,PipeTransform {
     });
 
     const id = localStorage.getItem("id") || "-1";
-    this.backend.getLists( 
-      new IDItem(parseInt(id))
-    ).subscribe((x:any)=>{
-      if(x.msg == "ok"){
-        this.Lista = x.result;
-      }
-    });
+
+   this.backend.getPDFNameAndassociativList(
+    new IDandID_PDFItem(parseInt(id),this.form.value['ID_PDF'])
+   ).subscribe((X:any)=>{
+    if(X.msg == "ok"){
+      this.Lista = X.result;
+      console.log(this.Lista);
+    }
+   });
+
+  } //fin del constructor.
 
 
-  }
+  
 
 
   transform(url:string) {
@@ -66,24 +78,27 @@ export class LookPDFComponent implements OnInit,PipeTransform {
     
   }
 
-  addToList(Lista:ListItem){
-//    console.log(Lista);
-//    console.log(this.ShowApunte);
-  }
+  addToList(Lista:LIstofListwhithPDFItem, e:any ){
+    if(e.target.checked ){
 
-   checkboxes(ID_LISTA:number){
-    console.log(ID_LISTA);
-   /* const id = localStorage.getItem("id") || "-1";
-    var ret =false;
-    /*this.backend.getExistInList( new ExistInList(ID_LISTA, parseInt(id) , this.form.controls['ID_PDF'].value)  ).subscribe((x:any)=>{
-      if(x.msg == "ok" && x.bool == 1 ){
-        ret=true;
-      }
-    });*/
+      this.backend.addPDFinList(new ID_LISTAandID_PDFItem(Lista.ID_LISTA, this.form.value['ID_PDF']) )
+      .subscribe((X:any)=>{
+        if(X.msg == "ok"){
+          this.ngxToastService.onSuccess('Agregado','Se agrego satisfactoriamente');
+        }
 
-    //const checkbox = document.getElementById(id.toString());
-    //console.log(checkbox);
-    return true;
+       });
+    }else{
+
+      this.backend.dellPDFinList(new ID_LISTAandID_PDFItem(Lista.ID_LISTA, this.form.value['ID_PDF']) )
+      .subscribe((X:any)=>{
+        if(X.msg == "ok"){
+          this.ngxToastService.onSuccess('Eliminado','Se elimino satisfactoriamente');
+        }
+       });
+
+    }
+
   }
 
 }

@@ -91,6 +91,40 @@ export class ApuntesItem {
     
 }
 
+export class IDandID_PDFItem {
+    ID: number;
+    ID_PDF:number;
+    constructor(ID:number, ID_PDF:number){
+        this.ID = ID;
+        this.ID_PDF = ID_PDF;
+    }
+}
+
+export class ID_LISTAandID_PDFItem{
+    ID_LISTA: number;
+    ID_PDF:number;
+    constructor(ID_LISTA:number, ID_PDF:number){
+        this.ID_LISTA = ID_LISTA;
+        this.ID_PDF = ID_PDF;
+    }
+}
+
+export class LIstofListwhithPDFItem{
+    ID_LISTA:number;
+    NOMBRE:string;
+    boolean:string;
+
+    constructor(ID_LISTA:number,
+                 NOMBRE:string,
+                 boolean:string){
+                    this.ID_LISTA=ID_LISTA;
+                    this.NOMBRE = NOMBRE;
+                    this.boolean = boolean;
+
+        }
+
+}
+
 
 //----------------Get-------------------
 
@@ -135,7 +169,7 @@ export class addPDF{
                 }
 }
 
-export class ExistInList{
+export class getBooleanofListinPDF{
     ID_LISTA: number;
     ID:number;
     ID_PDF:number;
@@ -157,19 +191,6 @@ export class response {
     constructor(status:number,msg:string) {
         this.status=status;
         this.msg=msg;
-    }
-}
-
-export class responseExistInList{
-    status: number;
-    msg: string;
-    bool:number;
-    constructor(status:number,
-                msg:string,
-                bool:number) {
-                        this.status=status;
-                        this.msg=msg;
-                        this.bool = bool;
     }
 }
 
@@ -221,10 +242,10 @@ export class ListList{
 export class LIstofListwhithPDF{
     status: number;
     msg: string;
-    result:Array<ListwhithPDF>;
+    result:Array<LIstofListwhithPDFItem>;
     constructor(status:number,
                 msg:string,
-                result:Array<ListwhithPDF>) {
+                result:Array<LIstofListwhithPDFItem>) {
                         this.status=status;
                         this.msg=msg;
                         this.result = result;

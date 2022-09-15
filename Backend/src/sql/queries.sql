@@ -38,6 +38,13 @@ CREATE TABLE ListaContieneApuntes (
 
 
 
+SELECT L.ID_LISTA, l.NOMBRE, IIF(la.id_lista is null, '', 'checked')  c
+	FROM Lista L    join ListaContieneApuntes la on l.ID_LISTA = la.ID_LISTA  and la.ID_PDF = 124
+	WHERE L.ID = 1477 ;
+
+SELECT L.ID_LISTA, l.NOMBRE, IIF(la.id_lista is null, 'false', 'true')  c
+	FROM Lista L left outer join ListaContieneApuntes la on l.ID_LISTA = la.ID_LISTA  and la.ID_PDF = 124
+	WHERE L.ID = 1477 ;
 
 
 

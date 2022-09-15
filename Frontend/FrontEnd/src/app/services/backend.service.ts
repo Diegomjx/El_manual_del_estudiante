@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addPDF, addUser, ApuntesList, ExistInList, IDItem, ListItem, ListItemsend, ListList, LoginUser, response, responseExistInList, userList } from '../models/models';
+import { addPDF, addUser, ApuntesList, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem, ListItem, ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response, userList } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -57,9 +57,21 @@ export class BackendService {
   return this.http.post<ApuntesList>(url,Content,httpOptions);
  }
 
- getExistInList(body:ExistInList){       //devolver una lista de booleanos
-  let url: string = BE_API+"/List/IDPDF";
-  return this.http.post<responseExistInList>(url, body, httpOptions);
+ getPDFNameAndassociativList(body:IDandID_PDFItem){
+  let url: string = BE_API+ "/List/IDPDF";
+  return this.http.post<LIstofListwhithPDF>(url, body, httpOptions);
  }
+
+ addPDFinList(body:ID_LISTAandID_PDFItem){
+  let url: string = BE_API+ "/List/addPDF";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ dellPDFinList(body:ID_LISTAandID_PDFItem){
+  let url: string = BE_API+ "/List/DELLPDF";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+
 
 }

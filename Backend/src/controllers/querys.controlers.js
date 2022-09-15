@@ -85,26 +85,9 @@ export const addList = async(req, res) => {
   }
 };
 
-export const getListById = async(req, res)=>{
-  try{
-    const {ID} = req.body;
-    if(ID == null){
-      return res.json({status:0, msg: "no ID"});
-    }
-
-    const pool = await getConnection();
-    const result =await pool
-                .request()
-                .input("ID", sql.BigInt, ID)
-                .query("SELECT * FROM Lista WHERE ID = @ID;");
-    return res.json({status:1, msg: "ok",result:result.recordset});
 
 
-}catch(error){
-  res.status(500);
-  res.send(error.message);
-}
-};
+
 
 export const getExistInList = async(req, res)=>{
   try{
@@ -331,6 +314,119 @@ export const InsertIntoList = async(req, res) => {
   }
 
   
+};
+
+export const getListById = async(req, res)=>{
+  try{
+    const {ID} = req.body;
+    if(ID == null){
+      return res.json({status:0, msg: "no ID"});
+    }
+
+    const pool = await getConnection();
+    const result =await pool
+                .request()
+                .input("ID", sql.BigInt, ID)
+                .query("SELECT * FROM Lista WHERE ID = @ID;");
+    return res.json({status:1, msg: "ok",result:result.recordset});
+
+
+}catch(error){
+  res.status(500);
+  res.send(error.message);
+}
+};
+
+
+export const getListByIdandID_PDF = async(req, res)=>{
+  try{
+    const {ID,ID_PDF} = req.body;
+    if(ID == null){
+      return res.json({status:0, msg: "no ID"});
+    }
+
+    const pool = await getConnection();
+    const result =await pool
+                .request()
+                .input("ID", sql.BigInt, ID)
+                .input("ID_PDF", sql.BigInt, ID_PDF)
+                .query("SELECT L.ID_LISTA, l.NOMBRE, IIF(la.id_lista is null, 'false', 'true')  boolean FROM Lista L left outer join ListaContieneApuntes la on l.ID_LISTA = la.ID_LISTA  and la.ID_PDF = @ID_PDF WHERE L.ID = @ID ;");
+    return res.json({status:1, msg: "ok",result:result.recordset});
+
+
+}catch(error){
+  res.status(500);
+  res.send(error.message);
+}
+};
+
+
+export const addPDFtoList = async(req, res) => {
+  try{ 
+
+    const ID_LISTA = req.body.ID_LISTA;
+    const ID_PDF = req.body.ID_PDF;
+    if(ID_LISTA == null ||  ID_PDF == null ||
+      ID_LISTA == '' ||  ID_PDF == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      const result =await pool
+                  .request()
+                  .input("ID_LISTA", sql.BigInt, ID_LISTA)
+                  .input("ID_PDF", sql.BigInt, ID_PDF)
+                  .query("SELECT * FROM ListaContieneApuntes WHERE ID_PDF = @ID_PDF and ID_LISTA = @ID_LISTA ;");
+      if(result.recordset.length > 0)
+      return res.json({ status:0, msg: "List have PDF"});
+
+      await pool
+      .request()
+      .input("ID_LISTA", sql.BigInt, ID_LISTA)
+      .input("ID_PDF", sql.BigInt, ID_PDF)
+      .query("INSERT INTO ListaContieneApuntes (ID_LISTA,ID_PDF) VALUES (@ID_LISTA,@ID_PDF); ");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
+
+export const dellPDFtoList = async(req, res) => {
+  try{ 
+
+    const ID_LISTA = req.body.ID_LISTA;
+    const ID_PDF = req.body.ID_PDF;
+      if(ID_LISTA == null ||  ID_PDF == null ||
+         ID_LISTA == '' ||  ID_PDF == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      const result =await pool
+                  .request()
+                  .input("ID_LISTA", sql.BigInt, ID_LISTA)
+                  .input("ID_PDF", sql.BigInt, ID_PDF)
+                  .query("SELECT * FROM ListaContieneApuntes WHERE ID_PDF = @ID_PDF and ID_LISTA = @ID_LISTA ;");
+      if(result.recordset.length <= 0)
+      return res.json({ status:0, msg: "Does Exist"});
+
+      await pool
+      .request()
+      .input("ID_LISTA", sql.BigInt, ID_LISTA)
+      .input("ID_PDF", sql.BigInt, ID_PDF)
+      .query("DELETE FROM [Manual].[dbo].[ListaContieneApuntes] WHERE ID_PDF = @ID_PDF and ID_LISTA = @ID_LISTA ;");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
 };
 
 

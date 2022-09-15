@@ -1,6 +1,5 @@
 <br>
 <br>
-
 <div class="line"> 
   <mat-card class="example-card">
     <mat-card-header>
@@ -22,23 +21,31 @@
               <mat-form-field appearance="outline" style="width: 80px;">
                 <mat-label>Listas</mat-label>
                 <mat-select>
-                  <div >
-                  <mat-option *ngFor="let Lista of Lista" [value]="Lista.ID">
- <!--
-                  <div If ="checkboxes(Lista.ID_LISTA); then thenBlock else elseBlock"></div>
+                  <div class="form-group">
+                   
+                  <mat-option *ngFor="let Lista of Lista" >
+
+                    
+  <!--  
+                  <div *ngIf ="checkboxes(Lista.ID_LISTA); then thenBlock else elseBlock"></div>
                   <ng-template #thenBlock>
                     <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)" checked> {{Lista.NOMBRE}}</label>
                   </ng-template>
-                    <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)"> {{Lista.NOMBRE}}</label>
                   <ng-template #elseBlock>
                     <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)"> {{Lista.NOMBRE}}</label>
                   </ng-template>
 
                     <input type="checkbox" name={{Lista.NOMBRE}} (click)="addToList(Lista,Apuntes)" ngModel required>
                     <button  mat-button (click)="checkboxes(Lista.ID_LISTA)"> {{Lista.NOMBRE}} </button> 
+                                      <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)"  checked={{Lista.boolean}} > {{Lista.NOMBRE}}</label>
                            -->
-                    <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)" checked='false'> {{Lista.NOMBRE}}</label>
-    
+                           <label><input type="checkbox" name={{Lista.NOMBRE}}  
+                            class="form-check-input"
+                                          id = '{{Lista.ID_LISTA}}'  
+                                          (click)="addToList(Lista, $event)"  
+                                          [checked]= "Lista.boolean.toLowerCase() === 'true'"  />
+                                           {{Lista.NOMBRE}}
+                                        </label>
                   </mat-option>
                 </div>
                 </mat-select>
