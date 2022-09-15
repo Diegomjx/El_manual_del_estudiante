@@ -1,1 +1,45 @@
-<p>look-list works!</p>
+
+
+<div class="row">
+    <ul>
+      <li *ngFor="let Apuntes of Apuntes">
+  
+  <div class="line"> 
+  
+  
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>
+              <div class="contenedor"> 
+                 {{Apuntes.NOMBRE}}
+              </div>
+              </mat-card-title>
+          </mat-card-header>
+          <iframe [src]="transform(Apuntes.PDF)"  
+          class="tn" 
+           scrolling="no"
+             frameborder="0" >
+               </iframe>
+        <!--  <mat-card-content>
+            <p>
+              {{Apuntes.NOMBRE}}
+            </p>
+          </mat-card-content>
+        -->
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+            <button mat-button (click)="SHOW(Apuntes)" >SHOW</button>
+          </mat-card-actions>
+        </mat-card>
+  
+        </div>
+      
+  
+  
+    
+        
+  
+    </li></ul>
+  </div>

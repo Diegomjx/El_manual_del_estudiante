@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ApuntesItem } from '../models/models';
 import { BackendService } from '../services/backend.service';
-import { ComunicacionService } from '../services/comunicacion.service';
+
 
 @Component({
   selector: 'app-mi-notes',
@@ -16,7 +16,7 @@ export class MiNotesComponent implements OnInit {
 
 
   constructor(private backend: BackendService,
-              private data: ComunicacionService,
+
               private router:Router,
               private sanitizer: DomSanitizer) { 
               this.Apuntes = [];
@@ -40,8 +40,8 @@ export class MiNotesComponent implements OnInit {
 
 
   SHOW(APUNTE:ApuntesItem){
-    this.data.showNotes(APUNTE);
-    this.router.navigateByUrl("/LookPDF");
+
+    this.router.navigateByUrl(`/LookPDF?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}&PDF=${APUNTE.PDF}`);
   }
 
 }

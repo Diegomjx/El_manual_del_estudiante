@@ -41,9 +41,7 @@ POST http://localhost:9000/List/IDPDF
 Content-Type: application/json
 
 { 
-   "ID_LISTA": "1",
     "ID":"1477",
     "ID_PDF":"124"
-
 
 }

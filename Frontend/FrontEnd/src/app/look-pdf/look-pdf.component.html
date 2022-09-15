@@ -6,11 +6,11 @@
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>
         <div class="contenedor"> 
-          {{ShowApunte.NOMBRE}}
+          {{ this.form.value['nombre'] }}
         </div>
         </mat-card-title>
     </mat-card-header>
-    <iframe [src]="transform(ShowApunte.PDF)"  
+    <iframe [src]="transform(this.form.value['PDF'])"  
     width="800px" height="760px" frameborder="1" >
          </iframe>
 

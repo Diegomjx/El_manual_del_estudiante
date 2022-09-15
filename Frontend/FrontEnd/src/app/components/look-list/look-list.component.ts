@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApuntesItem, ID_LISTAiTEM } from 'src/app/models/models';
+import { BackendService } from 'src/app/services/backend.service';
+import { ComunicacionService } from 'src/app/services/comunicacion.service';
 
 @Component({
   selector: 'app-look-list',
@@ -6,10 +11,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./look-list.component.scss']
 })
 export class LookListComponent implements OnInit {
+  Apuntes: ApuntesItem[];
+  displayedColumns: string[] = ['1'];
+  @Input() ID_list:number = 0;
 
-  constructor() { }
+  constructor(private backend: BackendService,
+              private router:Router,
+              private sanitizer: DomSanitizer,
+              private serviceComunicate: ComunicacionService,
+              private routes: ActivatedRoute) { 
+              this.Apuntes = [];
+              this.ID_list=0;
 
-  ngOnInit(): void {
+
+
+
+              }
+  transform(url:string) {
+                return this.sanitizer.bypassSecurityTrustResourceUrl( `http://localhost:9000/${url}#toolbar=0&navpanes=0&scrollbar=0`);
+              }
+
+    ngOnInit(): void {
+      this.serviceComunicate.currentList.subscribe(lista=>{
+      this.ID_list= lista.ID_LISTA;
+    });
+    this.routes.queryParams
+    .subscribe(params => {
+      this.ID_list= parseInt(params['ID_LISTA'].toString() );
+      this.backend.getPDFinList(
+        new ID_LISTAiTEM(
+          this.ID_list
+        )
+      ).subscribe(x =>{
+        if(x.status ==1)
+        this.Apuntes = x.result;
+        console.log(this.Apuntes);
+      });
+    }
+  );
+
+    }
+
+
+
+  SHOW(APUNTE:ApuntesItem){
+    this.router.navigateByUrl(`/LookPDF?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}&PDF=${APUNTE.PDF}`);
   }
+
 
 }

@@ -27,6 +27,13 @@ export class IDItem{
     }
 }
 
+export class ID_LISTAiTEM{
+    ID_LISTA: number;
+    constructor(ID_LISTA:number){
+        this.ID_LISTA = ID_LISTA;
+    }
+}
+
 export class ListItem{
     ID: number;
     NOMBRE: string;

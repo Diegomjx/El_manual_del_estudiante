@@ -6,6 +6,7 @@ import { ComunicacionService } from '../services/comunicacion.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { BackendService } from '../services/backend.service';
 import { NgxToastService } from 'ngx-toast-notifier';
+import { ActivatedRoute } from '@angular/router';
 
 export interface IHash {
   [details:number] : boolean;
@@ -29,9 +30,9 @@ export class LookPDFComponent implements OnInit,PipeTransform {
     private fb: FormBuilder,
     private data: ComunicacionService,
     private sanitizer: DomSanitizer,
-    private ngxToastService: NgxToastService
+    private ngxToastService: NgxToastService,
+    private route: ActivatedRoute
   ) { 
-    this.ShowApunte = new ApuntesItem(0,0,'PDF de muestra','muestra.pdf',0);
     this.form = this.fb.group({
       nombre: ['PDF de muestra'],
       ID_PDF: ['-12'],
@@ -40,7 +41,7 @@ export class LookPDFComponent implements OnInit,PipeTransform {
     });
 
     this.Lista = [];
-    let esperar = -1;
+/*
     this.data.currentAPUNTE.subscribe(x => {
       if(x.PDF != '')
       this.form = this.fb.group({
@@ -49,9 +50,23 @@ export class LookPDFComponent implements OnInit,PipeTransform {
         PDF: [x.PDF],
 
       });
-      if(x.PDF != '')
-      this.ShowApunte = x;
-    });
+
+    });*/
+
+    this.route.queryParams
+    .subscribe(params => {
+
+      this.form = this.fb.group({
+        nombre: [params['NOMBRE']],
+        ID_PDF: [params['ID_PDF']],
+        PDF: [params['PDF']],
+
+
+      });
+
+    }
+  );
+  
 
     const id = localStorage.getItem("id") || "-1";
 

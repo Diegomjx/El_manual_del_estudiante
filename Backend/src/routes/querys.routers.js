@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addList, addPDFtoList, dellPDFtoList, delUserById, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getExistInList, getListById, getListByIdandID_PDF, getUser, getUserByPasswordandUser, updateUserById } from "../controllers/querys.controlers";
+import { addList, addPDFtoList, dellPDFtoList, delUserById, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getExistInList, getListById, getListByIdandID_PDF, getPDFsdelasListas, getUser, getUserByPasswordandUser, updateUserById } from "../controllers/querys.controlers";
 import { addUser, addPDF } from "../controllers/querys.controlers";
 
 const upload =  require("../utils/handleStorage");
@@ -25,6 +25,7 @@ router.post('/List/ID', getListById);   //todas las listas de un usuario
 router.post('/List/IDPDF',getListByIdandID_PDF); //para los ckeck list.
 router.post('/List/addPDF',addPDFtoList);
 router.post('/List/DELLPDF', dellPDFtoList);
+router.post('/List/getPDF',getPDFsdelasListas);
 //Listas
 //Historial
 //PDF

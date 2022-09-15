@@ -18,6 +18,7 @@ export class AppComponent   {
   showAlert = false;
   name = localStorage.getItem('name') || 'User';
   Lista: ListItem[];
+  ID_list:number = 0;
 
   constructor(
     private BackendService:BackendService,
@@ -112,7 +113,8 @@ export class AppComponent   {
 
   ListSelected(List:ListItem){
     this.serviceComunicate.showList(List);
-    this.router.navigateByUrl('/LookList');
+    this.ID_list = List.ID_LISTA;
+    this.router.navigateByUrl(`/LookList?ID_LISTA=${List.ID_LISTA}`);
 
   }
 

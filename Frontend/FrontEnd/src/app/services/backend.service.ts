@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addPDF, addUser, ApuntesList, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem, ListItem, ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response, userList } from '../models/models';
+import { addPDF, addUser, ApuntesList, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem, ID_LISTAiTEM, ListItem, ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response, userList } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -71,6 +71,13 @@ export class BackendService {
   let url: string = BE_API+ "/List/DELLPDF";
   return this.http.post<response>(url, body, httpOptions);
  }
+
+ getPDFinList(body:ID_LISTAiTEM){
+  let url: string = BE_API+ "/List/getPDF";
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+
 
 
 

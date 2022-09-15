@@ -341,7 +341,7 @@ export const getListById = async(req, res)=>{
 export const getListByIdandID_PDF = async(req, res)=>{
   try{
     const {ID,ID_PDF} = req.body;
-    if(ID == null){
+    if(ID == null || ID_PDF == null ){
       return res.json({status:0, msg: "no ID"});
     }
 
@@ -427,6 +427,26 @@ export const dellPDFtoList = async(req, res) => {
       res.status(500);
       res.send(error.message);
   }
+};
+
+
+export const getPDFsdelasListas = async(req, res)=>{
+  try{
+    const {ID_LISTA} = req.body;
+    if(ID_LISTA == null){
+      return res.json({status:0, msg: "no ID"});
+    }
+
+    const pool = await getConnection();
+    const result =await pool
+                .request()
+                .input("ID_LISTA", sql.BigInt, ID_LISTA)
+                .query("Select A.ID_PDF, A.ID, A.NOMBRE, A.PDF, A.APRUBE from ListaContieneApuntes LCA, Apuntes A where LCA.ID_PDF = A.ID_PDF and LCA.ID_LISTA =@ID_LISTA");
+    return res.json({status:1, msg: "ok",result:result.recordset});
+}catch(error){
+  res.status(500);
+  res.send(error.message);
+}
 };
 
 
