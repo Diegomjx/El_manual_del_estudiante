@@ -23,9 +23,9 @@ router.post("/PDF", upload.single("files"), addPDF);
 router.post('/List', addList); //agregar lista
 router.post('/List/ID', getListById);   //todas las listas de un usuario
 router.post('/List/IDPDF',getListByIdandID_PDF); //para los ckeck list.
-router.post('/List/addPDF',addPDFtoList);
-router.post('/List/DELLPDF', dellPDFtoList);
-router.post('/List/getPDF',getPDFsdelasListas);
+router.post('/List/addPDF',addPDFtoList); //agregar a la lista
+router.post('/List/DELLPDF', dellPDFtoList); //eliminar de la lista
+router.post('/List/getPDF',getPDFsdelasListas); //obtener los pdf de la lista
 //Listas
 //Historial
 router.post('/Historial/add', addPDFalHistorial);

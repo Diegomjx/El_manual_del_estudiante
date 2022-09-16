@@ -110,6 +110,15 @@ export class IDandID_PDFItem {
     }
 }
 
+export class IDandID_ListItem {
+    ID: number;
+    ID_LISTA:number;
+    constructor(ID:number, ID_LISTA:number){
+        this.ID = ID;
+        this.ID_LISTA = ID_LISTA;
+    }
+}
+
 export class ID_LISTAandID_PDFItem{
     ID_LISTA: number;
     ID_PDF:number;
@@ -123,13 +132,15 @@ export class LIstofListwhithPDFItem{
     ID_LISTA:number;
     NOMBRE:string;
     boolean:string;
-
+    Megusta:string;
     constructor(ID_LISTA:number,
                  NOMBRE:string,
-                 boolean:string){
+                 boolean:string,
+                 Megusta:string){
                     this.ID_LISTA=ID_LISTA;
                     this.NOMBRE = NOMBRE;
                     this.boolean = boolean;
+                    this.Megusta = Megusta;
 
         }
 

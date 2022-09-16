@@ -213,7 +213,7 @@ export const getApuntesByIdUser = async(req,res)=>{
       const result =await pool
                   .request()
                   .input("ID", sql.BigInt, ID)
-                  .query("SELECT * FROM Apuntes WHERE ID = @ID ORDER BY fecha DESC;");
+                  .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A  LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE A.ID = @ID ORDER BY A.fecha DESC;");
       return res.json({status:1, msg: "almacenados en user",result:result.recordset});
 
 
@@ -434,8 +434,8 @@ export const dellPDFtoList = async(req, res) => {
 
 export const getPDFsdelasListas = async(req, res)=>{
   try{
-    const {ID_LISTA} = req.body;
-    if(ID_LISTA == null){
+    const {ID_LISTA,ID} = req.body;
+    if(ID_LISTA == null || ID == null){
       return res.json({status:0, msg: "no ID"});
     }
 
@@ -443,7 +443,8 @@ export const getPDFsdelasListas = async(req, res)=>{
     const result =await pool
                 .request()
                 .input("ID_LISTA", sql.BigInt, ID_LISTA)
-                .query("Select A.ID_PDF, A.ID, A.NOMBRE, A.PDF, A.APRUBE from ListaContieneApuntes LCA, Apuntes A where LCA.ID_PDF = A.ID_PDF and LCA.ID_LISTA =@ID_LISTA ORDER BY LCA.fecha DESC");
+                .input("ID", sql.BigInt, ID)
+                .query("Select A.* , IIF(M.ID is null, 'false', 'true')  Megusta  from ListaContieneApuntes LCA, Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID   where LCA.ID_PDF = A.ID_PDF and LCA.ID_LISTA =@ID_LISTA   ORDER BY LCA.fecha DESC");
     return res.json({status:1, msg: "ok",result:result.recordset});
 }catch(error){
   res.status(500);
@@ -501,7 +502,7 @@ export const getPDFalHistorial = async(req, res) => {
       const result = await pool
       .request()
       .input("ID", sql.BigInt, ID)
-      .query("SELECT A.ID_PDF, A.ID, A.NOMBRE, A.PDF, A.APRUBE FROM  Historial h, Apuntes A WHERE h.ID_PDF = A.ID_PDF and h.ID =@ID ORDER BY h.fecha DESC;");
+      .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM  Historial h, Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE h.ID_PDF = A.ID_PDF and h.ID =@ID ORDER BY h.fecha DESC;");
       return res.json({ status:1, msg: "ok",result:result.recordset });
   }catch(error){
       res.status(500);

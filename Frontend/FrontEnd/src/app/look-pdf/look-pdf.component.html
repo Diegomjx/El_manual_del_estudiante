@@ -15,7 +15,7 @@
          </iframe>
 
     <mat-card-actions> 
-      <button mat-button>LIKE</button>
+      <button mat-button  class="btn btn-sm m-2" (click)="MeGusta()" [class.myClass]="this.form.value['MEGUSTA'].toLowerCase() === 'true'"  >LIKE</button>
       <button mat-button>SHARE</button>
               <!--Agregar a la lista-->
               <mat-form-field appearance="outline" style="width: 80px;">

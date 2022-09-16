@@ -37,6 +37,7 @@ export class LookPDFComponent implements OnInit,PipeTransform {
       nombre: ['PDF de muestra'],
       ID_PDF: ['-12'],
       PDF: ['muestra.pdf'],
+      MEGUSTA: ['false']
 
     });
 
@@ -60,6 +61,7 @@ export class LookPDFComponent implements OnInit,PipeTransform {
         nombre: [params['NOMBRE']],
         ID_PDF: [params['ID_PDF']],
         PDF: [params['PDF']],
+        MEGUSTA: [params['MEGUSTA']],
 
 
       });
@@ -115,5 +117,21 @@ export class LookPDFComponent implements OnInit,PipeTransform {
     }
 
   }
+
+  MeGusta(){
+    if((localStorage.getItem("id")||"0") != "0"  ){
+      if(this.form.value['MEGUSTA'].toLowerCase() === 'true'){
+        this.form.value['MEGUSTA']='false';
+        this.backend.dellMegusta(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),this.form.value['ID_PDF'])).subscribe((res)=>{});
+      }
+
+      else{
+        this.form.value['MEGUSTA']='true';
+        this.backend.addMegusta(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),this.form.value['ID_PDF'])).subscribe((res)=>{});
+      }
+
+    }
+
+}
 
 }
