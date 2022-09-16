@@ -191,7 +191,7 @@ export const getApuntes = async(req,res)=>{
         const result =await pool
                     .request()
                     .input("ID", sql.BigInt, ID)
-                    .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE APRUBE = 1 ORDER BY A.fecha DESC;");
+                    .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE APRUBE = 1 ORDER BY A.fecha DESC;");
         return res.json({status:1, msg: "almacenados",result:result.recordset});
 
 
@@ -213,7 +213,7 @@ export const getApuntesByIdUser = async(req,res)=>{
       const result =await pool
                   .request()
                   .input("ID", sql.BigInt, ID)
-                  .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A  LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE A.ID = @ID ORDER BY A.fecha DESC;");
+                  .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A  LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE A.ID = @ID ORDER BY A.fecha DESC;");
       return res.json({status:1, msg: "almacenados en user",result:result.recordset});
 
 
@@ -444,7 +444,7 @@ export const getPDFsdelasListas = async(req, res)=>{
                 .request()
                 .input("ID_LISTA", sql.BigInt, ID_LISTA)
                 .input("ID", sql.BigInt, ID)
-                .query("Select A.* , IIF(M.ID is null, 'false', 'true')  Megusta  from ListaContieneApuntes LCA, Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID   where LCA.ID_PDF = A.ID_PDF and LCA.ID_LISTA =@ID_LISTA   ORDER BY LCA.fecha DESC");
+                .query("Select A.* , IIF(M.ID is null, 'false', 'true')  Megusta  from ListaContieneApuntes LCA, Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID   where LCA.ID_PDF = A.ID_PDF and LCA.ID_LISTA =@ID_LISTA   ORDER BY LCA.fecha DESC");
     return res.json({status:1, msg: "ok",result:result.recordset});
 }catch(error){
   res.status(500);
