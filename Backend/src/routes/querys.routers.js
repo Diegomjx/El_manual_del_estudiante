@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addList, addPDFalHistorial, addPDFtoList, dellPDFtoList, delUserById, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getExistInList, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFsdelasListas, getUser, getUserByPasswordandUser, updateUserById } from "../controllers/querys.controlers";
+import { addList, addPDFalHistorial, addPDFalMegusta, addPDFtoList, dellPDFalMegusta, dellPDFtoList, delUserById, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getExistInList, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFalMeGusta, getPDFsdelasListas, getUser, getUserByPasswordandUser, updateUserById } from "../controllers/querys.controlers";
 import { addUser, addPDF } from "../controllers/querys.controlers";
 
 const upload =  require("../utils/handleStorage");
@@ -12,7 +12,7 @@ router.post('/UserLogin', getUserByPasswordandUser);
 router.delete("/User/:ID", delUserById);
 router.put("/User", updateUserById );
 // Apuntes
-router.get('/Apuntes', getApuntes); //PDF general
+router.post('/Apuntes', getApuntes); //PDF general
 router.post('/Apuntes/User', getApuntesByIdUser); //PDF's por el ID
 router.post('/Apuntes/User/ID', getApuntesByIdUserIdPDF); // PDF especifico, por el ID y ID_PDF
 
@@ -30,6 +30,10 @@ router.post('/List/getPDF',getPDFsdelasListas);
 //Historial
 router.post('/Historial/add', addPDFalHistorial);
 router.post('/Historial/get',getPDFalHistorial);
+//Megusta
+router.post('/Megusta/add', addPDFalMegusta);
+router.post('/Megusta/dell', dellPDFalMegusta);
+router.post('/Megusta/get',getPDFalMeGusta);
 //PDF
 //router.post('/PDF', addPDF);
 export default router;

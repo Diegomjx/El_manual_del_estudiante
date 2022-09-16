@@ -46,9 +46,9 @@ export class BackendService {
   return this.http.post<ListList>(url, body, httpOptions);
  }
 
- getPDFs(){
+ getPDFs(body: IDItem){
   let url: string = BE_API + "/Apuntes";
-  return this.http.get<ApuntesList>(url,httpOptions);
+  return this.http.post<ApuntesList>(url,body,httpOptions);
  }
 
  getPDFID(ID: number){
@@ -85,6 +85,21 @@ export class BackendService {
  getPDFenHistorial(body:IDItem){
   let url: string = BE_API+ "/Historial/get";
   return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+ addMegusta(body:IDandID_PDFItem){
+  let url: string = BE_API +"/Megusta/add";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ getMegusta(body:IDItem){
+  let url: string = BE_API +"/Megusta/get";
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+ dellMegusta(body:IDandID_PDFItem){
+  let url: string = BE_API +"/Megusta/dell";
+  return this.http.post<response>(url, body, httpOptions);
  }
 
 

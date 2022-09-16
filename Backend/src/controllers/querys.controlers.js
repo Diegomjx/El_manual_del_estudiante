@@ -185,11 +185,13 @@ export const updateUserById = async (req, res) => {
 
 export const getApuntes = async(req,res)=>{
     try{
+      const{ID} = req.body;
       
         const pool = await getConnection();
         const result =await pool
                     .request()
-                    .query("SELECT * FROM Apuntes WHERE APRUBE = 1 ORDER BY fecha DESC;");
+                    .input("ID", sql.BigInt, ID)
+                    .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE APRUBE = 1 ORDER BY A.fecha DESC;");
         return res.json({status:1, msg: "almacenados",result:result.recordset});
 
 
@@ -507,5 +509,88 @@ export const getPDFalHistorial = async(req, res) => {
   }
 };
 
+export const addPDFalMegusta = async(req, res) => {
+  try{ 
 
+    const ID = req.body.ID;
+    const ID_PDF = req.body.ID_PDF;
+      if(ID == null ||  ID_PDF == null ||
+        ID == '' ||  ID_PDF == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      await pool
+                  .request()
+                  .input("ID", sql.BigInt, ID)
+                  .input("ID_PDF", sql.BigInt, ID_PDF)
+                  .query("DELETE FROM [Manual].[dbo].[MeGusta] WHERE ID_PDF = @ID_PDF and ID = @ID;");
+
+      await pool
+      .request()
+      .input("ID", sql.BigInt, ID)
+      .input("ID_PDF", sql.BigInt, ID_PDF)
+      .query("INSERT INTO MeGusta (ID,ID_PDF) VALUES (@ID,@ID_PDF);  ");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
+
+
+
+export const getPDFalMeGusta = async(req, res) => {
+  try{ 
+
+    const ID = req.body.ID;
+      if(ID == null ||
+         ID == ''  ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      const result = await pool
+      .request()
+      .input("ID", sql.BigInt, ID)
+      .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM   Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE M.ID_PDF = A.ID_PDF and M.ID =@ID ORDER BY M.fecha DESC;");
+      return res.json({ status:1, msg: "ok",result:result.recordset });
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
+
+
+export const dellPDFalMegusta = async(req, res) => {
+  try{ 
+
+    const ID = req.body.ID;
+    const ID_PDF = req.body.ID_PDF;
+      if(ID == null ||  ID_PDF == null ||
+        ID == '' ||  ID_PDF == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      await pool
+                  .request()
+                  .input("ID", sql.BigInt, ID)
+                  .input("ID_PDF", sql.BigInt, ID_PDF)
+                  .query("DELETE FROM [Manual].[dbo].[MeGusta] WHERE ID_PDF = @ID_PDF and ID = @ID;");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
 

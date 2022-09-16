@@ -85,15 +85,18 @@ export class ApuntesItem {
     NOMBRE : string;
     PDF: string;
     APRUBE:number;
+    Megusta:string;
     constructor(ID_PDF:number,
         ID:number,
         NOMBRE : string,
         PDF: string,
-        APRUBE:number){
+        APRUBE:number,
+        Megusta:string){
             this.ID =ID;
             this.NOMBRE=NOMBRE;
             this.PDF = PDF;
             this.APRUBE = APRUBE;
+            this.Megusta = Megusta;
         }
     
 }

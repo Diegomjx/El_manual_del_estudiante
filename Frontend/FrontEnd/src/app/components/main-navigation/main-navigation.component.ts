@@ -13,7 +13,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class MainNavigationComponent implements OnInit, PipeTransform  {
   Apuntes: ApuntesItem[];
-
+  isClicked = false;
   isChecked = false;
   displayedColumns: string[] = ['1'];
  
@@ -30,7 +30,7 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
               }
 
   ngOnInit(): void {
-    this.backend.getPDFs().subscribe(x =>{
+    this.backend.getPDFs(new IDItem( parseInt(localStorage.getItem("id")||"0") )).subscribe(x =>{
       if(x.status ==1)
       this.Apuntes = x.result;
       console.log(this.Apuntes);
@@ -46,6 +46,25 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
     if((localStorage.getItem("id")||"0") != "0")
     this.backend.addPDFenHistorial(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),APUNTE.ID_PDF)).subscribe((res)=>{});
     this.router.navigateByUrl(`/LookPDF?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}&PDF=${APUNTE.PDF}`);
+  }
+
+
+  MeGusta(APUNTE:ApuntesItem){
+    if((localStorage.getItem("id")||"0") != "0"){
+      if(APUNTE.Megusta.toLowerCase() === 'true'){
+        APUNTE.Megusta='false';
+        this.backend.dellMegusta(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),APUNTE.ID_PDF)).subscribe((res)=>{});
+      }
+
+      else{
+        APUNTE.Megusta='true';
+        
+        this.backend.addMegusta(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),APUNTE.ID_PDF)).subscribe((res)=>{});
+      }
+
+    }
+    
+
   }
 
 

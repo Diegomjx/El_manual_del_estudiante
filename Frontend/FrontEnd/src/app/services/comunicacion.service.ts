@@ -11,8 +11,7 @@ export class ComunicacionService {
   private eviarnombreSubject = new Subject<string>();
   enviarnombreobservable = this.eviarnombreSubject.asObservable();
   
-  APUNTESource = new  BehaviorSubject<ApuntesItem>(new ApuntesItem(0,0,'','',0));
-  currentAPUNTE = this.APUNTESource.asObservable();
+
 
   ListSource = new BehaviorSubject<ListItem>(new ListItem(0,'',0));
   currentList = this.ListSource.asObservable();
@@ -26,9 +25,7 @@ export class ComunicacionService {
     this.eviarnombreSubject.next(this.name);
   }
 
-  showNotes(APUNTE:ApuntesItem){
-    this.APUNTESource.next(APUNTE);
-  }
+
 
   showList(List:ListItem){
     this.ListSource.next(List);
