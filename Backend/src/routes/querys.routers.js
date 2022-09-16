@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addList, addPDFtoList, dellPDFtoList, delUserById, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getExistInList, getListById, getListByIdandID_PDF, getPDFsdelasListas, getUser, getUserByPasswordandUser, updateUserById } from "../controllers/querys.controlers";
+import { addList, addPDFalHistorial, addPDFtoList, dellPDFtoList, delUserById, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getExistInList, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFsdelasListas, getUser, getUserByPasswordandUser, updateUserById } from "../controllers/querys.controlers";
 import { addUser, addPDF } from "../controllers/querys.controlers";
 
 const upload =  require("../utils/handleStorage");
@@ -28,6 +28,8 @@ router.post('/List/DELLPDF', dellPDFtoList);
 router.post('/List/getPDF',getPDFsdelasListas);
 //Listas
 //Historial
+router.post('/Historial/add', addPDFalHistorial);
+router.post('/Historial/get',getPDFalHistorial);
 //PDF
 //router.post('/PDF', addPDF);
 export default router;

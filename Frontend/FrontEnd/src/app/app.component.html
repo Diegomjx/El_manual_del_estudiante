@@ -28,9 +28,13 @@
           <mat-divider></mat-divider>
           <mat-list-item><button mat-button (click)="MyNotes()">My Notes</button></mat-list-item>
           <mat-divider></mat-divider>
-
-
+          <mat-list-item><button mat-button (click)="Historial()">Historial</button></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><button mat-button (click)="Megusta()">Me Gusta</button></mat-list-item>
+          <mat-divider></mat-divider>
           <mat-list-item><button mat-button (click)="CreateList()">Crear lista</button></mat-list-item>
+          <mat-divider></mat-divider>
+
           <!--Ver Mas-->
         </mat-list>
         <mat-list *ngFor="let Lista of Lista">

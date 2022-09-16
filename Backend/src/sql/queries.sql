@@ -17,6 +17,7 @@ CREATE TABLE Apuntes (
 	NOMBRE varchar(100),
 	PDF varchar(MAX),
 	APRUBE tinyint,
+	fecha datetime not null default(current_timestamp),
 	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,
 
 );
@@ -32,9 +33,27 @@ CREATE TABLE Lista (
 CREATE TABLE ListaContieneApuntes (
 	ID_LISTA bigint,
 	ID_PDF bigint,
+	fecha datetime not null default(current_timestamp),
 	FOREIGN KEY(ID_LISTA) REFERENCES Lista,
 	FOREIGN KEY(ID_PDF) REFERENCES Apuntes ON DELETE CASCADE,
 );
+
+CREATE TABLE MeGusta(
+	ID bigint,
+	ID_PDF bigint,
+	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,
+	fecha datetime not null default(current_timestamp),
+	FOREIGN KEY(ID_PDF) REFERENCES Apuntes
+);
+
+CREATE TABLE Historial(
+	ID bigint,
+	ID_PDF bigint,
+	fecha datetime not null default(current_timestamp),
+	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,
+	FOREIGN KEY(ID_PDF) REFERENCES Apuntes
+);
+
 
 
 
@@ -57,7 +76,10 @@ SELECT L.ID_LISTA, l.NOMBRE, IIF(la.id_lista is null, 'false', 'true')  c
 
 
 /*
-DROP TABLE Perfil;  
+DROP TABLE Historial;
+DROP TABLE MeGusta;
+Drop table ListaContieneApuntes
+DROP TABLE Lista
 DROP TABLE Apuntes;
 
 */

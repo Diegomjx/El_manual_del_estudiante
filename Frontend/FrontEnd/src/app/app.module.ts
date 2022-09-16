@@ -41,6 +41,8 @@ import { SearchComponent } from './components/search/search.component';
 import { CreteListComponent } from './components/crete-list/crete-list.component';
 import { LookListComponent } from './components/look-list/look-list.component';
 import { MisListasComponent } from './components/mis-listas/mis-listas.component';
+import { HistorialComponent } from './components/historial/historial.component';
+import { MegustaComponent } from './components/megusta/megusta.component';
 
 
 
@@ -59,7 +61,9 @@ import { MisListasComponent } from './components/mis-listas/mis-listas.component
     SearchComponent,
     CreteListComponent,
     LookListComponent,
-    MisListasComponent
+    MisListasComponent,
+    HistorialComponent,
+    MegustaComponent
   ],
   imports: [
     BrowserModule,

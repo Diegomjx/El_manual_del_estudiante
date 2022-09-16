@@ -189,7 +189,7 @@ export const getApuntes = async(req,res)=>{
         const pool = await getConnection();
         const result =await pool
                     .request()
-                    .query("SELECT * FROM Apuntes WHERE APRUBE = 1;");
+                    .query("SELECT * FROM Apuntes WHERE APRUBE = 1 ORDER BY fecha DESC;");
         return res.json({status:1, msg: "almacenados",result:result.recordset});
 
 
@@ -211,7 +211,7 @@ export const getApuntesByIdUser = async(req,res)=>{
       const result =await pool
                   .request()
                   .input("ID", sql.BigInt, ID)
-                  .query("SELECT * FROM Apuntes WHERE ID = @ID;");
+                  .query("SELECT * FROM Apuntes WHERE ID = @ID ORDER BY fecha DESC;");
       return res.json({status:1, msg: "almacenados en user",result:result.recordset});
 
 
@@ -233,7 +233,7 @@ export const getApuntesByIdUserIdPDF = async(req,res)=>{
                   .request()
                   .input("ID", ID)
                   .input("ID_PDF",  ID_PDF)
-                  .query("SELECT * FROM Apuntes WHERE ID_PDF = @ID_PDF;");
+                  .query("SELECT * FROM Apuntes WHERE ID_PDF = @ID_PDF ORDER BY fecha DESC;");
       return res.json({status:1, msg: "almacenados en user",result:result.recordset});
 
 
@@ -441,12 +441,71 @@ export const getPDFsdelasListas = async(req, res)=>{
     const result =await pool
                 .request()
                 .input("ID_LISTA", sql.BigInt, ID_LISTA)
-                .query("Select A.ID_PDF, A.ID, A.NOMBRE, A.PDF, A.APRUBE from ListaContieneApuntes LCA, Apuntes A where LCA.ID_PDF = A.ID_PDF and LCA.ID_LISTA =@ID_LISTA");
+                .query("Select A.ID_PDF, A.ID, A.NOMBRE, A.PDF, A.APRUBE from ListaContieneApuntes LCA, Apuntes A where LCA.ID_PDF = A.ID_PDF and LCA.ID_LISTA =@ID_LISTA ORDER BY LCA.fecha DESC");
     return res.json({status:1, msg: "ok",result:result.recordset});
 }catch(error){
   res.status(500);
   res.send(error.message);
 }
 };
+
+export const addPDFalHistorial = async(req, res) => {
+  try{ 
+
+    const ID = req.body.ID;
+    const ID_PDF = req.body.ID_PDF;
+      if(ID == null ||  ID_PDF == null ||
+        ID == '' ||  ID_PDF == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      await pool
+                  .request()
+                  .input("ID", sql.BigInt, ID)
+                  .input("ID_PDF", sql.BigInt, ID_PDF)
+                  .query("DELETE FROM [Manual].[dbo].[Historial] WHERE ID_PDF = @ID_PDF and ID = @ID;");
+
+      await pool
+      .request()
+      .input("ID", sql.BigInt, ID)
+      .input("ID_PDF", sql.BigInt, ID_PDF)
+      .query("INSERT INTO Historial (ID,ID_PDF) VALUES (@ID,@ID_PDF);  ");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
+
+
+
+export const getPDFalHistorial = async(req, res) => {
+  try{ 
+
+    const ID = req.body.ID;
+      if(ID == null ||
+         ID == ''  ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      const result = await pool
+      .request()
+      .input("ID", sql.BigInt, ID)
+      .query("SELECT A.ID_PDF, A.ID, A.NOMBRE, A.PDF, A.APRUBE FROM  Historial h, Apuntes A WHERE h.ID_PDF = A.ID_PDF and h.ID =@ID ORDER BY h.fecha DESC;");
+      return res.json({ status:1, msg: "ok",result:result.recordset });
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
+
 
 

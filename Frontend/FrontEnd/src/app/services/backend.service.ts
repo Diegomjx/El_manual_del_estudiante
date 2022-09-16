@@ -77,6 +77,18 @@ export class BackendService {
   return this.http.post<ApuntesList>(url, body, httpOptions);
  }
 
+ addPDFenHistorial(body:IDandID_PDFItem){
+  let url: string = BE_API+ "/Historial/add";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ getPDFenHistorial(body:IDItem){
+  let url: string = BE_API+ "/Historial/get";
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+
+
 
 
 

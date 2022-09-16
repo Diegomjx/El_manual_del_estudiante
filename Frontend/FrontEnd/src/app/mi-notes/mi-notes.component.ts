@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { ApuntesItem } from '../models/models';
+import { ApuntesItem, IDandID_PDFItem } from '../models/models';
 import { BackendService } from '../services/backend.service';
 
 
@@ -40,7 +40,8 @@ export class MiNotesComponent implements OnInit {
 
 
   SHOW(APUNTE:ApuntesItem){
-
+    if((localStorage.getItem("id")||"0") != "0")
+    this.backend.addPDFenHistorial(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),APUNTE.ID_PDF)).subscribe((res)=>{});
     this.router.navigateByUrl(`/LookPDF?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}&PDF=${APUNTE.PDF}`);
   }
 

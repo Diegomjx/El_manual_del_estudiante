@@ -82,6 +82,20 @@ export class AppComponent   {
     this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
   }
 
+  Historial(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/historial');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+
+  Megusta(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/Megusta');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+
   ngOnChange(): void {
     this.name = localStorage.getItem('name') || 'User';
   }

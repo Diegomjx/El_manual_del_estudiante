@@ -1,17 +1,15 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { ApuntesItem, IDandID_PDFItem, IDItem, ListItem } from 'src/app/models/models';
+import { ApuntesItem, IDandID_PDFItem, IDItem } from 'src/app/models/models';
 import { BackendService } from 'src/app/services/backend.service';
-import { Pipe, PipeTransform } from '@angular/core';
-import { DomSanitizer } from "@angular/platform-browser"; 
 
 @Component({
-  selector: 'app-main-navigation',
-  templateUrl: './main-navigation.component.html',
-  styleUrls: ['./main-navigation.component.scss']
+  selector: 'app-historial',
+  templateUrl: './historial.component.html',
+  styleUrls: ['./historial.component.scss']
 })
-export class MainNavigationComponent implements OnInit, PipeTransform  {
+export class HistorialComponent implements OnInit {
   Apuntes: ApuntesItem[];
 
   isChecked = false;
@@ -30,7 +28,7 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
               }
 
   ngOnInit(): void {
-    this.backend.getPDFs().subscribe(x =>{
+    this.backend.getPDFenHistorial(new IDItem(parseInt(localStorage.getItem("id")||"0")) ).subscribe(x =>{
       if(x.status ==1)
       this.Apuntes = x.result;
       console.log(this.Apuntes);
@@ -48,11 +46,4 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
     this.router.navigateByUrl(`/LookPDF?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}&PDF=${APUNTE.PDF}`);
   }
 
-
-
-
-
-
-
 }
-

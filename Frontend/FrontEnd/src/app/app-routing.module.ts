@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreteListComponent } from './components/crete-list/crete-list.component';
+import { HistorialComponent } from './components/historial/historial.component';
 import { LoginComponent } from './components/login/login.component';
 import { LookListComponent } from './components/look-list/look-list.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
+import { MegustaComponent } from './components/megusta/megusta.component';
 import { MisListasComponent } from './components/mis-listas/mis-listas.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/search/search.component';
@@ -23,7 +25,9 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'search', component: SearchComponent},
                         {path: 'addList', component: CreteListComponent},
                         {path: 'LookList', component: LookListComponent},
-                        {path: 'MisListas', component:MisListasComponent}
+                        {path: 'MisListas', component:MisListasComponent},
+                        {path: 'historial', component: HistorialComponent},
+                        {path: 'Megusta', component:MegustaComponent},
 
                       ];
 
