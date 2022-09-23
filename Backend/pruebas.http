@@ -45,3 +45,6 @@ Content-Type: application/json
     "ID_PDF":"124"
 
 }
+
+###
+GET   http://localhost:9000/Serch/4

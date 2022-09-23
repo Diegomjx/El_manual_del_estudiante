@@ -595,3 +595,26 @@ export const dellPDFalMegusta = async(req, res) => {
   }
 };
 
+
+
+export const Serch = async(req, res)=>{
+try{
+  const{ Serch } = req.params;
+  const ID = req.body.ID;
+  if(Serch == null ||
+    Serch == ''  ){
+     return res.json({status:400 , msg: "DATOS FALTANTES"});
+ 
+   }
+  const pool = await getConnection();
+  const result = await pool
+                  .request()
+                  .input("Serch", sql.Char, Serch)
+                  .input("ID", sql.BigInt, ID)
+                  .query(" SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE APRUBE = 1 and A.NOMBRE LIKE '%'+@Serch+'%' ORDER BY A.fecha DESC;    ");
+                  return res.json({ status:1, msg: "ok",result:result.recordset });
+}catch(error){
+  res.status(500);
+  res.send(error.message);
+}
+};

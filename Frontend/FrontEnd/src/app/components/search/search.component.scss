@@ -45,3 +45,18 @@
     padding-top: 5%;
 
   }
+
+  .tn{
+    margin: 0;
+    border: 4px 4px solid #eee;
+    box-shadow: #555 1px 1px 8px 1px;
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    pointer-events:none;
+  }
+  .myClass{
+    color : red;
+  }
+  

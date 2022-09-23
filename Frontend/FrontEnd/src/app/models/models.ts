@@ -86,17 +86,20 @@ export class ApuntesItem {
     PDF: string;
     APRUBE:number;
     Megusta:string;
+    fecha:Date;
     constructor(ID_PDF:number,
         ID:number,
         NOMBRE : string,
         PDF: string,
         APRUBE:number,
-        Megusta:string){
+        Megusta:string,
+        fecha:Date){
             this.ID =ID;
             this.NOMBRE=NOMBRE;
             this.PDF = PDF;
             this.APRUBE = APRUBE;
             this.Megusta = Megusta;
+            this.fecha = fecha;
         }
     
 }
@@ -147,6 +150,7 @@ export class LIstofListwhithPDFItem{
 }
 
 
+
 //----------------Get-------------------
 
 
@@ -178,17 +182,7 @@ export class addUser {
                 }
 }
 
-export class addPDF{
-    FILE:Blob;
-    NAME:string;
-    constructor(FILE:Blob,
-                NAME:string,
-                 ){
-            this.FILE=FILE;
-            this.NAME=NAME;
 
-                }
-}
 
 export class getBooleanofListinPDF{
     ID_LISTA: number;

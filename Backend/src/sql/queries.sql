@@ -41,17 +41,17 @@ CREATE TABLE ListaContieneApuntes (
 CREATE TABLE MeGusta(
 	ID bigint,
 	ID_PDF bigint,
-	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,
+	FOREIGN KEY(ID) REFERENCES Perfil,
 	fecha datetime not null default(current_timestamp),
-	FOREIGN KEY(ID_PDF) REFERENCES Apuntes
+	FOREIGN KEY(ID_PDF) REFERENCES Apuntes  ON DELETE CASCADE
 );
 
 CREATE TABLE Historial(
 	ID bigint,
 	ID_PDF bigint,
 	fecha datetime not null default(current_timestamp),
-	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,
-	FOREIGN KEY(ID_PDF) REFERENCES Apuntes
+	FOREIGN KEY(ID) REFERENCES Perfil,
+	FOREIGN KEY(ID_PDF) REFERENCES Apuntes  ON DELETE CASCADE
 );
 
 

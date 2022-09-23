@@ -88,7 +88,7 @@ export class LookPDFComponent implements OnInit,PipeTransform {
 
 
   transform(url:string) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl( `http://localhost:9000/${url}#toolbar=0`);
+    return this.sanitizer.bypassSecurityTrustResourceUrl( `http://localhost:9000/${url}#toolbar=1`);
   }
 
   ngOnInit(): void {
