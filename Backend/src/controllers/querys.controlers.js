@@ -1,5 +1,6 @@
 import {getConnection, sql} from "../database"
-
+// importa el módulo de node `file-system`
+const fs = require('fs')
 //-------------------------------------------------------------------------------------------------------------------------------------------
 const regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 const regex_t = /^([0-9]+)$/;
@@ -85,10 +86,6 @@ export const addList = async(req, res) => {
   }
 };
 
-
-
-
-
 export const getExistInList = async(req, res)=>{
   try{
     const {ID_LISTA,ID,ID_PDF} = req.body;
@@ -111,7 +108,6 @@ export const getExistInList = async(req, res)=>{
   res.send(error.message);
 }
 };
-
 
 export const getUserByPasswordandUser = async(req, res) =>{
     try{
@@ -432,6 +428,48 @@ export const dellPDFtoList = async(req, res) => {
 };
 
 
+
+export const dellPDF = async(req, res) => {
+  try{ 
+
+      const{ ID } = req.params;
+      if(ID == null ||  
+         ID == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      const result =await pool
+                  .request()
+                  .input("ID", sql.BigInt, ID)
+                  .query("SELECT * FROM Apuntes WHERE ID_PDF = @ID;");
+      if(result.recordset.length <= 0)
+      return res.json({ status:0, msg: "Does Exist"});
+      const name = result.recordset[0].PDF;
+      fs.unlinkSync('./public/'+name, function (err) {
+      if (err) throw err;
+        // if no error, file has been deleted successfully
+        return res.json({status:400 , msg: "No se pudo eliminar"});
+    });
+
+
+      await pool
+      .request()
+      .input("ID", sql.BigInt, ID)
+      .query("DELETE FROM [Manual].[dbo].[Apuntes] WHERE ID_PDF = @ID;");
+      return res.json({ status:1, msg: "ok"});
+
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
+
+
+
 export const getPDFsdelasListas = async(req, res)=>{
   try{
     const {ID_LISTA,ID} = req.body;
@@ -597,6 +635,8 @@ export const dellPDFalMegusta = async(req, res) => {
 
 
 
+
+
 export const Serch = async(req, res)=>{
 try{
   const{ Serch } = req.params;
@@ -618,3 +658,6 @@ try{
   res.send(error.message);
 }
 };
+
+
+

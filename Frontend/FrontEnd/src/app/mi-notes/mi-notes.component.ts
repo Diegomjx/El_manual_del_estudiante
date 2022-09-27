@@ -19,9 +19,17 @@ export class MiNotesComponent implements OnInit {
 
               private router:Router,
               private sanitizer: DomSanitizer) { 
-              this.Apuntes = [];
+
+              this.backend.getPDFID(
+                  parseInt(localStorage.getItem("id") ||"0") 
+                ).subscribe(x =>{
+                  if(x.status ==1)
+                  this.Apuntes = x.result;
+                  console.log(this.Apuntes);
+                });
 
               }
+            
   transform(url:string) {
                 return this.sanitizer.bypassSecurityTrustResourceUrl( `http://localhost:9000/${url}#toolbar=0&navpanes=0&scrollbar=0`);
               }
@@ -60,4 +68,20 @@ export class MiNotesComponent implements OnInit {
     }
 
 }
+
+  DellApunte(APUNTE:ApuntesItem){
+    if((localStorage.getItem("id")||"0") != "0"){
+        this.backend.dellPDF(APUNTE.ID_PDF).subscribe((res)=>{
+          if(res.status === 1){
+            this.backend.getPDFID(
+              parseInt(localStorage.getItem("id") ||"0") 
+            ).subscribe(x =>{
+              if(x.status ==1)
+              this.Apuntes = x.result;
+              console.log(this.Apuntes);
+            });
+          }
+        });
+    }
+  }
 }

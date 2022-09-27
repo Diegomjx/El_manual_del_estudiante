@@ -36,6 +36,11 @@ export class BackendService {
   return this.http.post<response>(url,body);
  }
 
+ dellPDF(body:number){
+  let url  : string = BE_API+"/Apuntes/"+body;
+  return  this.http.delete<response>(url, httpOptions);
+ }
+
  addList(body:ListItemsend){
   let url: string = BE_API+"/List";
   return this.http.post<response>(url, body, httpOptions);
