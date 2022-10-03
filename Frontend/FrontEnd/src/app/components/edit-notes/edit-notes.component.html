@@ -1,0 +1,18 @@
+<mat-card>
+
+    
+    <form class="form" method="post" action="#">
+      <form [formGroup]="form">
+  
+      <mat-form-field appearance="fill">
+  
+          <mat-label>Nombre del PDF</mat-label>
+          <input matInput placeholder="Placeholder" required="" formControlName="NOMBRE">
+          <mat-hint>default: nombre de archivo</mat-hint>
+          <input matInput>
+       </mat-form-field>
+      <button mat-flat-button color="secondary" (click)="updatePDF()" class="button">SUBIR ARCHIVO</button>
+      </form>
+    </form>
+  
+  </mat-card>

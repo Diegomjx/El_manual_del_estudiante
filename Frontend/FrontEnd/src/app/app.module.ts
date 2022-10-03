@@ -43,7 +43,8 @@ import { LookListComponent } from './components/look-list/look-list.component';
 import { MisListasComponent } from './components/mis-listas/mis-listas.component';
 import { HistorialComponent } from './components/historial/historial.component';
 import { MegustaComponent } from './components/megusta/megusta.component';
-
+import {MatMenuModule} from '@angular/material/menu';
+import { EditNotesComponent } from './components/edit-notes/edit-notes.component';
 
 
 
@@ -63,7 +64,8 @@ import { MegustaComponent } from './components/megusta/megusta.component';
     LookListComponent,
     MisListasComponent,
     HistorialComponent,
-    MegustaComponent
+    MegustaComponent,
+    EditNotesComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +92,7 @@ import { MegustaComponent } from './components/megusta/megusta.component';
     MatTableModule,
     MatRadioModule ,
     MatGridListModule,
+    MatMenuModule
 
   ],
   providers: [],

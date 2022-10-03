@@ -22,11 +22,9 @@ export class LookListComponent implements OnInit {
               private routes: ActivatedRoute) { 
               this.Apuntes = [];
               this.ID_list=0;
-
-
-
-
               }
+
+              
   transform(url:string) {
                 return this.sanitizer.bypassSecurityTrustResourceUrl( `http://localhost:9000/${url}#toolbar=0&navpanes=0&scrollbar=0`);
               }

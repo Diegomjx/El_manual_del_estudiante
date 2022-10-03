@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreteListComponent } from './components/crete-list/crete-list.component';
+import { EditNotesComponent } from './components/edit-notes/edit-notes.component';
 import { HistorialComponent } from './components/historial/historial.component';
 import { LoginComponent } from './components/login/login.component';
 import { LookListComponent } from './components/look-list/look-list.component';
@@ -28,6 +29,7 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'MisListas', component:MisListasComponent},
                         {path: 'historial', component: HistorialComponent},
                         {path: 'Megusta', component:MegustaComponent},
+                        {path: 'EditarNotas', component:EditNotesComponent},
 
                       ];
 

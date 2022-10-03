@@ -38,7 +38,11 @@
           <!--Ver Mas-->
         </mat-list>
         <mat-list *ngFor="let Lista of Lista">
-          <mat-list-item><button mat-button (click)="ListSelected(Lista)">{{Lista.NOMBRE}}</button></mat-list-item>
+          <mat-list-item><button mat-button (click)="ListSelected(Lista)">
+            <mat-icon>list</mat-icon> {{Lista.NOMBRE}}
+          
+          </button>
+        </mat-list-item>
           <!----------->
 
           <!--fin-->
@@ -48,7 +52,7 @@
 
         </mat-list>
         <mat-divider></mat-divider>
-        <button mat-button (click)="Logout()" color="warn">Logout</button>
+        <button mat-button (click)="Logout()" color="warn"><mat-icon>exit_to_app</mat-icon>Logout</button>
       </mat-drawer>
 
 

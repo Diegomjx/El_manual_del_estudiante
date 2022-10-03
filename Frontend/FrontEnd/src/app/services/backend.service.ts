@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addUser, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  userList } from '../models/models';
+import { addUser, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  UpdateApuntesItem,  userList } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -111,6 +111,11 @@ export class BackendService {
   let url: string = BE_API+"/Serch";
   let content: IDItem = new IDItem(ID);
   return this.http.post<ApuntesList>(url+'/'+body,content,httpOptions);
+ }
+
+ UpdatePDFByIDPDF(body:UpdateApuntesItem){
+  let url: string = BE_API+"/Apuntes/Update";
+  return this.http.post<response>(url, body, httpOptions);
  }
 
 

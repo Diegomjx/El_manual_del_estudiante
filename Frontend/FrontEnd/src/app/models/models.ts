@@ -27,6 +27,16 @@ export class IDItem{
     }
 }
 
+export class UpdateApuntesItem{
+    ID_PDF:number;
+    NOMBRE:string;
+
+    constructor( ID_PDF:number,NOMBRE:string){
+        this.ID_PDF =ID_PDF;
+        this.NOMBRE = NOMBRE;
+    }
+}
+
 export class ID_LISTAiTEM{
     ID_LISTA: number;
     constructor(ID_LISTA:number){
@@ -267,3 +277,4 @@ export class LIstofListwhithPDF{
     }
 
 }
+
