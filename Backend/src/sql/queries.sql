@@ -8,6 +8,7 @@ CREATE TABLE Perfil (
 	CONTRASEÑA varchar(Max),
 	NOMBRE varchar(Max), 
 	CORREO varchar(Max),
+	Rol varchar(60),
 
 );
 
@@ -17,7 +18,9 @@ CREATE TABLE Apuntes (
 	NOMBRE varchar(100),
 	PDF varchar(MAX),
 	APRUBE tinyint,
+	Revised tinyint,
 	fecha datetime not null default(current_timestamp),
+
 	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,
 
 );

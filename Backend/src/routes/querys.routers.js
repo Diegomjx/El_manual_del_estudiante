@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addList, addPDFalHistorial, addPDFalMegusta, addPDFtoList, dellPDF, dellPDFalMegusta, dellPDFtoList, delUserById, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getExistInList, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFalMeGusta, getPDFsdelasListas, getUser, getUserByPasswordandUser, Serch, UpdateApuntesByIDPDF, updateUserById } from "../controllers/querys.controlers";
+import { addList, addPDFalHistorial, addPDFalMegusta, addPDFtoList, Aprube, dellPDF, dellPDFalMegusta, dellPDFtoList, delUserById, disapproved, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getApuntesRevisedorNo, getExistInList, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFalMeGusta, getPDFsdelasListas, getUser, getUserByPasswordandUser, Serch, UpdateApuntesByIDPDF, updateUserById } from "../controllers/querys.controlers";
 import { addUser, addPDF } from "../controllers/querys.controlers";
 
 const upload =  require("../utils/handleStorage");
@@ -18,6 +18,11 @@ router.post('/Apuntes/User/ID', getApuntesByIdUserIdPDF); // PDF especifico, por
 router.delete("/Apuntes/:ID", dellPDF);
 router.post("/PDF", upload.single("files"), addPDF);
 router.post("/Apuntes/Update", UpdateApuntesByIDPDF);
+
+
+router.post('/Admin/getApuntesRevised', getApuntesRevisedorNo);
+router.post('/Admin/Appunte/Aprube', Aprube);
+router.post('/Admin/Appunte/disapproved', disapproved);
 
 //Lis
 router.post('/List/ID', getListById);   //todas las listas de un usuario

@@ -45,7 +45,7 @@ export const addUser = async(req, res) => {
         .input("CONTRASEÑA", sql.VarChar, CONTRASEÑA)
         .input("NOMBRE", sql.VarChar, NOMBRE)
         .input("CORREO", sql.VarChar, CORREO)
-        .query("INSERT INTO Perfil (USUARIO,CONTRASEÑA,NOMBRE,CORREO) VALUES (@USUARIO,@CONTRASEÑA,@NOMBRE,@CORREO); ");
+        .query("INSERT INTO Perfil (USUARIO,CONTRASEÑA,NOMBRE,CORREO,Rol) VALUES (@USUARIO,@CONTRASEÑA,@NOMBRE,@CORREO,'user'); ");
         return res.json({ status:1, msg: "usuario insertado satisfactoriamente"});
     }catch(error){
         res.status(500);
@@ -436,7 +436,7 @@ export const addPDF = async(req, res) => {
       .input("NOMBRE", sql.VarChar, NAME)
       .input("ID",ID)
       .input("PDF", sql.VarChar, file)
-      .query("INSERT INTO Apuntes (ID,NOMBRE,PDF,APRUBE) VALUES (@ID,@NOMBRE,@PDF,1) ");
+      .query("INSERT INTO Apuntes (ID,NOMBRE,PDF,APRUBE,Revised) VALUES (@ID,@NOMBRE,@PDF,0,0) ");
       res.json({ status:1, msg: "ok" });
   } catch (error) {
     res.status(500);
@@ -506,6 +506,68 @@ export const UpdateApuntesByIDPDF = async(req,res)=>{
 }
 }
 
+export const getApuntesRevisedorNo = async(req,res)=>{
+  try{
+    const{Revised,ID} = req.body;
+    const pool = await getConnection();
+      const result =await pool
+      .request()
+      .input("ID", sql.BigInt, ID)
+      .input("Revised", sql.Int, Revised)
+      .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE Revised=@Revised ORDER BY A.fecha DESC;");
+      return res.json({status:1, msg: "almacenados",result:result.recordset});
+
+      
+
+
+}catch(error){
+    res.status(500);
+    res.send(error.message);
+    console.log(error.message);
+}
+}
+
+export const Aprube = async(req, res) => {
+  try{ 
+
+    const ID_PDF = req.body.ID_PDF;
+      if(  ID_PDF == null ||  ID_PDF == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+        }
+
+      
+      const pool = await getConnection();
+      await pool
+      .request()
+      .input("ID_PDF", sql.BigInt, ID_PDF)
+      .query("UPDATE  [Manual].[dbo].[Apuntes] SET Revised = 1, APRUBE = 1 WHERE ID_PDF = @ID_PDF");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
+
+export const disapproved = async(req, res) => {
+  try{ 
+
+    const ID_PDF = req.body.ID_PDF;
+      if(  ID_PDF == null ||  ID_PDF == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+        }
+
+      
+      const pool = await getConnection();
+      await pool
+      .request()
+      .input("ID_PDF", sql.BigInt, ID_PDF)
+      .query("UPDATE  [Manual].[dbo].[Apuntes] SET Revised = 1, APRUBE = 0 WHERE ID_PDF = @ID_PDF");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
 
 //------------------------------ Historial y Megusta ------------------------------
 export const addPDFalHistorial = async(req, res) => {

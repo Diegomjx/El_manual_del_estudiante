@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
         this.ngxToastService.onSuccess('Done','Se registro correctamente');
         this.router.navigateByUrl('/login');
       }else{
-        this.ngxToastService.onWarning('DATOS INCORRECTOS', 'Faltan datos o Se ingresaron erroneamente los datos');
+        this.ngxToastService.onWarning('DATOS INCORRECTOS', 'Se ingresaron erroneamente los datos');
       }
       
      

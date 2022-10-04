@@ -6,17 +6,21 @@ export class userItem {
     CONTRASEÑA:string;
     NOMBRE:string;
     CORREO:string;
+    Rol:string;
 
     constructor(ID: number,
                 USUARIO: string,
                 CONTRASEÑA:string,
                 NOMBRE:string,
-                CORREO:string){
+                CORREO:string,
+                Rol:string){
                     this.ID = ID;
                     this.USUARIO = USUARIO;
                     this.CONTRASEÑA = CONTRASEÑA;
                     this.NOMBRE = NOMBRE;
                     this.CORREO = CORREO;
+                    this.Rol = Rol;
+
                 }
 }
 
@@ -27,6 +31,14 @@ export class IDItem{
     }
 }
 
+export class adminPeticion{
+    Revised:number;
+    ID:number;
+    constructor(Revised:number, ID:number){
+        this.Revised=Revised;
+        this.ID=ID;
+    }
+}
 export class UpdateApuntesItem{
     ID_PDF:number;
     NOMBRE:string;
@@ -95,6 +107,7 @@ export class ApuntesItem {
     NOMBRE : string;
     PDF: string;
     APRUBE:number;
+    Revised:number;
     Megusta:string;
     fecha:Date;
     constructor(ID_PDF:number,
@@ -102,12 +115,14 @@ export class ApuntesItem {
         NOMBRE : string,
         PDF: string,
         APRUBE:number,
+        Revised:number,
         Megusta:string,
         fecha:Date){
             this.ID =ID;
             this.NOMBRE=NOMBRE;
             this.PDF = PDF;
             this.APRUBE = APRUBE;
+            this.Revised = Revised
             this.Megusta = Megusta;
             this.fecha = fecha;
         }

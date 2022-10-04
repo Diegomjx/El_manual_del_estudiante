@@ -45,7 +45,8 @@ import { HistorialComponent } from './components/historial/historial.component';
 import { MegustaComponent } from './components/megusta/megusta.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { EditNotesComponent } from './components/edit-notes/edit-notes.component';
-
+import { PaginadeAdministradorComponent } from './components/paginade-administrador/paginade-administrador.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { EditNotesComponent } from './components/edit-notes/edit-notes.component
     MisListasComponent,
     HistorialComponent,
     MegustaComponent,
-    EditNotesComponent
+    EditNotesComponent,
+    PaginadeAdministradorComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ import { EditNotesComponent } from './components/edit-notes/edit-notes.component
     MatTableModule,
     MatRadioModule ,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
 
   ],
   providers: [],

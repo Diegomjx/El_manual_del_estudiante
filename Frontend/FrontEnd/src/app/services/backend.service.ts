@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addUser, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  UpdateApuntesItem,  userList } from '../models/models';
+import { addUser, adminPeticion, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem,  ID_PDFItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  UpdateApuntesItem,  userList } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -115,6 +115,22 @@ export class BackendService {
 
  UpdatePDFByIDPDF(body:UpdateApuntesItem){
   let url: string = BE_API+"/Apuntes/Update";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ getApuntesRevisedorNot(body:adminPeticion){
+  let url: string = BE_API+'/Admin/getApuntesRevised';
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+ Aprube(body:ID_PDFItem){
+  let url: string = BE_API +"/Admin/Appunte/Aprube";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+
+ disapproved(body:ID_PDFItem){
+  let url: string = BE_API +"/Admin/Appunte/disapproved";
   return this.http.post<response>(url, body, httpOptions);
  }
 

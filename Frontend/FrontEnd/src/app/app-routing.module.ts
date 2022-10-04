@@ -8,6 +8,7 @@ import { LookListComponent } from './components/look-list/look-list.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { MegustaComponent } from './components/megusta/megusta.component';
 import { MisListasComponent } from './components/mis-listas/mis-listas.component';
+import { PaginadeAdministradorComponent } from './components/paginade-administrador/paginade-administrador.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/search/search.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
@@ -30,6 +31,7 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'historial', component: HistorialComponent},
                         {path: 'Megusta', component:MegustaComponent},
                         {path: 'EditarNotas', component:EditNotesComponent},
+                        {path:'Admins', component:PaginadeAdministradorComponent},
 
                       ];
 

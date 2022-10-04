@@ -5,6 +5,11 @@
     </button>
     <span>El manual del estudiante</span>
     <span class="example-spacer"></span>
+    <ng-template [ngIf]=" Rol == 'admin'">
+    <button  mat-icon-button class="gavel" aria-label="button for home" (click)="adminPage()">
+      <mat-icon>gavel</mat-icon>
+    </button>
+   </ng-template>
     <button mat-flat-button color="primary" (click)="search()" aria-label="search button">
       <mat-icon>search</mat-icon>
     </button>

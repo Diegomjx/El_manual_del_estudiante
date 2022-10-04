@@ -11,13 +11,11 @@ export class TextEditorComponent implements OnInit {
 
   editorForm: FormGroup;
   maxLenghtNumber:number = 100;
-
+  editorText = '';
   editorStyle={
     height: '600px',
     flex: 1,
-    //width: '1200px'
-    
-
+    width: '1106px'
   }
 
   
@@ -39,9 +37,15 @@ export class TextEditorComponent implements OnInit {
   }
 
   maxLenght(e:any){
-    //console.log(e);
-    if(e.editor.getLength()>this.maxLenghtNumber){
+
+
+    console.log(e);
+    this.editorText = e['editor']['root']['innerHTML'];
+    console.log(this.editorText);
+    console.log(this.editorForm.get('editor')?.value);
+
+/*      if(e.editor.getLength()>this.maxLenghtNumber){
        e.editor.deleteText(this.maxLenghtNumber, e.editor.getLength());
-    }
+    }  */
   }
 }

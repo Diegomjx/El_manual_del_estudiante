@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ApuntesItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem, ListItem, LIstofListwhithPDFItem } from '../models/models';
+import { ApuntesItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem, ID_PDFItem, ListItem, LIstofListwhithPDFItem } from '../models/models';
 import { ComunicacionService } from '../services/comunicacion.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { BackendService } from '../services/backend.service';
@@ -24,6 +24,7 @@ export class LookPDFComponent implements OnInit,PipeTransform {
   isChecked = false;
   Lista: LIstofListwhithPDFItem[];
   myhash: IHash={};
+  Rol=localStorage.getItem('Rol')||"";
 
   constructor(
     private backend: BackendService,
@@ -62,7 +63,7 @@ export class LookPDFComponent implements OnInit,PipeTransform {
         ID_PDF: [params['ID_PDF']],
         PDF: [params['PDF']],
         MEGUSTA: [params['MEGUSTA']],
-
+        APRUBE: [params['APRUBE']]
 
       });
 
@@ -131,6 +132,22 @@ export class LookPDFComponent implements OnInit,PipeTransform {
       }
 
     }
+
+}
+
+AprobadooNo(){
+  if((localStorage.getItem("id")||"0") != "0"){
+    if(this.form.value['APRUBE']== 1){
+      this.form.value['APRUBE']= 0;
+     this.backend.disapproved(new ID_PDFItem( this.form.value['ID_PDF'])).subscribe((res)=>{});
+    }
+
+    else{
+      this.form.value['APRUBE']= 1;
+      this.backend.Aprube(new ID_PDFItem( this.form.value['ID_PDF'])).subscribe((res)=>{});
+    }
+
+  }
 
 }
 

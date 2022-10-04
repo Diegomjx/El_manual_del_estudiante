@@ -17,6 +17,7 @@ export class AppComponent   {
   panelOpenState = false;
   showAlert = false;
   name = localStorage.getItem('name') || 'User';
+  Rol=localStorage.getItem('Rol')||"";
   Lista: ListItem[];
   ID_list:number = 0;
 
@@ -63,6 +64,10 @@ export class AppComponent   {
   ngOnInit(): void {
     this.serviceComunicate.enviarnombreobservable.subscribe(nombre=>{
       this.name = nombre;
+    });
+
+    this.serviceComunicate.Rolobservable.subscribe(Rol=>{
+      this.Rol = Rol;
     })
   }
 
@@ -103,9 +108,10 @@ export class AppComponent   {
   Logout(){
     if(localStorage.getItem("id") != null){
     localStorage.removeItem("id");
-        localStorage.removeItem("type");
+        localStorage.removeItem("Rol");
         localStorage.removeItem("name");
-        this.name = localStorage.getItem('name') || 'User';
+        this.name = 'User';
+        this.Rol = '';
     }
     this.router.navigateByUrl('/');
   }
@@ -130,6 +136,10 @@ export class AppComponent   {
     this.ID_list = List.ID_LISTA;
     this.router.navigateByUrl(`/LookList?ID_LISTA=${List.ID_LISTA}`);
 
+  }
+
+  adminPage(){
+    this.router.navigateByUrl('/Admins');
   }
 
   

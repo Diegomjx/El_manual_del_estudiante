@@ -9,7 +9,9 @@ export class ComunicacionService {
   name:string;
 
   private eviarnombreSubject = new Subject<string>();
+  private RolSubject = new Subject<string>();
   enviarnombreobservable = this.eviarnombreSubject.asObservable();
+  Rolobservable = this.RolSubject.asObservable();
   
 
 
@@ -23,6 +25,7 @@ export class ComunicacionService {
   enviarnombre(nombre:string){
     this.name = nombre;
     this.eviarnombreSubject.next(this.name);
+    this.RolSubject.next(localStorage.getItem('Rol')||"");
   }
 
 
@@ -30,6 +33,9 @@ export class ComunicacionService {
   showList(List:ListItem){
     this.ListSource.next(List);
   }
+
+
+  
 
 
 

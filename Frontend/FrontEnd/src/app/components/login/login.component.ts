@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       if(res.status == 1){
         this.userItem =  res.result[0];
         localStorage.setItem("id", (this.userItem.ID).toString() );
-        localStorage.setItem("type", "user");
+        localStorage.setItem("Rol", this.userItem.Rol);
         localStorage.setItem("name", this.userItem.USUARIO);
         //alert(this.userItem.ID);
         this.serviceComunicate.enviarnombre(this.userItem.USUARIO);

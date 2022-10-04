@@ -1,0 +1,62 @@
+//Esto le da el tamaño del componente
+
+:host { 
+    width: 90%;
+    height: 90%;
+}
+
+.search {
+    min-width: 100px;
+    max-width: 90%;
+    width: 100%;
+    align-self: center;
+  }
+  
+  .full{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+  }
+
+  //goes beyond on width? why flex?
+  .section{
+    width: 100%;
+    height: 90%;
+    //display: flex;
+  }
+  .search_section{
+    width: calc(100% - 90px);
+    height: 100%;
+  }
+  .searchButton{
+    height: 100%;
+    width: 10%;
+  }
+  
+  .separator{
+    width: 20px;
+    display: flex;
+  }
+  .notfull{
+    width: 85%;
+    height: 100%;
+  }
+  .topPadd{
+    padding-top: 5%;
+
+  }
+
+  .tn{
+    margin: 0;
+    border: 4px 4px solid #eee;
+    box-shadow: #555 1px 1px 8px 1px;
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    pointer-events:none;
+  }
+  .myClass{
+    color : red;
+  }
+  
