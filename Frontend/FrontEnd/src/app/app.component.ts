@@ -2,7 +2,7 @@ import { Component, ViewChild, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxToastService } from 'ngx-toast-notifier';
 import { LoginComponent } from './components/login/login.component';
-import { IDItem, ListItem } from './models/models';
+import { IDItem, ID_LISTAiTEM, ListItem, ListItemsend } from './models/models';
 import { BackendService } from './services/backend.service';
 import { ComunicacionService } from './services/comunicacion.service';
 
@@ -140,6 +140,22 @@ export class AppComponent   {
 
   adminPage(){
     this.router.navigateByUrl('/Admins');
+  }
+
+
+  DellList(LIst:ListItem){
+    this.BackendService.dellList(new ID_LISTAiTEM(LIst.ID_LISTA)).subscribe((x:any)=>{
+      if(x.status == 1 ){
+        this.refresh();
+      }
+    });
+
+  }
+
+  
+  EditList(LIst:ListItem){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl(`/EditarLista?ID_LISTA=${LIst.ID_LISTA}&NOMBRE=${LIst.NOMBRE}`);
   }
 
   

@@ -43,10 +43,15 @@
           <!--Ver Mas-->
         </mat-list>
         <mat-list *ngFor="let Lista of Lista">
-          <mat-list-item><button mat-button (click)="ListSelected(Lista)">
-            <mat-icon>list</mat-icon> {{Lista.NOMBRE}}
-          
+          <mat-list-item>
+            <button mat-button (click)="ListSelected(Lista)">
+              <mat-icon>list</mat-icon> {{Lista.NOMBRE}}
           </button>
+        <button mat-button [matMenuTriggerFor]="menu"><mat-icon >more_verti</mat-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-button  (click)="DellList(Lista)" ><mat-icon>delete_outline</mat-icon></button>
+            <button mat-button (click)="EditList(Lista)"><mat-icon>create</mat-icon></button>
+       </mat-menu>
         </mat-list-item>
           <!----------->
 

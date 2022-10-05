@@ -57,6 +57,13 @@ CREATE TABLE Historial(
 	FOREIGN KEY(ID_PDF) REFERENCES Apuntes  ON DELETE CASCADE
 );
 
+CREATE TABLE Seguidores (
+IDSeguidor bigint,
+IDSiguen bigint,
+FOREIGN KEY(IDSeguidor) REFERENCES Perfil(ID) ,
+FOREIGN KEY(IDSiguen) REFERENCES Perfil(ID) ,
+);
+
 
 
 

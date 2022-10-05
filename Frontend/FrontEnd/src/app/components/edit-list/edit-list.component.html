@@ -6,12 +6,13 @@
   
       <mat-form-field appearance="fill">
   
-          <mat-label>Nombre del PDF</mat-label>
+          <mat-label>Nombre De la Lista</mat-label>
           <input matInput placeholder="Placeholder" required="" formControlName="NOMBRE">
-          <mat-hint>default: nombre de archivo</mat-hint>
+          <mat-hint>hint: El nombre de las Listas tiene un tamño maximo.</mat-hint>
           <input matInput>
        </mat-form-field>
-      <button mat-flat-button color="secondary" (click)="updatePDF()" class="button">SUBIR CAMBIOS</button>
+      <div class="space"></div>
+      <button mat-flat-button color="secondary" (click)="UpdateList()" class="button">Modificar</button>
       </form>
     </form>
   

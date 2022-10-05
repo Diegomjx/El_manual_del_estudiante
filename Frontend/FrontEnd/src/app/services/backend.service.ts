@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addUser, adminPeticion, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem,  ID_PDFItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  UpdateApuntesItem,  userList } from '../models/models';
+import { addUser, adminPeticion, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem,  ID_LISTAiTEM,  ID_PDFItem,  ListItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  UpdateApuntesItem,  userList } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -132,6 +132,17 @@ export class BackendService {
  disapproved(body:ID_PDFItem){
   let url: string = BE_API +"/Admin/Appunte/disapproved";
   return this.http.post<response>(url, body, httpOptions);
+ }
+
+
+ dellList(body:ID_LISTAiTEM){
+  let url: string = BE_API+"/List/Dell";
+  return this.http.post<response>(url,body, httpOptions);
+ }
+
+ updateList(body:ListItem){
+  let url: string = BE_API+"/List/Update";
+  return this.http.post<response>(url,body,httpOptions);
  }
 
 

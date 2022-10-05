@@ -155,6 +155,47 @@ export const addList = async(req, res) => {
   }
 };
 
+export const dellList = async(req,res)=> {
+  try{
+    const ID_LISTA = req.body.ID_LISTA;
+
+    const pool = await getConnection();
+    await pool
+    .request()
+    .input('ID_LISTA', sql.BigInt,ID_LISTA)
+    .query("delete  [Manual].[dbo].[ListaContieneApuntes] WHERE ID_LISTA = @ID_LISTA");
+    await pool
+    .request()
+    .input('ID_LISTA', sql.BigInt,ID_LISTA)
+    .query("delete  [Manual].[dbo].[Lista] WHERE ID_LISTA = @ID_LISTA");
+    res.json({ status:1, msg: "ok" });
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
+export const updateList = async(req, res)=>{
+  try{
+    const ID_LISTA = req.body.ID_LISTA;
+    const NOMBRE = req.body.NOMBRE;
+    if(ID_LISTA == null || NOMBRE == null){
+      return res.json({status:0, msg: "Falta información"});
+    }
+    const pool = await getConnection();
+
+    await pool
+    .request()
+    .input('ID_LISTA', sql.BigInt,ID_LISTA)
+    .input('NOMBRE', sql.Char,NOMBRE)
+    .query("UPDATE  [Manual].[dbo].[Lista] SET NOMBRE = @NOMBRE WHERE ID_LISTA = @ID_LISTA");
+    res.json({ status:1, msg: "ok" });
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
 export const getExistInList = async(req, res)=>{
   try{
     const {ID_LISTA,ID,ID_PDF} = req.body;

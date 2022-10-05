@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addList, addPDFalHistorial, addPDFalMegusta, addPDFtoList, Aprube, dellPDF, dellPDFalMegusta, dellPDFtoList, delUserById, disapproved, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getApuntesRevisedorNo, getExistInList, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFalMeGusta, getPDFsdelasListas, getUser, getUserByPasswordandUser, Serch, UpdateApuntesByIDPDF, updateUserById } from "../controllers/querys.controlers";
+import { addList, addPDFalHistorial, addPDFalMegusta, addPDFtoList, Aprube, dellList, dellPDF, dellPDFalMegusta, dellPDFtoList, delUserById, disapproved, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getApuntesRevisedorNo, getExistInList, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFalMeGusta, getPDFsdelasListas, getUser, getUserByPasswordandUser, Serch, UpdateApuntesByIDPDF, updateList, updateUserById } from "../controllers/querys.controlers";
 import { addUser, addPDF } from "../controllers/querys.controlers";
 
 const upload =  require("../utils/handleStorage");
@@ -25,6 +25,9 @@ router.post('/Admin/Appunte/Aprube', Aprube);
 router.post('/Admin/Appunte/disapproved', disapproved);
 
 //Lis
+router.post('/List', addList); //agregar lista
+router.post('/List/Dell',dellList);
+router.post('/List/Update',updateList);
 router.post('/List/ID', getListById);   //todas las listas de un usuario
 router.post('/List/IDPDF',getListByIdandID_PDF); //para los ckeck list.
 router.post('/List/addPDF',addPDFtoList); //agregar a la lista

@@ -47,6 +47,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { EditNotesComponent } from './components/edit-notes/edit-notes.component';
 import { PaginadeAdministradorComponent } from './components/paginade-administrador/paginade-administrador.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { EditListComponent } from './components/edit-list/edit-list.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HistorialComponent,
     MegustaComponent,
     EditNotesComponent,
-    PaginadeAdministradorComponent
+    PaginadeAdministradorComponent,
+    EditListComponent
   ],
   imports: [
     BrowserModule,

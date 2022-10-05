@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreteListComponent } from './components/crete-list/crete-list.component';
+import { EditListComponent } from './components/edit-list/edit-list.component';
 import { EditNotesComponent } from './components/edit-notes/edit-notes.component';
 import { HistorialComponent } from './components/historial/historial.component';
 import { LoginComponent } from './components/login/login.component';
@@ -32,6 +33,7 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'Megusta', component:MegustaComponent},
                         {path: 'EditarNotas', component:EditNotesComponent},
                         {path:'Admins', component:PaginadeAdministradorComponent},
+                        {path: 'EditarLista', component:EditListComponent},
 
                       ];
 
