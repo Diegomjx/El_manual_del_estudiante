@@ -48,6 +48,7 @@ import { EditNotesComponent } from './components/edit-notes/edit-notes.component
 import { PaginadeAdministradorComponent } from './components/paginade-administrador/paginade-administrador.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { EditListComponent } from './components/edit-list/edit-list.component';
+import { VisitanteComponent } from './components/visitante/visitante.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { EditListComponent } from './components/edit-list/edit-list.component';
     MegustaComponent,
     EditNotesComponent,
     PaginadeAdministradorComponent,
-    EditListComponent
+    EditListComponent,
+    VisitanteComponent
   ],
   imports: [
     BrowserModule,

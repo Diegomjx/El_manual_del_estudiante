@@ -42,6 +42,8 @@
 
           <!--Ver Mas-->
         </mat-list>
+        <p>
+        <h2>Mis listas</h2>
         <mat-list *ngFor="let Lista of Lista">
           <mat-list-item>
             <button mat-button (click)="ListSelected(Lista)">
@@ -56,16 +58,20 @@
           <!----------->
 
           <!--fin-->
+        </mat-list>
 
-
-          
+        <h2>Siguiendo</h2>
+        <mat-list *ngFor="let siguiendo of siguiendo">
+          <mat-list-item>
+            <button mat-button (click)="Siguiendo(siguiendo)">
+              <mat-icon>supervised_user_circle</mat-icon>{{siguiendo.USUARIO}}
+          </button>
+        </mat-list-item>
 
         </mat-list>
         <mat-divider></mat-divider>
         <button mat-button (click)="Logout()" color="warn"><mat-icon>exit_to_app</mat-icon>Logout</button>
       </mat-drawer>
-
-
   
     <div class="example-sidenav-content">
     <router-outlet> </router-outlet>

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addUser, adminPeticion, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, ID_LISTAandID_PDFItem,  ID_LISTAiTEM,  ID_PDFItem,  ListItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  UpdateApuntesItem,  userList } from '../models/models';
+import { addUser, adminPeticion, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, IDSeguidorandIDSiguiendo, ID_LISTAandID_PDFItem,  ID_LISTAiTEM,  ID_PDFItem,  ListItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  responseSeguir,  siguiendo,  UpdateApuntesItem,  userList, USUARIOID } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -117,9 +117,34 @@ export class BackendService {
   let url: string = BE_API+"/Apuntes/Update";
   return this.http.post<response>(url, body, httpOptions);
  }
+//*******para seguir****** */
+ getinfotothePDF(body:IDandID_PDFItem){
+  let url: string = BE_API +"/Apuntes/info";
+  return this.http.post<responseSeguir>(url, body, httpOptions);
+ }
+
+ addSeguidor(body:IDSeguidorandIDSiguiendo){
+  let url: string = BE_API +"/Seguidor/add";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ dellSeguidor(body:IDSeguidorandIDSiguiendo){
+  let url: string = BE_API +"/Seguidor/dell";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ getSeguiendo(body:IDItem){
+  let url: string = BE_API +"/Seguidor/get";
+  return this.http.post<siguiendo>(url, body, httpOptions);
+ }
 
  getApuntesRevisedorNot(body:adminPeticion){
   let url: string = BE_API+'/Admin/getApuntesRevised';
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+ getApuntesInvitado(body:USUARIOID){
+  let url: string = BE_API+'/Apuntes/invitado';
   return this.http.post<ApuntesList>(url, body, httpOptions);
  }
 
@@ -128,12 +153,10 @@ export class BackendService {
   return this.http.post<response>(url, body, httpOptions);
  }
 
-
  disapproved(body:ID_PDFItem){
   let url: string = BE_API +"/Admin/Appunte/disapproved";
   return this.http.post<response>(url, body, httpOptions);
  }
-
 
  dellList(body:ID_LISTAiTEM){
   let url: string = BE_API+"/List/Dell";
@@ -144,6 +167,8 @@ export class BackendService {
   let url: string = BE_API+"/List/Update";
   return this.http.post<response>(url,body,httpOptions);
  }
+
+
 
 
 

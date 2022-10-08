@@ -27,7 +27,8 @@ export class UploadFileComponent implements OnInit {
               private ngxToastService: NgxToastService
               ) {this.form = this.fb.group({
                 File: [this.files_],
-                NAME: ['']
+                NAME: [''],
+                Private: [1]
               });
 
 
@@ -43,7 +44,6 @@ export class UploadFileComponent implements OnInit {
   //  console.log(this.file_name);
   //  console.log(this.files);
     /******************* */
-
     const [file]=fileInputEvent.target.files;
     this.fileTemp = {
       fileRaw:file,
@@ -66,7 +66,9 @@ export class UploadFileComponent implements OnInit {
     const formularioDeDatos = new FormData();
     formularioDeDatos.append('files',this.fileTemp.fileRaw, this.fileTemp.fileName);
     formularioDeDatos.append('NAME', this.form.controls['NAME'].value);
+    formularioDeDatos.append('Private', this.form.controls['Private'].value );
     formularioDeDatos.append('ID', id );
+
    //agregar un apend 
     this.BackendService.addPDF(
       formularioDeDatos

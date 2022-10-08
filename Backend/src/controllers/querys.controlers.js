@@ -403,7 +403,7 @@ export const getPDFsdelasListas = async(req, res)=>{
 }
 };
 
-//------------------------------ aPUNTES ------------------------------
+//------------------------------ APUNTES ------------------------------
 export const getApuntes = async(req,res)=>{
     try{
       const{ID} = req.body;
@@ -412,7 +412,7 @@ export const getApuntes = async(req,res)=>{
         const result =await pool
                     .request()
                     .input("ID", sql.BigInt, ID)
-                    .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE APRUBE = 1 ORDER BY A.fecha DESC;");
+                    .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE APRUBE = 1 and Private = 0 ORDER BY A.fecha DESC;");
         return res.json({status:1, msg: "almacenados",result:result.recordset});
 
 
@@ -422,6 +422,7 @@ export const getApuntes = async(req,res)=>{
       console.log(error.message);
   }
 };
+
 
 export const getApuntesByIdUser = async(req,res)=>{
   try{
@@ -435,6 +436,28 @@ export const getApuntesByIdUser = async(req,res)=>{
                   .request()
                   .input("ID", sql.BigInt, ID)
                   .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A  LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE A.ID = @ID ORDER BY A.fecha DESC;");
+      return res.json({status:1, msg: "almacenados en user",result:result.recordset});
+
+
+}catch(error){
+    res.status(500);
+    res.send(error.message);
+}
+};
+
+export const getApuntesByUSERNAME = async(req,res)=>{
+  try{
+      const {ID,USUARIO} = req.body;
+      if(ID == null || USUARIO == null){
+        return res.json({status:0, msg: "DATOS FALTANTES"});
+      }
+
+      const pool = await getConnection();
+      const result =await pool
+                  .request()
+                  .input("ID", sql.BigInt, ID)
+                  .input("USUARIO", sql.Char, USUARIO)
+                  .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Perfil p,Apuntes A  LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE p.ID =A.ID and p.USUARIO=@USUARIO and A.Private = 0 ORDER BY A.fecha DESC;");
       return res.json({status:1, msg: "almacenados en user",result:result.recordset});
 
 
@@ -467,17 +490,20 @@ export const getApuntesByIdUserIdPDF = async(req,res)=>{
 };
 
 export const addPDF = async(req, res) => {
-  const file = req.file.filename;
-  const NAME = req.body.NAME;
-  const ID = req.body.ID;
+
   try {
+    const file = req.file.filename;
+    const NAME = req.body.NAME;
+    const ID = req.body.ID;
+    const Private = req.body.Private;
     const pool = await getConnection();
     await pool
       .request()
       .input("NOMBRE", sql.VarChar, NAME)
       .input("ID",ID)
       .input("PDF", sql.VarChar, file)
-      .query("INSERT INTO Apuntes (ID,NOMBRE,PDF,APRUBE,Revised) VALUES (@ID,@NOMBRE,@PDF,0,0) ");
+      .input("Private", sql.VarChar, Private)
+      .query("INSERT INTO Apuntes (ID,NOMBRE,PDF,APRUBE,Revised,Private) VALUES (@ID,@NOMBRE,@PDF,0,0,@Private) ");
       res.json({ status:1, msg: "ok" });
   } catch (error) {
     res.status(500);
@@ -529,15 +555,18 @@ export const dellPDF = async(req, res) => {
 export const UpdateApuntesByIDPDF = async(req,res)=>{
   try {
   const {ID_PDF,NOMBRE}=req.body;
-  if(ID_PDF == null || NOMBRE == null){
+  const Private = req.body.Private;
+  if(ID_PDF == null || NOMBRE == null || Private == null){
     return res.json({status:0, msg: "Falta información"});
   }
   const pool = await getConnection();
     await pool
       .request()
       .input("NOMBRE", sql.VarChar, NOMBRE)
+      .input("Private", sql.VarChar, Private)
       .input("ID_PDF",ID_PDF)
-      .query("UPDATE  [Manual].[dbo].[Apuntes] SET NOMBRE = @NOMBRE WHERE ID_PDF = @ID_PDF");
+      
+      .query("UPDATE  [Manual].[dbo].[Apuntes] SET NOMBRE = @NOMBRE, Private = @Private  WHERE ID_PDF = @ID_PDF");
       res.json({ status:1, msg: "ok" });
 
 
@@ -566,6 +595,28 @@ export const getApuntesRevisedorNo = async(req,res)=>{
     res.send(error.message);
     console.log(error.message);
 }
+}
+export const getInfoApunte = async(req,res)=>{
+try{
+  const{ID_PDF, ID} = req.body;
+  if(  ID_PDF == null ||  ID_PDF == '' ||
+       ID == null     ||  ID == '' ){
+    return res.json({status:400 , msg: "DATOS FALTANTES"});
+  }
+
+  const pool = await getConnection();
+  const result = await pool
+  .request()
+  .input("ID_PDF",sql.BigInt, ID_PDF)
+  .input("ID",sql.BigInt, ID)
+  .query("Select p.USUARIO, p.ID , IIF(s.IDSiguen is null, 'false', 'true')  c from Perfil p,Apuntes a left outer join Seguidores  s on  s.IDSeguidor = @ID and s.IDSiguen = a.ID where a.ID = p.ID and a.ID_PDF = @ID_PDF  ");
+  return res.json({status:1, msg:"ok", result:result.recordset[0]});
+
+
+}catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
 }
 
 export const Aprube = async(req, res) => {
@@ -659,7 +710,7 @@ export const getPDFalHistorial = async(req, res) => {
       const result = await pool
       .request()
       .input("ID", sql.BigInt, ID)
-      .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM  Historial h, Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE h.ID_PDF = A.ID_PDF and h.ID =@ID ORDER BY h.fecha DESC;");
+      .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM  Historial h, Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE h.ID_PDF = A.ID_PDF and h.ID =@ID and Private = 0 ORDER BY h.fecha DESC;");
       return res.json({ status:1, msg: "ok",result:result.recordset });
   }catch(error){
       res.status(500);
@@ -761,7 +812,7 @@ try{
                   .request()
                   .input("Serch", sql.Char, Serch)
                   .input("ID", sql.BigInt, ID)
-                  .query(" SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE APRUBE = 1 and A.NOMBRE LIKE '%'+@Serch+'%' ORDER BY A.fecha DESC;    ");
+                  .query(" SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE APRUBE = 1 and A.NOMBRE LIKE '%'+@Serch+'%' and Private = 0 ORDER BY A.fecha DESC;    ");
                   return res.json({ status:1, msg: "ok",result:result.recordset });
 }catch(error){
   res.status(500);
@@ -769,6 +820,84 @@ try{
 }
 };
 
+//------------------------------ Seguir ------------------------------
+
+export const addSeguir = async(req, res) => {
+  try{ 
+
+    const ID1 = req.body.ID1;
+    const ID2 = req.body.ID2;
+      if(ID1 == null ||  ID2 == null ||
+        ID1 == '' ||  ID2 == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+
+      
+      const pool = await getConnection();
+
+      await pool
+                  .request()
+                  .input("ID1", sql.BigInt, ID1)
+                  .input("ID2", sql.BigInt, ID2)
+                  .query("DELETE FROM [Manual].[dbo].[Seguidores] WHERE IDSeguidor = @ID1 and IDSiguen = @ID2;");
+
+      await pool
+      .request()
+      .input("ID1", sql.BigInt, ID1)
+      .input("ID2", sql.BigInt, ID2)
+      .query("INSERT INTO Seguidores (IDSeguidor,IDSiguen) VALUES (@ID1,@ID2);  ");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
+
+export const dellSeguir = async(req, res) => {
+  try{ 
+
+    const ID1 = req.body.ID1;
+    const ID2 = req.body.ID2;
+      if(ID1 == null ||  ID2 == null ||
+        ID1 == '' ||  ID2 == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+      const pool = await getConnection();
+
+      await pool
+                  .request()
+                  .input("ID1", sql.BigInt, ID1)
+                  .input("ID2", sql.BigInt, ID2)
+                  .query("DELETE FROM [Manual].[dbo].[Seguidores] WHERE IDSeguidor = @ID1 and IDSiguen = @ID2;");
+      return res.json({ status:1, msg: "ok"});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+};
 
 
+export const getSeguir = async(req,res)=>{
+  try{ 
 
+    const ID = req.body.ID;
+
+      if(ID == null ||  
+        ID == '' ){
+          return res.json({status:400 , msg: "DATOS FALTANTES"});
+      
+        }
+      const pool = await getConnection();
+
+      const result = await pool
+                  .request()
+                  .input("ID", sql.BigInt, ID)
+                  .query("Select p.USUARIO, p.ID from Perfil p, Seguidores s where p.ID = s.IDSiguen and s.IDSeguidor=@ID");
+      return res.json({ status:1, msg: "ok", result:result.recordset});
+  }catch(error){
+      res.status(500);
+      res.send(error.message);
+  }
+}

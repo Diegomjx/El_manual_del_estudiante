@@ -20,6 +20,9 @@
       <button mat-button  class="btn btn-sm m-2" (click)="AprobadooNo()" [class.myClass]="this.form.value['APRUBE'] == 1">	<mat-icon>verified_user</mat-icon> </button>
       </ng-template>
       <button mat-button>SHARE</button>
+      <button mat-button  class="btn btn-sm m-2" (click)="Seguir()" [class.myClass]="this.form.value['SEGUIR'].toLowerCase() === 'true'"  >
+        <mat-icon>subscriptions</mat-icon>
+       </button>
               <!--Agregar a la lista-->
               <mat-form-field appearance="outline" style="width: 80px;">
                 <mat-label>Listas</mat-label>
@@ -42,6 +45,7 @@
                     <button  mat-button (click)="checkboxes(Lista.ID_LISTA)"> {{Lista.NOMBRE}} </button> 
                                       <label><input type="checkbox" name={{Lista.NOMBRE}}  id = {{Lista.ID_LISTA}}  (click)="addToList(Lista)"  checked={{Lista.boolean}} > {{Lista.NOMBRE}}</label>
                            -->
+
                            <label><input type="checkbox" name={{Lista.NOMBRE}}  
                             class="form-check-input"
                                           id = '{{Lista.ID_LISTA}}'  
@@ -53,6 +57,7 @@
                 </div>
                 </mat-select>
               </mat-form-field>
+              <label><h1>Autor:{{this.form.value['USUARIO']}}</h1></label>
     </mat-card-actions>
   </mat-card>
 

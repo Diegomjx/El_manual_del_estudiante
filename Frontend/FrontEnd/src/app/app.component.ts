@@ -2,7 +2,7 @@ import { Component, ViewChild, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxToastService } from 'ngx-toast-notifier';
 import { LoginComponent } from './components/login/login.component';
-import { IDItem, ID_LISTAiTEM, ListItem, ListItemsend } from './models/models';
+import { IDItem, ID_LISTAiTEM, ListItem, ListItemsend, siguiendo, USUARIOID } from './models/models';
 import { BackendService } from './services/backend.service';
 import { ComunicacionService } from './services/comunicacion.service';
 
@@ -19,6 +19,7 @@ export class AppComponent   {
   name = localStorage.getItem('name') || 'User';
   Rol=localStorage.getItem('Rol')||"";
   Lista: ListItem[];
+  siguiendo:USUARIOID[];
   ID_list:number = 0;
 
   constructor(
@@ -27,6 +28,7 @@ export class AppComponent   {
     private router:Router,
     private ngxToastService: NgxToastService ) {
       this.Lista = [];
+      this.siguiendo=[];
      }
 
 
@@ -129,6 +131,14 @@ export class AppComponent   {
       }
     });
 
+    this.BackendService.getSeguiendo( 
+      new IDItem(parseInt(id))
+    ).subscribe((x:any)=>{
+      if(x.msg == "ok"){
+        this.siguiendo = x.result;
+      }
+    });
+
   }
 
   ListSelected(List:ListItem){
@@ -136,6 +146,10 @@ export class AppComponent   {
     this.ID_list = List.ID_LISTA;
     this.router.navigateByUrl(`/LookList?ID_LISTA=${List.ID_LISTA}`);
 
+  }
+
+  Siguiendo(seguir:USUARIOID){
+    this.router.navigateByUrl(`/Siguiendo?Page=${seguir.USUARIO}`);
   }
 
   adminPage(){

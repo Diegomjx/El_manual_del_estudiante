@@ -15,6 +15,13 @@
     <input #PDFInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event)" accept=".pdf"/>
     <button mat-flat-button color="primary" (click)="PDFInput.click()" class="button"><mat-icon>upload_file</mat-icon></button>
     <div *ngIf=file_name> <mat-label>"{{file_name}}"</mat-label></div>
+    <mat-form-field appearance="fill">
+      <mat-label>¿quíen lo puede ver?</mat-label>
+      <mat-select formControlName="Private">
+        <mat-option value=1>Privado:solo yo lo puedo ver</mat-option>
+        <mat-option value=0>Publico:cualquiera lo puede ver</mat-option>
+      </mat-select>
+    </mat-form-field>
     <button mat-flat-button color="secondary" (click)="uploadFile()" class="button">SUBIR ARCHIVO</button>
     </form>
   </form>

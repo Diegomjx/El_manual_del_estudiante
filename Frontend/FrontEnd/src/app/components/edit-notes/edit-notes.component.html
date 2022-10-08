@@ -11,6 +11,15 @@
           <mat-hint>default: nombre de archivo</mat-hint>
           <input matInput>
        </mat-form-field>
+       
+       <mat-form-field appearance="fill">
+        <mat-label>¿quíen lo puede ver?</mat-label>
+        <mat-select formControlName="Private">
+          <mat-option value="1">Privado:solo yo lo puedo ver</mat-option>
+          <mat-option value="0">Publico:cualquiera lo puede ver</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
       <button mat-flat-button color="secondary" (click)="updatePDF()" class="button">SUBIR CAMBIOS</button>
       </form>
     </form>

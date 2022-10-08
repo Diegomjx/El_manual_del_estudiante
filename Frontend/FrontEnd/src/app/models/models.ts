@@ -42,10 +42,12 @@ export class adminPeticion{
 export class UpdateApuntesItem{
     ID_PDF:number;
     NOMBRE:string;
+    Private:number;
 
-    constructor( ID_PDF:number,NOMBRE:string){
+    constructor( ID_PDF:number,NOMBRE:string,Private:number){
         this.ID_PDF =ID_PDF;
         this.NOMBRE = NOMBRE;
+        this.Private = Private;
     }
 }
 
@@ -55,6 +57,36 @@ export class ID_LISTAiTEM{
         this.ID_LISTA = ID_LISTA;
     }
 }
+
+export class USUARIOIDC{
+    USUARIO:string;
+    ID:number;
+    c:string;
+
+    constructor(USUARIO:string,
+                ID:number,
+                c:string){
+
+                this.USUARIO=USUARIO;
+                this.ID=ID;
+                this.c=c;
+        }
+}
+
+
+export class USUARIOID{
+    USUARIO:string;
+    ID:number;
+
+    constructor(USUARIO:string,
+                ID:number){
+
+                this.USUARIO=USUARIO;
+                this.ID=ID;
+
+        }
+}
+
 
 export class ListItem{
     ID: number;
@@ -110,6 +142,7 @@ export class ApuntesItem {
     Revised:number;
     Megusta:string;
     fecha:Date;
+    Private:number;
     constructor(ID_PDF:number,
         ID:number,
         NOMBRE : string,
@@ -117,7 +150,8 @@ export class ApuntesItem {
         APRUBE:number,
         Revised:number,
         Megusta:string,
-        fecha:Date){
+        fecha:Date,
+        Private:number){
             this.ID =ID;
             this.NOMBRE=NOMBRE;
             this.PDF = PDF;
@@ -125,6 +159,7 @@ export class ApuntesItem {
             this.Revised = Revised
             this.Megusta = Megusta;
             this.fecha = fecha;
+            this.Private=Private;
         }
     
 }
@@ -135,6 +170,15 @@ export class IDandID_PDFItem {
     constructor(ID:number, ID_PDF:number){
         this.ID = ID;
         this.ID_PDF = ID_PDF;
+    }
+}
+
+export class IDSeguidorandIDSiguiendo {
+    ID1: number;
+    ID2: number;
+    constructor(ID1:number, ID2:number){
+        this.ID1 = ID1;
+        this.ID2 = ID2;
     }
 }
 
@@ -291,5 +335,31 @@ export class LIstofListwhithPDF{
                         this.result = result;
     }
 
+}
+
+export class responseSeguir{
+    status: number;
+    msg: string;
+    result:USUARIOIDC;
+    constructor(status:number,
+                msg:string,
+                result:USUARIOIDC) {
+                        this.status=status;
+                        this.msg=msg;
+                        this.result = result;
+    }
+}
+
+export class siguiendo{
+    status: number;
+    msg: string;
+    result:Array<USUARIOID>;
+    constructor(status:number,
+                msg:string,
+                result:Array<USUARIOID>) {
+                        this.status=status;
+                        this.msg=msg;
+                        this.result = result;
+    }
 }
 

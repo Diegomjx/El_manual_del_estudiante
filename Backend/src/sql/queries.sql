@@ -19,6 +19,7 @@ CREATE TABLE Apuntes (
 	PDF varchar(MAX),
 	APRUBE tinyint,
 	Revised tinyint,
+	Private  tinyint DEFAULT 1,
 	fecha datetime not null default(current_timestamp),
 
 	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,

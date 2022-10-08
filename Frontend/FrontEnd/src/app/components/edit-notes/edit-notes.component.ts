@@ -27,6 +27,7 @@ export class EditNotesComponent implements OnInit {
       this.form = this.fb.group({
         NOMBRE: [params['NOMBRE']],
         ID_PDF: [params['ID_PDF']],
+        Private: [params['Private']],
       });
     });
 
@@ -37,7 +38,7 @@ export class EditNotesComponent implements OnInit {
 
   updatePDF(){
     this.backend.UpdatePDFByIDPDF(
-      new UpdateApuntesItem(this.form.value['ID_PDF'],this.form.value['NOMBRE'])
+      new UpdateApuntesItem(this.form.value['ID_PDF'],this.form.value['NOMBRE'],this.form.value['Private'])
     ).subscribe((x:any)=>{
       if(x.msg == "ok"){
         this.ngxToastService.onSuccess('Actualizado','Se Actualizado satisfactoriamente');

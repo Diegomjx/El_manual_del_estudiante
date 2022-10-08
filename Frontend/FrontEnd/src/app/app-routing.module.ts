@@ -14,6 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/search/search.component';
 import { TextEditorComponent } from './components/text-editor/text-editor.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { VisitanteComponent } from './components/visitante/visitante.component';
 import { LookPDFComponent } from './look-pdf/look-pdf.component';
 import { MiNotesComponent } from './mi-notes/mi-notes.component';
 
@@ -34,6 +35,7 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'EditarNotas', component:EditNotesComponent},
                         {path:'Admins', component:PaginadeAdministradorComponent},
                         {path: 'EditarLista', component:EditListComponent},
+                        {path:'Siguiendo', component:VisitanteComponent},
 
                       ];
 

@@ -87,7 +87,7 @@ export class MiNotesComponent implements OnInit {
 
   EdirApunte(APUNTE:ApuntesItem){
     if((localStorage.getItem("id")||"0")!="0"){
-      this.router.navigateByUrl(`/EditarNotas?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}`);
+      this.router.navigateByUrl(`/EditarNotas?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}&Private=${APUNTE.Private}`);
     }
   }
 
