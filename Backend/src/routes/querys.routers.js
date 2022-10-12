@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addList, addPDFalHistorial, addPDFalMegusta, addPDFtoList, addSeguir, Aprube, dellList, dellPDF, dellPDFalMegusta, dellPDFtoList, dellSeguir, delUserById, disapproved, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getApuntesByUSERNAME, getApuntesRevisedorNo, getExistInList, getInfoApunte, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFalMeGusta, getPDFsdelasListas, getSeguir, getUser, getUserByPasswordandUser, Serch, UpdateApuntesByIDPDF, updateList, updateUserById } from "../controllers/querys.controlers";
+import { addList, addPDFalHistorial, addPDFalMegusta, addPDFtoList, addSeguir, Aprube, dellList, dellPDF, dellPDFalMegusta, dellPDFtoList, dellSeguir, delUserById, disapproved, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getApuntesByUSERNAME, getApuntesRevisedorNo, getExistInList, getInfoApunte, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFalMeGusta, getPDFsdelasListas, getSeguir, getSeguirwithUSERNAME, getUser, getUserByPasswordandUser, Serch, UpdateApuntesByIDPDF, updateList, updateUserById } from "../controllers/querys.controlers";
 import { addUser, addPDF } from "../controllers/querys.controlers";
 
 const upload =  require("../utils/handleStorage");
@@ -29,6 +29,8 @@ router.post('/Admin/Appunte/disapproved', disapproved);
 router.post("/Seguidor/dell", dellSeguir);
 router.post("/Seguidor/add",addSeguir);
 router.post("/Seguidor/get",getSeguir );
+router.post("/Seguidor/USUARIO/get",getSeguirwithUSERNAME);
+
 //Lis
 router.post('/List', addList); //agregar lista
 router.post('/List/Dell',dellList);

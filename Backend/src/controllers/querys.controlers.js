@@ -901,3 +901,27 @@ export const getSeguir = async(req,res)=>{
       res.send(error.message);
   }
 }
+
+
+export const getSeguirwithUSERNAME = async(req,res)=>{
+  try{
+    const{USUARIO, ID} = req.body;
+    if(  USUARIO == null ||  USUARIO == '' ||
+         ID == null     ||  ID == '' ){
+      return res.json({status:400 , msg: "DATOS FALTANTES"});
+    }
+  
+    const pool = await getConnection();
+    const result = await pool
+    .request()
+    .input("USUARIO",sql.Char, USUARIO)
+    .input("ID",sql.BigInt, ID)
+    .query("SELECT USUARIO, ID,IIF(s.IDSiguen is null, 'false', 'true')  c FROM  Perfil p left outer join Seguidores s ON  s.IDSeguidor = @ID and p.ID = s.IDSiguen where   p.USUARIO = @USUARIO");
+    return res.json({status:1, msg:"ok", result:result.recordset[0]});
+  
+  
+  }catch(error){
+        res.status(500);
+        res.send(error.message);
+    }
+  }

@@ -138,6 +138,11 @@ export class BackendService {
   return this.http.post<siguiendo>(url, body, httpOptions);
  }
 
+ getSiguiendowhithUSER(body:USUARIOID){
+  let url: string= BE_API+"/Seguidor/USUARIO/get";
+  return this.http.post<responseSeguir>(url, body, httpOptions);
+ }
+
  getApuntesRevisedorNot(body:adminPeticion){
   let url: string = BE_API+'/Admin/getApuntesRevised';
   return this.http.post<ApuntesList>(url, body, httpOptions);

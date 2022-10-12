@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApuntesItem, IDandID_PDFItem, USUARIOID, USUARIOIDC } from 'src/app/models/models';
+import { ApuntesItem, IDandID_PDFItem, IDSeguidorandIDSiguiendo, USUARIOID, USUARIOIDC } from 'src/app/models/models';
 import { BackendService } from 'src/app/services/backend.service';
 
 @Component({
@@ -14,12 +15,16 @@ export class VisitanteComponent implements OnInit {
   displayedColumns: string[] = ['1'];
   seguir: USUARIOIDC;
   Usuario: string = '';
-
+  form:FormGroup;
 
   constructor(private backend: BackendService,
               private router:Router,
+              private fb: FormBuilder,
               private route: ActivatedRoute,
               private sanitizer: DomSanitizer) { 
+                this.form = this.fb.group({
+                  SEGUIR: ['false']
+                })
               }
             
   transform(url:string) {
@@ -38,12 +43,18 @@ export class VisitanteComponent implements OnInit {
       ).subscribe(x =>{
         if(x.status ==1)
         this.Apuntes = x.result;
-        console.log(this.Apuntes);
+
       });
 
-      //hacemos la peticion o usamos user para hacer todo el proceso??
+      //peticion con user
+      this.backend.getSiguiendowhithUSER(new USUARIOID(this.Usuario,parseInt((localStorage.getItem("id")||"0") ))
+      ).subscribe(x =>{
+        if(x.status ==1)
+        this.seguir = x.result;
+        this.form.value['SEGUIR'] = this.seguir.c;
 
-    }
+      });
+     }
   );
 
 
@@ -70,6 +81,21 @@ export class VisitanteComponent implements OnInit {
 
     }
 
+}
+
+
+Seguir(){
+  if((localStorage.getItem("id")||"0") != "0" && parseInt(localStorage.getItem("id")||"0") != this.seguir.ID ){
+    if(this.form.value['SEGUIR'].toLowerCase() === 'true'){
+      this.form.value['SEGUIR']='false';
+      this.backend.dellSeguidor(new IDSeguidorandIDSiguiendo( parseInt(localStorage.getItem("id")||"0"),this.seguir.ID)).subscribe((res)=>{});
+    }
+    else{
+      this.form.value['SEGUIR']='true';
+      this.backend.addSeguidor(new IDSeguidorandIDSiguiendo( parseInt(localStorage.getItem("id")||"0"),this.seguir.ID)).subscribe((res)=>{});
+    }
+
+  }
 }
 
 

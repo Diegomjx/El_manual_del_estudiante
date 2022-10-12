@@ -1,4 +1,15 @@
 
+            <!-- toolbar -->
+            <mat-toolbar style=" width:max">
+              <span>{{Usuario}}</span>
+              <span class="example-spacer"></span>
+              <button mat-button  class="btn btn-sm m-2" (click)="Seguir()" [class.myClass]="this.form.value['SEGUIR'].toLowerCase() === 'true'"  >
+                <mat-icon>subscriptions</mat-icon>
+               </button>
+              <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                <mat-icon>share</mat-icon>
+              </button>
+            </mat-toolbar>
 
 <div class="row">
     <ul>
@@ -21,12 +32,7 @@
            scrolling="no"
              frameborder="0" >
                </iframe>
-        <!--  <mat-card-content>
-            <p>
-              {{Apuntes.NOMBRE}}
-            </p>
-          </mat-card-content>
-        -->
+
           <mat-card-actions>
             <button mat-button  class="btn btn-sm m-2" (click)="MeGusta(Apuntes)" [class.myClass]="Apuntes.Megusta.toLowerCase() === 'true'"  >LIKE</button>
             <button mat-button>SHARE</button>
