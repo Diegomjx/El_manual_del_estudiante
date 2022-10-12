@@ -1,7 +1,9 @@
 
             <!-- toolbar -->
-            <mat-toolbar style=" width:max">
-              <span>{{Usuario}}</span>
+            <mat-toolbar >
+
+              <span style="position: relative; left: 10px; font-size: 33px;">{{Usuario}}</span>
+
               <span class="example-spacer"></span>
               <button mat-button  class="btn btn-sm m-2" (click)="Seguir()" [class.myClass]="this.form.value['SEGUIR'].toLowerCase() === 'true'"  >
                 <mat-icon>subscriptions</mat-icon>

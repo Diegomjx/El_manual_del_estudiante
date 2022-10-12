@@ -77,4 +77,52 @@
 .myClass{
     color : red;
   }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+.example-icon{
+    color: "primary";
+}
+
+.example-container {
+  width: 100%; //500px;
+  min-height: 100% !important;//300px;
+  //max-height: none !important;
+//  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.tab {
+    display: inline-block;
+    margin-left: 70px;
+}
+
+    .padd{
+        padding-top: 40px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-left: 30px;
+    }
+
+.mat-form-field + .mat-form-field {
+      margin-left: 8px;
+    }
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
   

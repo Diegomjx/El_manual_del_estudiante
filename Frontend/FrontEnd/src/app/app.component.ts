@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterContentInit } from '@angular/core';
+import { Component, ViewChild, AfterContentInit , OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxToastService } from 'ngx-toast-notifier';
 import { LoginComponent } from './components/login/login.component';
@@ -12,7 +12,7 @@ import { ComunicacionService } from './services/comunicacion.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent   {
+export class AppComponent  implements OnInit {
   title = 'FrontEnd';
   panelOpenState = false;
   showAlert = false;
@@ -66,6 +66,7 @@ export class AppComponent   {
   ngOnInit(): void {
     this.serviceComunicate.enviarnombreobservable.subscribe(nombre=>{
       this.name = nombre;
+      this.refresh();
     });
 
     this.serviceComunicate.Rolobservable.subscribe(Rol=>{
