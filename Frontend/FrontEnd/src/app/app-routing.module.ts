@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreteListComponent } from './components/crete-list/crete-list.component';
 import { EditListComponent } from './components/edit-list/edit-list.component';
 import { EditNotesComponent } from './components/edit-notes/edit-notes.component';
+import { ElectronicaComponent } from './components/electronica/electronica.component';
 import { HistorialComponent } from './components/historial/historial.component';
 import { LoginComponent } from './components/login/login.component';
 import { LookListComponent } from './components/look-list/look-list.component';
@@ -36,6 +37,7 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path:'Admins', component:PaginadeAdministradorComponent},
                         {path: 'EditarLista', component:EditListComponent},
                         {path:'Siguiendo', component:VisitanteComponent},
+                        {path:'Electronica', component:ElectronicaComponent},
 
                       ];
 

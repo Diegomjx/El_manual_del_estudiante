@@ -49,6 +49,7 @@ import { PaginadeAdministradorComponent } from './components/paginade-administra
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { EditListComponent } from './components/edit-list/edit-list.component';
 import { VisitanteComponent } from './components/visitante/visitante.component';
+import { ElectronicaComponent } from './components/electronica/electronica.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { VisitanteComponent } from './components/visitante/visitante.component';
     EditNotesComponent,
     PaginadeAdministradorComponent,
     EditListComponent,
-    VisitanteComponent
+    VisitanteComponent,
+    ElectronicaComponent
   ],
   imports: [
     BrowserModule,
