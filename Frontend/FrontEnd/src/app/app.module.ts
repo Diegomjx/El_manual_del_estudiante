@@ -42,7 +42,6 @@ import { CreteListComponent } from './components/crete-list/crete-list.component
 import { LookListComponent } from './components/look-list/look-list.component';
 import { MisListasComponent } from './components/mis-listas/mis-listas.component';
 import { GraphsComponent } from './components/graphs/graphs.component';
-import { Graph } from 'flowchart-diagram-editor';
 import { HistorialComponent } from './components/historial/historial.component';
 import { MegustaComponent } from './components/megusta/megusta.component';
 import {MatMenuModule} from '@angular/material/menu';
