@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { LoginComponent } from './components/login/login.component';
 
+import { CargarScriptsService } from './services/cargar-scripts.service';
 //QUILL
 import{QuillModule} from 'ngx-quill';
 
@@ -106,7 +107,9 @@ import { ElectronicaComponent } from './components/electronica/electronica.compo
     MatCheckboxModule
 
   ],
-  providers: [],
+  providers: [
+    CargarScriptsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

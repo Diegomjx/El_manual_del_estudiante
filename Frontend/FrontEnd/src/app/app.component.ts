@@ -126,6 +126,10 @@ export class AppComponent  implements OnInit {
     this.router.navigateByUrl('/search');
   }
 
+  Electronica(){
+    this.router.navigateByUrl('/Electronica');
+  }
+
   refresh(){
     const id = localStorage.getItem("id") || "-1";
     this.BackendService.getLists( 

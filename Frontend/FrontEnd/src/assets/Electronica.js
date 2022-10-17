@@ -321,4 +321,7 @@ function save() {
 function load() {
   myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
 }
-window.addEventListener('DOMContentLoaded', init);
+//window.addEventListener('DOMContentLoaded', init);
+init();
+
+//window.addEventListener()

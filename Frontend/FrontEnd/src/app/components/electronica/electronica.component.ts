@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 
 declare function init() :void;
 @Component({
@@ -8,24 +9,20 @@ declare function init() :void;
   
 })
 export class ElectronicaComponent implements OnInit {
-  GO: HTMLScriptElement;
-  FIGURES: HTMLScriptElement;
-  Electronica: HTMLScriptElement;
-  constructor() { 
+
+  constructor(
+   private load:CargarScriptsService
+  ) { 
+    load.Carga(["Electronica"]);
 
 
-    this.Electronica = document.createElement("script");
-    this.Electronica.src="../../../assets/Electronica.js";
 
 
-    document.body.appendChild(this.Electronica);
-    //             "src/assets/Electronica.js"
-    
-   // init();
     
   }
 
   ngOnInit(): void {
+
   }
 
   
