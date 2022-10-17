@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreteListComponent } from './components/crete-list/crete-list.component';
+import { GraphsComponent } from './components/graphs/graphs.component';
 import { LoginComponent } from './components/login/login.component';
 import { LookListComponent } from './components/look-list/look-list.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
@@ -20,10 +21,11 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'textEditor', component: TextEditorComponent},
                         {path: 'MiNotes', component: MiNotesComponent},
                         {path: 'LookPDF', component: LookPDFComponent},
-                        {path: 'search', component: SearchComponent}
+                        {path: 'search', component: SearchComponent},
                         {path: 'addList', component: CreteListComponent},
                         {path: 'LookList', component: LookListComponent},
-                        {path: 'MisListas', component:MisListasComponent}
+                        {path: 'MisListas', component:MisListasComponent},
+                        {path: 'graphEditor', component:GraphsComponent}
 
                       ];
 

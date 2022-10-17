@@ -1,1 +1,9 @@
-{}
+{
+  "dependencies": {
+    "flowchart-diagram-editor": "^1.0.1",
+    "mxgraph": "^4.2.2"
+  },
+  "devDependencies": {
+    "@typed-mxgraph/typed-mxgraph": "^1.0.7"
+  }
+}

@@ -37,9 +37,6 @@ export class MiNotesComponent implements OnInit {
     });
 
     }
-    SHOW(Apuntes:any){ 
-      
-  }
 
   SHOW(APUNTE:ApuntesItem){
     this.data.showNotes(APUNTE);

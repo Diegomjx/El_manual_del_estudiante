@@ -41,6 +41,8 @@ import { SearchComponent } from './components/search/search.component';
 import { CreteListComponent } from './components/crete-list/crete-list.component';
 import { LookListComponent } from './components/look-list/look-list.component';
 import { MisListasComponent } from './components/mis-listas/mis-listas.component';
+import { GraphsComponent } from './components/graphs/graphs.component';
+import { Graph } from 'flowchart-diagram-editor';
 
 
 
@@ -59,7 +61,8 @@ import { MisListasComponent } from './components/mis-listas/mis-listas.component
     SearchComponent,
     CreteListComponent,
     LookListComponent,
-    MisListasComponent
+    MisListasComponent,
+    GraphsComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,7 @@ import { MisListasComponent } from './components/mis-listas/mis-listas.component
     //-----
     MatTableModule,
     MatRadioModule ,
-    MatGridListModule,
+    MatGridListModule
 
   ],
   providers: [],

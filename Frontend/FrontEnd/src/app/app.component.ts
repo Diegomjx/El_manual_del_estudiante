@@ -74,6 +74,10 @@ export class AppComponent   {
     this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
   }
 
+  graphEditor(){
+    this.router.navigateByUrl('/graphEditor');
+  }
+
   MyNotes(){
     if(localStorage.getItem("id") != null)
     this.router.navigateByUrl('/MiNotes');

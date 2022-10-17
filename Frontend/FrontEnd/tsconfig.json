@@ -25,6 +25,11 @@
     "lib": [
       "es2020",
       "dom"
+    ],
+    //esto junto con la coma de arriba es para mxgraph
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@typed-mxgraph"
     ]
   },
   "angularCompilerOptions": {
