@@ -28,9 +28,27 @@
           </mat-card-content>
         -->
           <mat-card-actions>
-            <button mat-button>LIKE</button>
+            <button mat-button  class="btn btn-sm m-2" (click)="MeGusta(Apuntes)" [class.myClass]="Apuntes.Megusta.toLowerCase() === 'true'"  >LIKE</button>
             <button mat-button>SHARE</button>
             <button mat-button (click)="SHOW(Apuntes)" >SHOW</button>
+
+           <button mat-button [matMenuTriggerFor]="menu"><mat-icon >more_verti</mat-icon></button>
+              <mat-menu #menu="matMenu">
+                <button mat-button  (click)="DellApunte(Apuntes)" ><mat-icon>delete_outline</mat-icon></button>
+                <button mat-button (click)="EdirApunte(Apuntes)"><mat-icon>create</mat-icon></button>
+           </mat-menu>
+
+           <div *ngIf ="Apuntes.Private; then thenBlock else elseBlock"></div>
+                  <ng-template #thenBlock>
+                    <label ><mat-icon style="position: relative; top: 5px;">visibility_off</mat-icon></label>
+                  </ng-template>
+                  <ng-template #elseBlock>
+                    <label><mat-icon style="position: relative; top: 5px;">public</mat-icon></label>
+                  </ng-template>
+          
+
+
+            
           </mat-card-actions>
         </mat-card>
   

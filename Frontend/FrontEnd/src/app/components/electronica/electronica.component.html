@@ -1,0 +1,43 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+  <div id="allSampleContent" class="p-4 w-full">
+<div id="sample">
+  <div style="width: 100%; display: flex; justify-content: space-between">
+    <div id="palette" style="width: 100px; height: 500px; margin-right: 2px; background-color: whitesmoke; border: 1px solid black; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); cursor: auto;"><canvas tabindex="0" width="122" height="622" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 98px; height: 498px; cursor: auto;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 98px; height: 498px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
+    <div id="myDiagramDiv" style="flex-grow: 1; height: 500px; border: 1px solid black; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); cursor: auto;"><canvas tabindex="0" width="1190" height="622" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 952px; height: 498px; cursor: auto;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 952px; height: 498px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
+  </div>
+  
+  <div>
+    <div>
+      <button id="saveModel" onclick="save()">Save</button>
+      <button onclick="load()">Load</button>
+      Diagram Model saved in JSON format:
+    </div>
+    <textarea id="mySavedModel" style="width:1300px;height:400px">{ "class": "go.GraphLinksModel",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [
+{"category":"input", "key":"input1", "loc":"-150 -80" },
+{"category":"or", "key":"or1", "loc":"-70 0" },
+{"category":"not", "key":"not1", "loc":"10 0" },
+{"category":"xor", "key":"xor1", "loc":"100 0" },
+{"category":"or", "key":"or2", "loc":"200 0" },
+{"category":"output", "key":"output1", "loc":"200 -100" }
+ ],
+  "linkDataArray": [
+{"from":"input1", "fromPort":"out", "to":"or1", "toPort":"in1"},
+{"from":"or1", "fromPort":"out", "to":"not1", "toPort":"in"},
+{"from":"not1", "fromPort":"out", "to":"or1", "toPort":"in2"},
+{"from":"not1", "fromPort":"out", "to":"xor1", "toPort":"in1"},
+{"from":"xor1", "fromPort":"out", "to":"or2", "toPort":"in1"},
+{"from":"or2", "fromPort":"out", "to":"xor1", "toPort":"in2"},
+{"from":"xor1", "fromPort":"out", "to":"output1", "toPort":""}
+ ]}
+    </textarea>
+  </div>
+</div>
+</div>
+  </body>
+  </html>

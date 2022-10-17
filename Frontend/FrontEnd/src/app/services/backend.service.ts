@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addPDF, addUser, ApuntesList, ExistInList, IDItem, ListItem, ListItemsend, ListList, LoginUser, response, responseExistInList, userList } from '../models/models';
+import { addUser, adminPeticion, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, IDSeguidorandIDSiguiendo, ID_LISTAandID_PDFItem,  ID_LISTAiTEM,  ID_PDFItem,  ListItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  responseSeguir,  siguiendo,  UpdateApuntesItem,  userList, USUARIOID } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -36,6 +36,11 @@ export class BackendService {
   return this.http.post<response>(url,body);
  }
 
+ dellPDF(body:number){
+  let url  : string = BE_API+"/Apuntes/"+body;
+  return  this.http.delete<response>(url, httpOptions);
+ }
+
  addList(body:ListItemsend){
   let url: string = BE_API+"/List";
   return this.http.post<response>(url, body, httpOptions);
@@ -46,9 +51,9 @@ export class BackendService {
   return this.http.post<ListList>(url, body, httpOptions);
  }
 
- getPDFs(){
+ getPDFs(body: IDItem){
   let url: string = BE_API + "/Apuntes";
-  return this.http.get<ApuntesList>(url,httpOptions);
+  return this.http.post<ApuntesList>(url,body,httpOptions);
  }
 
  getPDFID(ID: number){
@@ -57,9 +62,123 @@ export class BackendService {
   return this.http.post<ApuntesList>(url,Content,httpOptions);
  }
 
- getExistInList(body:ExistInList){       //devolver una lista de booleanos
-  let url: string = BE_API+"/List/IDPDF";
-  return this.http.post<responseExistInList>(url, body, httpOptions);
+ getPDFNameAndassociativList(body:IDandID_PDFItem){
+  let url: string = BE_API+ "/List/IDPDF";
+  return this.http.post<LIstofListwhithPDF>(url, body, httpOptions);
  }
+
+ addPDFinList(body:ID_LISTAandID_PDFItem){
+  let url: string = BE_API+ "/List/addPDF";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ dellPDFinList(body:ID_LISTAandID_PDFItem){
+  let url: string = BE_API+ "/List/DELLPDF";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ getPDFinList(body:IDandID_ListItem){
+  let url: string = BE_API+ "/List/getPDF";
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+ addPDFenHistorial(body:IDandID_PDFItem){
+  let url: string = BE_API+ "/Historial/add";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ getPDFenHistorial(body:IDItem){
+  let url: string = BE_API+ "/Historial/get";
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+ addMegusta(body:IDandID_PDFItem){
+  let url: string = BE_API +"/Megusta/add";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ getMegusta(body:IDItem){
+  let url: string = BE_API +"/Megusta/get";
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+ dellMegusta(body:IDandID_PDFItem){
+  let url: string = BE_API +"/Megusta/dell";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ Find(body:string, ID:number){
+  let url: string = BE_API+"/Serch";
+  let content: IDItem = new IDItem(ID);
+  return this.http.post<ApuntesList>(url+'/'+body,content,httpOptions);
+ }
+
+ UpdatePDFByIDPDF(body:UpdateApuntesItem){
+  let url: string = BE_API+"/Apuntes/Update";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+//*******para seguir****** */
+ getinfotothePDF(body:IDandID_PDFItem){
+  let url: string = BE_API +"/Apuntes/info";
+  return this.http.post<responseSeguir>(url, body, httpOptions);
+ }
+
+ addSeguidor(body:IDSeguidorandIDSiguiendo){
+  let url: string = BE_API +"/Seguidor/add";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ dellSeguidor(body:IDSeguidorandIDSiguiendo){
+  let url: string = BE_API +"/Seguidor/dell";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ getSeguiendo(body:IDItem){
+  let url: string = BE_API +"/Seguidor/get";
+  return this.http.post<siguiendo>(url, body, httpOptions);
+ }
+
+ getSiguiendowhithUSER(body:USUARIOID){
+  let url: string= BE_API+"/Seguidor/USUARIO/get";
+  return this.http.post<responseSeguir>(url, body, httpOptions);
+ }
+
+ getApuntesRevisedorNot(body:adminPeticion){
+  let url: string = BE_API+'/Admin/getApuntesRevised';
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+ getApuntesInvitado(body:USUARIOID){
+  let url: string = BE_API+'/Apuntes/invitado';
+  return this.http.post<ApuntesList>(url, body, httpOptions);
+ }
+
+ Aprube(body:ID_PDFItem){
+  let url: string = BE_API +"/Admin/Appunte/Aprube";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ disapproved(body:ID_PDFItem){
+  let url: string = BE_API +"/Admin/Appunte/disapproved";
+  return this.http.post<response>(url, body, httpOptions);
+ }
+
+ dellList(body:ID_LISTAiTEM){
+  let url: string = BE_API+"/List/Dell";
+  return this.http.post<response>(url,body, httpOptions);
+ }
+
+ updateList(body:ListItem){
+  let url: string = BE_API+"/List/Update";
+  return this.http.post<response>(url,body,httpOptions);
+ }
+
+
+
+
+
+
+
+
 
 }

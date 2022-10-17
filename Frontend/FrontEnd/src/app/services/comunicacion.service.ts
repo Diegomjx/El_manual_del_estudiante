@@ -9,10 +9,11 @@ export class ComunicacionService {
   name:string;
 
   private eviarnombreSubject = new Subject<string>();
+  private RolSubject = new Subject<string>();
   enviarnombreobservable = this.eviarnombreSubject.asObservable();
+  Rolobservable = this.RolSubject.asObservable();
   
-  APUNTESource = new  BehaviorSubject<ApuntesItem>(new ApuntesItem(0,0,'','',0));
-  currentAPUNTE = this.APUNTESource.asObservable();
+
 
   ListSource = new BehaviorSubject<ListItem>(new ListItem(0,'',0));
   currentList = this.ListSource.asObservable();
@@ -24,15 +25,17 @@ export class ComunicacionService {
   enviarnombre(nombre:string){
     this.name = nombre;
     this.eviarnombreSubject.next(this.name);
+    this.RolSubject.next(localStorage.getItem('Rol')||"");
   }
 
-  showNotes(APUNTE:ApuntesItem){
-    this.APUNTESource.next(APUNTE);
-  }
+
 
   showList(List:ListItem){
     this.ListSource.next(List);
   }
+
+
+  
 
 
 

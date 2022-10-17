@@ -13,7 +13,15 @@
     <p>
       <mat-form-field appearance="fill">
         <mat-label>Contraseña</mat-label>
-        <input matInput placeholder="Placeholder" required="" formControlName="CONTRASEÑA">
+        <input matInput placeholder="Placeholder" required="" formControlName="CONTRASEÑA" type="password">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>max. 64 caracteres</mat-hint>
+      </mat-form-field>
+    </p> 
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Confirmar Contraseña</mat-label>
+        <input matInput placeholder="Placeholder" required="" formControlName="Confirmar_P" type="password">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>max. 64 caracteres</mat-hint>
       </mat-form-field>

@@ -1,11 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApuntesItem, IDItem, ListItem } from 'src/app/models/models';
+import { ApuntesItem, IDandID_PDFItem, IDItem, ListItem } from 'src/app/models/models';
 import { BackendService } from 'src/app/services/backend.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser"; 
-import { ComunicacionService } from 'src/app/services/comunicacion.service';
 
 @Component({
   selector: 'app-main-navigation',
@@ -14,14 +13,13 @@ import { ComunicacionService } from 'src/app/services/comunicacion.service';
 })
 export class MainNavigationComponent implements OnInit, PipeTransform  {
   Apuntes: ApuntesItem[];
-
+  isClicked = false;
   isChecked = false;
   displayedColumns: string[] = ['1'];
  
 
   constructor(private backend: BackendService,
               private router:Router,
-              private data: ComunicacionService,
               private sanitizer: DomSanitizer) { 
               this.Apuntes = [];
               
@@ -32,7 +30,7 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
               }
 
   ngOnInit(): void {
-    this.backend.getPDFs().subscribe(x =>{
+    this.backend.getPDFs(new IDItem( parseInt(localStorage.getItem("id")||"0") )).subscribe(x =>{
       if(x.status ==1)
       this.Apuntes = x.result;
       console.log(this.Apuntes);
@@ -45,8 +43,28 @@ export class MainNavigationComponent implements OnInit, PipeTransform  {
   }
 
   SHOW(APUNTE:ApuntesItem){
-    this.data.showNotes(APUNTE);
-    this.router.navigateByUrl("/LookPDF");
+    if((localStorage.getItem("id")||"0") != "0")
+    this.backend.addPDFenHistorial(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),APUNTE.ID_PDF)).subscribe((res)=>{});
+    this.router.navigateByUrl(`/LookPDF?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}&PDF=${APUNTE.PDF}&MEGUSTA=${APUNTE.Megusta}&APRUBE=${APUNTE.APRUBE}`);
+  }
+
+
+  MeGusta(APUNTE:ApuntesItem){
+    if((localStorage.getItem("id")||"0") != "0"){
+      if(APUNTE.Megusta.toLowerCase() === 'true'){
+        APUNTE.Megusta='false';
+        this.backend.dellMegusta(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),APUNTE.ID_PDF)).subscribe((res)=>{});
+      }
+
+      else{
+        APUNTE.Megusta='true';
+        
+        this.backend.addMegusta(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),APUNTE.ID_PDF)).subscribe((res)=>{});
+      }
+
+    }
+    
+
   }
 
 

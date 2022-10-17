@@ -43,8 +43,15 @@ import { LookListComponent } from './components/look-list/look-list.component';
 import { MisListasComponent } from './components/mis-listas/mis-listas.component';
 import { GraphsComponent } from './components/graphs/graphs.component';
 import { Graph } from 'flowchart-diagram-editor';
-
-
+import { HistorialComponent } from './components/historial/historial.component';
+import { MegustaComponent } from './components/megusta/megusta.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { EditNotesComponent } from './components/edit-notes/edit-notes.component';
+import { PaginadeAdministradorComponent } from './components/paginade-administrador/paginade-administrador.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { EditListComponent } from './components/edit-list/edit-list.component';
+import { VisitanteComponent } from './components/visitante/visitante.component';
+import { ElectronicaComponent } from './components/electronica/electronica.component';
 
 
 @NgModule({
@@ -62,6 +69,13 @@ import { Graph } from 'flowchart-diagram-editor';
     CreteListComponent,
     LookListComponent,
     MisListasComponent,
+    HistorialComponent,
+    MegustaComponent,
+    EditNotesComponent,
+    PaginadeAdministradorComponent,
+    EditListComponent,
+    VisitanteComponent,
+    ElectronicaComponent,
     GraphsComponent
   ],
   imports: [
@@ -88,7 +102,9 @@ import { Graph } from 'flowchart-diagram-editor';
     //-----
     MatTableModule,
     MatRadioModule ,
-    MatGridListModule
+    MatGridListModule,
+    MatMenuModule,
+    MatCheckboxModule
 
   ],
   providers: [],

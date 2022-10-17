@@ -5,6 +5,11 @@
     </button>
     <span>El manual del estudiante</span>
     <span class="example-spacer"></span>
+    <ng-template [ngIf]=" Rol == 'admin'">
+    <button  mat-icon-button class="gavel" aria-label="button for home" (click)="adminPage()">
+      <mat-icon>gavel</mat-icon>
+    </button>
+   </ng-template>
     <button mat-flat-button color="primary" (click)="search()" aria-label="search button">
       <mat-icon>search</mat-icon>
     </button>
@@ -28,26 +33,45 @@
           <mat-divider></mat-divider>
           <mat-list-item><button mat-button (click)="MyNotes()">My Notes</button></mat-list-item>
           <mat-divider></mat-divider>
-
-
+          <mat-list-item><button mat-button (click)="Historial()">Historial</button></mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><button mat-button (click)="Megusta()">Me Gusta</button></mat-list-item>
+          <mat-divider></mat-divider>
           <mat-list-item><button mat-button (click)="CreateList()">Crear lista</button></mat-list-item>
+          <mat-divider></mat-divider>
+
           <!--Ver Mas-->
         </mat-list>
+        <p>
+        <h2>Mis listas</h2>
         <mat-list *ngFor="let Lista of Lista">
-          <mat-list-item><button mat-button (click)="ListSelected(Lista)">{{Lista.NOMBRE}}</button></mat-list-item>
+          <mat-list-item>
+            <button mat-button (click)="ListSelected(Lista)">
+              <mat-icon>list</mat-icon> {{Lista.NOMBRE}}
+          </button>
+        <button mat-button [matMenuTriggerFor]="menu"><mat-icon >more_verti</mat-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-button  (click)="DellList(Lista)" ><mat-icon>delete_outline</mat-icon></button>
+            <button mat-button (click)="EditList(Lista)"><mat-icon>create</mat-icon></button>
+       </mat-menu>
+        </mat-list-item>
           <!----------->
 
           <!--fin-->
+        </mat-list>
 
-
-          
+        <h2>Siguiendo</h2>
+        <mat-list *ngFor="let siguiendo of siguiendo">
+          <mat-list-item>
+            <button mat-button (click)="Siguiendo(siguiendo)">
+              <mat-icon>supervised_user_circle</mat-icon>{{siguiendo.USUARIO}}
+          </button>
+        </mat-list-item>
 
         </mat-list>
         <mat-divider></mat-divider>
-        <button mat-button (click)="Logout()" color="warn">Logout</button>
+        <button mat-button (click)="Logout()" color="warn"><mat-icon>exit_to_app</mat-icon>Logout</button>
       </mat-drawer>
-
-
   
     <div class="example-sidenav-content">
     <router-outlet> </router-outlet>
