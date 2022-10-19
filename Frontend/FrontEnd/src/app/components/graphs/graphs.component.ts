@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CargarScriptsService } from 'src/app/services/cargar-scripts.service';
 
 
 @Component({
@@ -7,11 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./graphs.component.scss']
 })
 export class GraphsComponent implements OnInit {
+  panelOpenState = false;
 
-  constructor() { }
+  constructor(private load:CargarScriptsService) { 
+    load.Carga(["flowchart"]);
+
+  }
 
   ngOnInit(): void {
+
   }
+    
 
 }
 

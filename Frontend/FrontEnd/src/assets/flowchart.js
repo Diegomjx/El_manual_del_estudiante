@@ -306,4 +306,5 @@ function init() {
     }
     setTimeout(() => svgWindow.print(), 1);
   }
-  window.addEventListener('DOMContentLoaded', init);
+  //window.addEventListener('DOMContentLoaded', init);
+  init();

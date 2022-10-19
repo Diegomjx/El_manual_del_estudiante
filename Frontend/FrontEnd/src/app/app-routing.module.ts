@@ -19,6 +19,7 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
 import { VisitanteComponent } from './components/visitante/visitante.component';
 import { LookPDFComponent } from './look-pdf/look-pdf.component';
 import { MiNotesComponent } from './mi-notes/mi-notes.component';
+import { MindmapComponent } from './components/mindmap/mindmap.component';
 
 const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         { path: 'home', component: MainNavigationComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'EditarLista', component:EditListComponent},
                         {path:'Siguiendo', component:VisitanteComponent},
                         {path:'Electronica', component:ElectronicaComponent},
-                        {path: 'graphEditor', component:GraphsComponent}
+                        {path: 'graphEditor', component:GraphsComponent},
+                        {path: 'mindmap', component:MindmapComponent}
 
                       ];
 

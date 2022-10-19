@@ -52,6 +52,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { EditListComponent } from './components/edit-list/edit-list.component';
 import { VisitanteComponent } from './components/visitante/visitante.component';
 import { ElectronicaComponent } from './components/electronica/electronica.component';
+import { MindmapComponent } from './components/mindmap/mindmap.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { ElectronicaComponent } from './components/electronica/electronica.compo
     EditListComponent,
     VisitanteComponent,
     ElectronicaComponent,
-    GraphsComponent
+    GraphsComponent,
+    MindmapComponent
   ],
   imports: [
     BrowserModule,
