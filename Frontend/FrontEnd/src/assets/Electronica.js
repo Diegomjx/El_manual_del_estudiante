@@ -322,6 +322,26 @@ function load() {
   myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
 }
 //window.addEventListener('DOMContentLoaded', init);
+
+function printDiagram() {
+  var svgWindow = window.open();
+  if (!svgWindow) return;  // failure to open a new Window
+  var printSize = new go.Size(700, 960);
+  var bnds = myDiagram.documentBounds;
+  var x = bnds.x;
+  var y = bnds.y;
+  while (y < bnds.bottom) {
+    while (x < bnds.right) {
+      var svg = myDiagram.makeSvg({ scale: 1.0, position: new go.Point(x, y), size: printSize });
+      svgWindow.document.body.appendChild(svg);
+      x += printSize.width;
+    }
+    x = bnds.x;
+    y += printSize.height;
+  }
+  setTimeout(() => svgWindow.print(), 1);
+}
+
 init();
 
-//window.addEventListener()
+//window.addEventListener();

@@ -1,16 +1,31 @@
 
+<div>
+  <mat-card>
+
   <div id="Electronica" class="p-4 w-full">
 <div id="sample">
   <div style="width: 100%; display: flex; justify-content: space-between">
-    <div id="palette" style="width: 100px; height: 500px; margin-right: 2px; background-color: whitesmoke; border: 1px solid black; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); cursor: auto;"><canvas tabindex="0" width="122" height="622" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 98px; height: 498px; cursor: auto;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 98px; height: 498px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
-    <div id="myDiagramDiv" style="flex-grow: 1; height: 500px; border: 1px solid black; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); cursor: auto;"><canvas tabindex="0" width="1190" height="622" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 952px; height: 498px; cursor: auto;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 952px; height: 498px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
+    <div id="palette" style="width: 100px; height: 600px; margin-right: 2px; background-color: rgb(65, 65, 65); border: 3px solid rgb(54, 54, 54); position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); cursor: auto;"><canvas tabindex="0" width="122" height="622" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 98px; height: 498px; cursor: auto;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 98px; height: 498px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
+    <div id="myDiagramDiv" style="flex-grow: 1; height: 600px; border: 3px solid rgb(51, 51, 51); position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); cursor: auto;"><canvas tabindex="0" width="1190" height="622" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 952px; height: 498px; cursor: auto;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 952px; height: 498px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
   </div>
   
+
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            Opciones Avanzadas
+        </mat-panel-title>
+        <mat-panel-description>
+          Guardar, Cargar, Ver en formato JSON
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
   <div>
     <div>
-      <button id="saveModel" onclick="save()">Save</button>
-      <button onclick="load()">Load</button>
-      Diagram Model saved in JSON format:
+      <button mat-button id="saveModel" onclick="save()">Save</button>
+      <button mat-raised-button color="accent" onclick="load()">Load</button>
+      <p>Modelo en formato JSON:</p>
     </div>
     <textarea id="mySavedModel" style="width:1300px;height:400px">{ "class": "go.GraphLinksModel",
   "linkFromPortIdProperty": "fromPort",
@@ -33,6 +48,13 @@
 {"from":"xor1", "fromPort":"out", "to":"output1", "toPort":""}
  ]}
     </textarea>
+    
   </div>
+</mat-expansion-panel>
+</mat-accordion>
+<button mat-raised-button color="primary" onclick="printDiagram()">Imprimir en formato .SVG</button>
 </div>
+</div>
+
+</mat-card>
 </div>
