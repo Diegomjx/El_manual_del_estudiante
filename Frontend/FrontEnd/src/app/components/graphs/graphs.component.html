@@ -28,36 +28,34 @@
 <button mat-raised-button color="accent" onclick="load()">Load</button>
 <p>Modelo en formato JSON:</p>
 </div>
-<textarea id="mySavedModel" style="width:90%;height:300px">{ "class": "go.GraphLinksModel",
-"linkFromPortIdProperty": "fromPort",
-"linkToPortIdProperty": "toPort",
-"nodeDataArray": [
-{"category":"Comment", "loc":"360 -10", "text":"Kookie Brittle", "key":-13},
-{"key":-1, "category":"Start", "loc":"175 0", "text":"Start"},
-{"key":0, "loc":"-5 75", "text":"Preheat oven to 375 F"},
-{"key":1, "loc":"175 100", "text":"In a bowl, blend: 1 cup margarine, 1.5 teaspoon vanilla, 1 teaspoon salt"},
-{"key":2, "loc":"175 200", "text":"Gradually beat in 1 cup sugar and 2 cups sifted flour"},
-{"key":3, "loc":"175 290", "text":"Mix in 6 oz (1 cup) Nestle's Semi-Sweet Chocolate Morsels"},
-{"key":4, "loc":"175 380", "text":"Press evenly into ungreased 15x10x1 pan"},
-{"key":5, "loc":"355 85", "text":"Finely chop 1/2 cup of your choice of nuts"},
-{"key":6, "loc":"175 450", "text":"Sprinkle nuts on top"},
-{"key":7, "loc":"175 515", "text":"Bake for 25 minutes and let cool"},
-{"key":8, "loc":"175 585", "text":"Cut into rectangular grid"},
-{"key":-2, "category":"End", "loc":"175 660", "text":"Enjoy!"}
+<textarea id="mySavedModel" style="width:90%;height:300px">{ "class": "GraphLinksModel",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [
+{"category":"Comment","loc":"360 -10","text":"Galletas","key":-13},
+{"key":-1,"category":"Start","loc":"175 0","text":"Start"},
+{"key":0,"loc":"-33.88885498046875 102.77778625488283","text":"Precalentar el horno a 375 F"},
+{"key":1,"loc":"175 100","text":"Juntar: 1 taza de margarina, 1.5 cucharadita de vainilla, 1 pizca de sal"},
+{"key":2,"loc":"175 200","text":"Gradualmente a\u00f1adir 1 taza de azucar y 2 tazas de harina"},
+{"key":3,"loc":"175 290","text":"Mezclar 1 taza de chispas de chocolate oscuro"},
+{"key":4,"loc":"175 380","text":"A\u00f1adir a una hoja de ornear con 5cm de separacion"},
+{"key":5,"loc":"389.4444580078125 86.11109924316406","text":"Moler 1/2 de taza de nueces preferidas"},
+{"key":6,"loc":"175 450","text":"Rociar nueces encima"},
+{"key":7,"loc":"175 515","text":"Cocinar por 25 minutos y dejar enfriar"},
+{"key":-2,"category":"End","loc":"173.8887939453125 634.4444580078125","text":"Enjoy!"}
 ],
-"linkDataArray": [
-{"from":1, "to":2, "fromPort":"B", "toPort":"T"},
-{"from":2, "to":3, "fromPort":"B", "toPort":"T"},
-{"from":3, "to":4, "fromPort":"B", "toPort":"T"},
-{"from":4, "to":6, "fromPort":"B", "toPort":"T"},
-{"from":6, "to":7, "fromPort":"B", "toPort":"T"},
-{"from":7, "to":8, "fromPort":"B", "toPort":"T"},
-{"from":8, "to":-2, "fromPort":"B", "toPort":"T"},
-{"from":-1, "to":0, "fromPort":"B", "toPort":"T"},
-{"from":-1, "to":1, "fromPort":"B", "toPort":"T"},
-{"from":-1, "to":5, "fromPort":"B", "toPort":"T"},
-{"from":5, "to":4, "fromPort":"B", "toPort":"T"},
-{"from":0, "to":4, "fromPort":"B", "toPort":"T"}
+  "linkDataArray": [
+{"from":1,"to":2,"fromPort":"B","toPort":"T","points":[175,141.5008972167969,175,151.5008972167969,175,153.96886215209963,175,153.96886215209963,175,156.43682708740235,175,166.43682708740235]},
+{"from":2,"to":3,"fromPort":"B","toPort":"T","points":[175,233.56317291259768,175,243.56317291259768,175,245,175,245,175,246.43682708740232,175,256.4368270874023]},
+{"from":3,"to":4,"fromPort":"B","toPort":"T","points":[175,323.5631729125976,175,333.5631729125976,175,335,175,335,175,336.4368270874023,175,346.4368270874023]},
+{"from":4,"to":6,"fromPort":"B","toPort":"T","points":[175,413.5631729125976,175,423.5631729125976,175,423.5631729125976,175,422.3122756958008,175,422.3122756958008,175,432.3122756958008]},
+{"from":6,"to":7,"fromPort":"B","toPort":"T","points":[175,467.6877243041992,175,477.6877243041992,175,478.53113784790037,175,478.53113784790037,175,479.3745513916016,175,489.3745513916016]},
+{"from":-1,"to":0,"fromPort":"B","toPort":"T","points":[175,36.75,175,46.75,175,46.75,-33.88885498046875,46.75,-33.88885498046875,67.1523376464844,-33.88885498046875,77.1523376464844]},
+{"from":-1,"to":1,"fromPort":"B","toPort":"T","points":[175,36.75,175,46.75,175,47.624551391601564,175,47.624551391601564,175,48.49910278320313,175,58.49910278320313]},
+{"from":-1,"to":5,"fromPort":"B","toPort":"T","points":[175,36.75,175,46.75,175,48.61782531738281,389.4444580078125,48.61782531738281,389.4444580078125,50.485650634765626,389.4444580078125,60.485650634765626]},
+{"from":5,"to":4,"fromPort":"B","toPort":"T","points":[389.4444580078125,111.7365478515625,389.4444580078125,121.7365478515625,389.4444580078125,124,389.4444580078125,124,389.4444580078125,332,215.92010498046875,332,215.92010498046875,336.4368270874023,215.92010498046875,346.4368270874023]},
+{"from":0,"to":4,"fromPort":"B","toPort":"T","points":[-33.88885498046875,128.40323486328128,-33.88885498046875,138.40323486328128,-33.88885498046875,140,-33.88885498046875,140,-33.88885498046875,332,134.07989501953125,332,134.07989501953125,336.4368270874023,134.07989501953125,346.4368270874023]},
+{"from":7,"to":-2,"fromPort":"B","toPort":"T","points":[175,540.6254486083984,175,550.6254486083984,175,571.6599533081055,173.8887939453125,571.6599533081055,173.8887939453125,592.6944580078125,173.8887939453125,602.6944580078125]}
 ]}
 </textarea>
 
