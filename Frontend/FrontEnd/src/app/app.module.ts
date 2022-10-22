@@ -53,6 +53,8 @@ import { EditListComponent } from './components/edit-list/edit-list.component';
 import { VisitanteComponent } from './components/visitante/visitante.component';
 import { ElectronicaComponent } from './components/electronica/electronica.component';
 import { MindmapComponent } from './components/mindmap/mindmap.component';
+import { MapsEditorComponent } from './components/maps-editor/maps-editor.component';
+import { CountriesMapModule } from 'countries-map';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { MindmapComponent } from './components/mindmap/mindmap.component';
     VisitanteComponent,
     ElectronicaComponent,
     GraphsComponent,
-    MindmapComponent
+    MindmapComponent,
+    MapsEditorComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -106,7 +110,8 @@ import { MindmapComponent } from './components/mindmap/mindmap.component';
     MatRadioModule ,
     MatGridListModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    CountriesMapModule,
 
   ],
   providers: [

@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^14.0.0-next.0",
     "@angular/platform-browser-dynamic": "^14.0.0-next.0",
     "@angular/router": "^14.0.0-next.0",
+    "countries-map": "^4.2.4",
     "hamburgers": "^1.2.1",
     "mxgraph": "^4.2.2",
     "ngx-quill": "^18.0.0",
