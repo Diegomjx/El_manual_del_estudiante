@@ -55,6 +55,8 @@ import { ElectronicaComponent } from './components/electronica/electronica.compo
 import { MindmapComponent } from './components/mindmap/mindmap.component';
 import { StateMapComponent } from './components/state-map/state-map.component';
 import { DrawComponent } from './components/draw/draw.component';
+import { MapsEditorComponent } from './components/maps-editor/maps-editor.component';
+import { CountriesMapModule } from 'countries-map';
 
 
 @NgModule({
@@ -82,7 +84,9 @@ import { DrawComponent } from './components/draw/draw.component';
     GraphsComponent,
     MindmapComponent,
     StateMapComponent,
-    DrawComponent
+    DrawComponent,
+    MapsEditorComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -110,7 +114,8 @@ import { DrawComponent } from './components/draw/draw.component';
     MatRadioModule ,
     MatGridListModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    CountriesMapModule
 
   ],
   providers: [

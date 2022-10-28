@@ -132,7 +132,13 @@ function init() {
         $(go.Panel, "Spot",
           $(go.Shape, "Circle",
             { desiredSize: new go.Size(70, 70), fill: "#282c34", stroke: "#09d3ac", strokeWidth: 3.5 }),
-          $(go.TextBlock, "Start", textStyle(),
+            $(go.TextBlock, textStyle(),
+            {
+              margin: 8,
+              maxSize: new go.Size(160, NaN),
+              wrap: go.TextBlock.WrapFit,
+              editable: true
+            },
             new go.Binding("text"))
         ),
         // three named ports, one on each side except the top, all output only:
@@ -146,7 +152,13 @@ function init() {
         $(go.Panel, "Spot",
           $(go.Shape, "Circle",
             { desiredSize: new go.Size(60, 60), fill: "#282c34", stroke: "#DC3C00", strokeWidth: 3.5 }),
-          $(go.TextBlock, "End", textStyle(),
+            $(go.TextBlock, textStyle(),
+            {
+              margin: 8,
+              maxSize: new go.Size(160, NaN),
+              wrap: go.TextBlock.WrapFit,
+              editable: true
+            },
             new go.Binding("text"))
         ),
         // three named ports, one on each side except the bottom, all input only:

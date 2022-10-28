@@ -20,6 +20,7 @@ import { VisitanteComponent } from './components/visitante/visitante.component';
 import { LookPDFComponent } from './look-pdf/look-pdf.component';
 import { MiNotesComponent } from './mi-notes/mi-notes.component';
 import { MindmapComponent } from './components/mindmap/mindmap.component';
+import { MapsEditorComponent } from './components/maps-editor/maps-editor.component';
 import { StateMapComponent } from './components/state-map/state-map.component';
 import { DrawComponent } from './components/draw/draw.component';
 
@@ -44,6 +45,7 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path:'Electronica', component:ElectronicaComponent},
                         {path: 'graphEditor', component:GraphsComponent},
                         {path: 'mindmap', component:MindmapComponent},
+                        {path: 'MapEditor', component:MapsEditorComponent},
                         {path: 'statemap', component:StateMapComponent},
                         {path: 'draw', component:DrawComponent}
 

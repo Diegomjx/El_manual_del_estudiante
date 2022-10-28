@@ -83,9 +83,6 @@ export class AppComponent  implements OnInit {
     this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
   }
 
-  graphEditor(){
-    this.router.navigateByUrl('/graphEditor');
-  }
 
   MyNotes(){
     if(localStorage.getItem("id") != null)
@@ -127,8 +124,31 @@ export class AppComponent  implements OnInit {
   }
 
   Electronica(){
+    if(localStorage.getItem("id") != null)
     this.router.navigateByUrl('/Electronica');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
   }
+
+  graphEditor(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/graphEditor');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+  mindmap(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/mindmap');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+  MapEditor(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/MapEditor');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+
 
   refresh(){
     const id = localStorage.getItem("id") || "-1";

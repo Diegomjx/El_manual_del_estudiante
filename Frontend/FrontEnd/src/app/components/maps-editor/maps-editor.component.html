@@ -1,0 +1,17 @@
+
+
+
+    <countries-map
+    style="width: 950px; height: 500px; background-color: rgb(116, 114, 156);"
+    class="demo-maps"
+    [data]="mapData"
+    valueLabel="Position"
+    countryLabel="Country Code"
+    minColor="lightyellow"
+    (chartReady)="mapReady()"
+    (chartSelect)="select($event)" 
+    [showCaption]="true"
+    [captionBelow]="false"
+    >
+    
+    </countries-map>   
