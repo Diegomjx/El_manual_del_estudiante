@@ -20,7 +20,7 @@
             <div>      
             <button mat-raised-button id="SaveButton" onclick="save()" disabled="">Save</button>
             <button mat-raised-button color="accent" onclick="load()">Load</button>
-            <button mat-raised-button color="warning" onclick="layoutAll()">Layout</button>
+            <button mat-raised-button color="warning" onclick="layoutAll()">Auto Layout</button>
             <p>Modelo en formato JSON:</p>
             </div>
             <br>
@@ -56,7 +56,8 @@
         </div>
             </body>
             <br>
-            <button mat-raised-button color="primary" onclick="printDiagram()">Imprimir en formato .SVG</button>
+            <button mat-raised-button color="warn" onclick="printDiagram()">Imprimir en formato .PDF</button> &nbsp;
+            <button mat-raised-button color="primary" onclick="saveSvg()">Guardar en formato .SVG</button>
 
     </mat-card> 
 </div>

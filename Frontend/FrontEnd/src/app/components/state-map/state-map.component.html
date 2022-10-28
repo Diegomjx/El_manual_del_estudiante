@@ -1,0 +1,74 @@
+<div>
+    <mat-card>
+
+  <div id="allSampleContent" class="p-4 w-full">
+
+  <div id="sample">
+    <div id="myDiagramDiv" style="border: 1px solid black; width: 100%; height: 660px; background: whitesmoke; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"><canvas tabindex="0" width="1054" height="458" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1054px; height: 458px;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 1054px; height: 458px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
+
+
+
+
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Opciones Avanzadas
+            </mat-panel-title>
+            <mat-panel-description>
+              Guardar, Cargar, Ver en formato JSON
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+    
+      <div>
+        <button mat-raised-button id="SaveButton" onclick="save()">Save</button>&nbsp;
+        <button mat-raised-button color="accent" onclick="load()">Load</button>&nbsp;
+        <button mat-raised-button color="accent" onclick="default_map()">Nuevo Mapa</button>
+        
+        <p>Modelo en formato JSON:</p>
+      </div>
+      <textarea id="mySavedModel" style="width:100%;height:300px">{ "class": "GraphLinksModel",
+        "nodeKeyProperty": "id",
+        "nodeDataArray": [
+      {"id":-1,"loc":"155 -138","category":"Start"},
+      {"id":0,"loc":"172 11","text":"Comprar"},
+      {"id":1,"loc":"353 32","text":"Ver items"},
+      {"id":2,"loc":"353 166","text":"Buscar Items"},
+      {"id":3,"loc":"512 12","text":"Ver Item"},
+      {"id":4,"loc":"719 2","text":"Ver Carrito"},
+      {"id":5,"loc":"548 141","text":"Actualizar \nCarro"},
+      {"id":6,"loc":"800 96","text":"Comprar"},
+      {"id":-2,"loc":"757 229","category":"End"}
+      ],
+        "linkDataArray": [
+      {"from":-1,"to":0,"text":"Visitar tienda en linea","points":[169.3634998618211,-70.98809797122442,150.6970559489128,-46.64572534464223,152.25410233775568,-6.403082205839896,162.48114979265205,11]},
+      {"from":0,"to":1,"progress":"true","text":"Ver","points":[212.4466781616211,22.567982305855345,242.98424883262484,20.49247705337333,271.4330394102099,23.94771604045264,310.62062072753906,34.851317206741314]},
+      {"from":0,"to":2,"progress":"true","text":"Usar Barra de busqueda","points":[197.10604740379858,40.87544860839844,247.8849535426191,70.41762892327536,296.7144453577624,112.12342749759631,340.6460901606436,166]},
+      {"from":1,"to":2,"progress":"true","text":"Usar barra de busqueda","points":[357.8141649132298,61.87544860839843,369,96.58363240559896,369,131.29181620279948,357.8141649132298,166]},
+      {"from":2,"to":3,"progress":"true","text":"Click item","points":[363.3562716443014,166,400.00934698668675,113.13217718010841,442.7275367513289,71.75732671624122,488.9124913610701,41.87544860839843]},
+      {"from":2,"to":2,"text":"Otra Busqueda","curviness":20,"points":[358.7413829685348,195.87544860839844,391.84375,282,301.84375,265,343.90962084226726,195.87544860839844]},
+      {"from":1,"to":3,"progress":"true","text":"Click item","points":[394.760304718768,32.75499170816616,428.72193921614013,22.007991343600196,450.2424178846323,19.45411108855346,473.80816650390625,22.23505660955785]},
+      {"from":3,"to":0,"text":"No Interesa","curviness":-100,"points":[492.92241636900235,12,384.5703848290206,-73.37174957817228,300.3632654805749,-73.74480188898869,191.07106099640083,11]},
+      {"from":3,"to":4,"progress":"true","text":"Agrear al carrito","points":[550.1918334960938,21.488145365945677,596.64445054196,14.366277428952596,628.6956281945347,9.27120760652837,667.0035781860352,12.34883487994306]},
+      {"from":4,"to":0,"text":"Mas compras","curviness":-150,"points":[698.3733047392693,2,515.3020152611189,-129.8585525221121,365.9052323547926,-127.16708084684004,190.7679060304316,11]},
+      {"from":4,"to":5,"text":"Actualizar Carro","curviness":-50,"points":[667.0035781860352,25.50574509157871,605.2906797666185,36.456806388442715,566.4619894249399,74.41362644874816,552.5891315313894,141]},
+      {"from":5,"to":4,"text":"Actulizacion Hecha","points":[596.0486755371094,158.3028589704957,665.5277943062877,150.72189399049847,706.9242135210231,109.42231852052078,716.9472707778991,31.875448608398433]},
+      {"from":4,"to":6,"progress":"true","text":"Proceder","points":[743.6143752049038,31.875448608398436,758.1604706792509,40.91024437650583,777.0106109996942,62.007044240444266,793.0247870124824,96]},
+      {"from":6,"to":5,"text":"Necesita Actualizar","points":[780.8078024207667,125.87544860839843,704.8437500000001,185.00000000000006,638.8437500000001,192.00000000000006,596.0486755371094,178.7509622727047]},
+      {"from":6,"to":-2,"progress":"true","text":"Realizar la compra","points":[804.2658835196867,125.87544860839844,814.2462568168316,160.82344099443836,813.0306368608703,195.2060967636338,803.9335142295586,230.20593975206526]}
+      ]}
+    </textarea>
+
+
+    </mat-expansion-panel>
+  </mat-accordion>
+<br>
+<button mat-raised-button color="warn" onclick="printDiagram()">Imprimir en formato .PDF</button> &nbsp;
+<button mat-raised-button color="primary" onclick="saveSvg()">Guardar en formato .SVG</button>
+
+
+</div>
+</div>
+    
+    </mat-card> 
+    </div>

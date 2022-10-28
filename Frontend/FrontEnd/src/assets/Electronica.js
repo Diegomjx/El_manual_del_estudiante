@@ -326,7 +326,7 @@ function load() {
 function printDiagram() {
   var svgWindow = window.open();
   if (!svgWindow) return;  // failure to open a new Window
-  var printSize = new go.Size(700, 960);
+  var printSize = new go.Size(1080, 1920);
   var bnds = myDiagram.documentBounds;
   var x = bnds.x;
   var y = bnds.y;
@@ -340,6 +340,37 @@ function printDiagram() {
     y += printSize.height;
   }
   setTimeout(() => svgWindow.print(), 1);
+}
+
+function saveSvg() {
+  var svgWindow = window.open();
+  if (!svgWindow) return;  // failure to open a new Window
+  var name = 'untitiled'
+  var printSize = new go.Size(1080, 1920);
+  var bnds = myDiagram.documentBounds;
+  var x = bnds.x;
+  var y = bnds.y;
+  while (y < bnds.bottom) {
+    while (x < bnds.right) {
+      var svg = myDiagram.makeSvg({ scale: 1.0, position: new go.Point(x, y), size: printSize });
+      svgWindow.document.body.appendChild(svg);
+      x += printSize.width;
+    }
+    x = bnds.x;
+    y += printSize.height;
+  }
+
+  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  var svgData = svg.outerHTML;
+  var preface = '<?xml version="1.0" standalone="no"?>\r\n';
+  var svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
+  var svgUrl = URL.createObjectURL(svgBlob);
+  var downloadLink = document.createElement("a");
+  downloadLink.href = svgUrl;
+  downloadLink.download = name;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
 }
 
 init();
