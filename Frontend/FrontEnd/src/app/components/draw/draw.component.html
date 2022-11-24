@@ -6,20 +6,19 @@
 <div id="sample">
   <div id="myDiagramDiv" style="background-color: rgb(230, 230, 199); border: 1px solid black; width: 100%; height: 800px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"><canvas tabindex="0" width="1054" height="598" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1054px; height: 598px;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 1054px; height: 598px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
   <div id="buttons">
-    <button mat-r onclick="mode(false)">Select</button>
-    <button onclick="mode(true)">Draw Mode</button>
-    <button onclick="default_draw()">Clear</button>
+    <button mat-stroked-button mat-r onclick="mode(false)">Modo Seleccionar</button>
+    <button mat-stroked-button onclick="mode(true)">Modo Dibujar</button>
+    <button mat-stroked-button onclick="default_draw()">Limpiar</button>
     <label><input type="checkbox" onclick="myDiagram.allowResize = !myDiagram.allowResize; updateAllAdornments()" checked="checked">Allow Resizing</label>
     <label><input type="checkbox" onclick="myDiagram.allowReshape = !myDiagram.allowReshape; updateAllAdornments()" checked="checked">Allow Reshaping</label>
     <label><input type="checkbox" onclick="myDiagram.allowRotate = !myDiagram.allowRotate; updateAllAdornments()" checked="checked">Allow Rotating</label>
   </div>
 
   <p>
-    Press and drag to draw a line.
+    Click derecho para dibujar 
   </p>
   <p>
-    Click the "Select" button to switch back to the normal selection behavior, so that you can select, resize, and rotate the shapes.
-    The checkboxes control whether you can resize, reshape, and/or rotate selected shapes.
+    El modo de "Seleccionar" le da al puntero la funcionalidad de poder seleccionar una figura donde se puede rotar y deformar.
   </p>
 
 
