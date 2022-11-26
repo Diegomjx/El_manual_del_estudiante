@@ -925,3 +925,82 @@ export const getSeguirwithUSERNAME = async(req,res)=>{
         res.send(error.message);
     }
   }
+
+
+  
+
+export const addJSON = async(req,res)=>{
+
+  try {
+    const file = req.body.files;
+    const NAME = req.body.NAME;
+    const ID = req.body.ID;
+    const type = req.body.TYPE_;
+    const pool = await getConnection();
+
+    await pool
+        .request()
+        .input("NOMBRE", sql.VarChar, NAME)
+        .input("ID",ID)
+        .input("TYPE_", sql.Int, type)
+        .query("DELETE Diagramas WHERE NOMBRE = @NOMBRE and ID = @ID and TYPE_ = @TYPE_;");
+
+    await pool
+      .request()
+      .input("NOMBRE", sql.VarChar, NAME)
+      .input("ID",ID)
+      .input("TYPE_", sql.Int, type)
+      .input("log", sql.NVarChar, file)
+      .query("INSERT INTO Diagramas (ID,NOMBRE,TYPE_,log) VALUES (@ID,@NOMBRE,@TYPE_,@log) ");
+      res.json({ status:1, msg: "ok" });
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+
+  }
+
+  export const dellJSON = async(req,res)=>{
+
+    try {
+      const NAME = req.body.NAME;
+      const ID = req.body.ID;
+      const type = req.body.TYPE_;
+      const pool = await getConnection();
+  
+      await pool
+          .request()
+          .input("NOMBRE", sql.VarChar, NAME)
+          .input("ID",ID)
+          .input("TYPE_", sql.Int, type)
+          .query("DELETE Diagramas WHERE NOMBRE = @NOMBRE and ID = @ID and TYPE_ = @TYPE_;");
+  
+      
+        res.json({ status:1, msg: "ok" });
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  
+    }
+
+  export const getJSON = async(req,res)=>{
+
+    try {
+      const ID = req.body.ID;
+      const type = req.body.TYPE_;
+
+      const pool = await getConnection();
+  
+      const result =  await pool
+        .request()
+        .input("ID",ID)
+        .input("TYPE_", sql.Int, type)
+        .query("Select * from Diagramas where ID = @ID and TYPE_ = @TYPE_;");
+        res.json({ status:1, msg: "ok",  result:result.recordset });
+    } catch (error) {
+      res.status(500);
+      res.send(error.message);
+    }
+  
+    }

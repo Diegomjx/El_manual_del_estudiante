@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { addList, addPDFalHistorial, addPDFalMegusta, addPDFtoList, addSeguir, Aprube, dellList, dellPDF, dellPDFalMegusta, dellPDFtoList, dellSeguir, delUserById, disapproved, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getApuntesByUSERNAME, getApuntesRevisedorNo, getExistInList, getInfoApunte, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFalMeGusta, getPDFsdelasListas, getSeguir, getSeguirwithUSERNAME, getUser, getUserByPasswordandUser, Serch, UpdateApuntesByIDPDF, updateList, updateUserById } from "../controllers/querys.controlers";
+import { addJSON, addList, addPDFalHistorial, addPDFalMegusta, addPDFtoList, addSeguir, Aprube, dellJSON, dellList, dellPDF, dellPDFalMegusta, dellPDFtoList, dellSeguir, delUserById, disapproved, getApuntes, getApuntesByIdUser, getApuntesByIdUserIdPDF, getApuntesByUSERNAME, getApuntesRevisedorNo, getExistInList, getInfoApunte, getJSON, getListById, getListByIdandID_PDF, getPDFalHistorial, getPDFalMeGusta, getPDFsdelasListas, getSeguir, getSeguirwithUSERNAME, getUser, getUserByPasswordandUser, Serch, UpdateApuntesByIDPDF, updateList, updateUserById } from "../controllers/querys.controlers";
 import { addUser, addPDF } from "../controllers/querys.controlers";
 
-const upload =  require("../utils/handleStorage");
+const {upload, uploadjs} =  require("../utils/handleStorage");
 
 const router = Router()
 //Usuario
@@ -52,4 +52,8 @@ router.post('/Megusta/get',getPDFalMeGusta);
 //router.post('/PDF', addPDF);
 // Buscador
 router.post('/Serch/:Serch', Serch);
+// los JS
+router.post('/JS', uploadjs.single("files"), addJSON);
+router.post('/JS/dell', dellJSON);
+router.post('/JS/get', getJSON);
 export default router;

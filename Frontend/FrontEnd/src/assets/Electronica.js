@@ -16,11 +16,15 @@ function init() {
 
   // when the document is modified, add a "*" to the title and enable the "Save" button
   myDiagram.addDiagramListener("Modified", e => {
+
+
+
     var button = document.getElementById("saveModel");
     if (button) button.disabled = !myDiagram.isModified;
     var idx = document.title.indexOf("*");
     if (myDiagram.isModified) {
       if (idx < 0) document.title += "*";
+      
     } else {
       if (idx >= 0) document.title = document.title.slice(0, idx);
     }
@@ -315,13 +319,26 @@ function doOutput(node) {
 
 // save a model to and load a model from JSON text, displayed below the Diagram
 function save() {
+  overlay = document.getElementById('overlay'),
+  popup = document.getElementById('popup'),
+  overlay.classList.add('active');
+  popup.classList.add('active');
+  
   document.getElementById("mySavedModel").value = myDiagram.model.toJson();
+  
   myDiagram.isModified = false;
 }
-function load() {
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function load() {
+  await sleep(300);
   myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
 }
 //window.addEventListener('DOMContentLoaded', init);
+
 
 function printDiagram() {
   var svgWindow = window.open();

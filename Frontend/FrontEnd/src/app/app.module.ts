@@ -115,7 +115,7 @@ import { CountriesMapModule } from 'countries-map';
     MatGridListModule,
     MatMenuModule,
     MatCheckboxModule,
-    CountriesMapModule
+    CountriesMapModule,
 
   ],
   providers: [
