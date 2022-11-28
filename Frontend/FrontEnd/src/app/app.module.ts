@@ -57,6 +57,8 @@ import { StateMapComponent } from './components/state-map/state-map.component';
 import { DrawComponent } from './components/draw/draw.component';
 import { MapsEditorComponent } from './components/maps-editor/maps-editor.component';
 import { CountriesMapModule } from 'countries-map';
+import { SequenceComponent } from './components/sequence/sequence.component';
+import { RecordsComponent } from './components/records/records.component';
 
 
 @NgModule({
@@ -86,6 +88,8 @@ import { CountriesMapModule } from 'countries-map';
     StateMapComponent,
     DrawComponent,
     MapsEditorComponent,
+    SequenceComponent,
+    RecordsComponent
     
   ],
   imports: [

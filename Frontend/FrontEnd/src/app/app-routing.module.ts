@@ -23,6 +23,8 @@ import { MindmapComponent } from './components/mindmap/mindmap.component';
 import { MapsEditorComponent } from './components/maps-editor/maps-editor.component';
 import { StateMapComponent } from './components/state-map/state-map.component';
 import { DrawComponent } from './components/draw/draw.component';
+import { SequenceComponent } from './components/sequence/sequence.component';
+import { RecordsComponent } from './components/records/records.component';
 
 const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         { path: 'home', component: MainNavigationComponent },
@@ -47,7 +49,9 @@ const routes: Routes = [{ path: '', redirectTo: '/home', pathMatch: 'full' },
                         {path: 'mindmap', component:MindmapComponent},
                         {path: 'MapEditor', component:MapsEditorComponent},
                         {path: 'statemap', component:StateMapComponent},
-                        {path: 'draw', component:DrawComponent}
+                        {path: 'draw', component:DrawComponent},
+                        {path: 'sequence', component:SequenceComponent},
+                        {path: 'records', component:RecordsComponent}
 
                       ];
 

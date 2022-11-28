@@ -150,6 +150,8 @@ export class AppComponent  implements OnInit {
   }
 
 
+
+
   refresh(){
     const id = localStorage.getItem("id") || "-1";
     this.BackendService.getLists( 
@@ -201,8 +203,20 @@ export class AppComponent  implements OnInit {
     this.router.navigateByUrl(`/EditarLista?ID_LISTA=${LIst.ID_LISTA}&NOMBRE=${LIst.NOMBRE}`);
   }
 
-  
 
+  sequence(){
+    //if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/sequence');
+    //else
+    //this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+
+  records(){
+    //if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/records');
+    //else
+    //this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
 
 
   
