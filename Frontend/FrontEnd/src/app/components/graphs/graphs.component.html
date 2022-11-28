@@ -1,4 +1,5 @@
-
+<div class="contenedor">
+  <article>
 <div>
     <mat-card>
 
@@ -23,11 +24,25 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-<div>
-<button mat-button id="SaveButton" onclick="save()" >Save</button>
-<button mat-raised-button color="accent" onclick="load()">Load</button>
-<p>Modelo en formato JSON:</p>
-</div>
+      <div>
+        <div>
+          <button mat-button id="saveModel" onclick="save();">Save</button>
+          <!-- <button mat-raised-button color="accent" onclick="load();">Load</button> -->
+          <mat-form-field ppearance="outline" style="width: 80px;" >
+            <mat-label>Load</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let Lista of Lista" >  
+                <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="cargar(Lista.NOMBRE,Lista.log)" onclick="load();">{{Lista.NOMBRE}}</button>
+                <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="eliminar(Lista.NOMBRE)" ><mat-icon>delete_outline</mat-icon></button>
+    
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    
+    
+          <h3>{{name}}</h3>       
+          <p>Modelo en formato JSON:</p>
+        </div>
 <textarea id="mySavedModel" style="width:90%;height:300px">{ "class": "GraphLinksModel",
   "linkFromPortIdProperty": "fromPort",
   "linkToPortIdProperty": "toPort",
@@ -58,15 +73,34 @@
 {"from":7,"to":-2,"fromPort":"B","toPort":"T","points":[175,540.6254486083984,175,550.6254486083984,175,571.6599533081055,173.8887939453125,571.6599533081055,173.8887939453125,592.6944580078125,173.8887939453125,602.6944580078125]}
 ]}
 </textarea>
-
-    </mat-expansion-panel>
-  </mat-accordion>
+    
+</div>
+</mat-expansion-panel>
+</mat-accordion>
 <br>
 <button mat-raised-button color="warn" onclick="printDiagram()">Imprimir en formato .PDF</button> &nbsp;
 <button mat-raised-button color="primary" onclick="saveSvg()">Guardar en formato .SVG</button>
+</div>
+</div>
+
+</mat-card>
+</div>
+ 
+</article>
+
+<div class="overlay" id="overlay">
+  <div class="popup" id="popup">
+    <h3>Guardado</h3>
+    <form class="form" method="post" action="#">
+    <form [formGroup]="form">
+      <div class="contenedor-inputs">
+        <input type="text" placeholder="Nombre" formControlName="NAME" >
+      </div>
+      <input type="submit"  id="btn-cerrar-popup" class="btn-submit" value="Enviar" (click)="Saved()">
+      <input type="submit"  id="btn-cerrar-popup_" class="btn-submit" value="Cerrar">
+    </form>
+  </form>
+  </div>
+</div>
 
 </div>
-</div>
-    
-    </mat-card> 
-    </div>
