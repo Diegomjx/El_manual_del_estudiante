@@ -15,8 +15,8 @@
               </mat-expansion-panel-header>
         
         <div>
-              <button id="SaveButton" onclick="save()">Save</button>
-              <button onclick="load()">Load</button>
+              <button mat-raised-button id="SaveButton" onclick="save()">Save</button>
+              <button mat-raised-button onclick="load()">Load</button>
               Diagram Model saved in JSON format:
             </div>
         <div>
@@ -39,7 +39,10 @@
       ]}</textarea>
 
         </div>
+
             </mat-expansion-panel>
         </mat-accordion>
+        <button mat-raised-button color="warn" onclick="printDiagram()">Imprimir en formato .PDF</button> &nbsp;
+        <button mat-raised-button color="primary" onclick="saveSvg()">Guardar en formato .SVG</button>
     </mat-card>
 </div>
