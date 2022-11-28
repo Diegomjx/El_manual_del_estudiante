@@ -4,6 +4,7 @@ import { NgxToastService } from 'ngx-toast-notifier';
 import { LoginComponent } from './components/login/login.component';
 import { IDItem, ID_LISTAiTEM, ListItem, ListItemsend, siguiendo, USUARIOID } from './models/models';
 import { BackendService } from './services/backend.service';
+import { CargarScriptsService } from './services/cargar-scripts.service';
 import { ComunicacionService } from './services/comunicacion.service';
 
 
@@ -26,9 +27,11 @@ export class AppComponent  implements OnInit {
     private BackendService:BackendService,
     private serviceComunicate: ComunicacionService,
     private router:Router,
-    private ngxToastService: NgxToastService ) {
+    private ngxToastService: NgxToastService, 
+    private load:CargarScriptsService) {
       this.Lista = [];
       this.siguiendo=[];
+      this.load.Carga(["Sequenceclases"]);
      }
 
 
@@ -161,7 +164,21 @@ export class AppComponent  implements OnInit {
     else
     this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
   }
+  sequence(){
+  
 
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/sequence');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+
+  records(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/records');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
 
 
 
@@ -221,19 +238,7 @@ export class AppComponent  implements OnInit {
   }
 
 
-  sequence(){
-    //if(localStorage.getItem("id") != null)
-    this.router.navigateByUrl('/sequence');
-    //else
-    //this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
-  }
 
-  records(){
-    //if(localStorage.getItem("id") != null)
-    this.router.navigateByUrl('/records');
-    //else
-    //this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
-  }
 
 
   

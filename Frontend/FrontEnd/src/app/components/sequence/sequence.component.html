@@ -1,3 +1,5 @@
+<div class="contenedor">
+  <article> 
 <div>
     <mat-card>
         <div id="sample">
@@ -18,12 +20,25 @@
                   </mat-expansion-panel-header>
 
 
-            <div>
-              <div>
-                <button mat-raised-button id="SaveButton" onclick="save()">Save</button>
-                <button mat-raised-button onclick="load()">Load</button>
-                Diagram Model saved in JSON format:
-              </div>
+                  <div>
+                    <div>
+                      <button mat-button id="saveModel" onclick="save();">Save</button>
+                      <!-- <button mat-raised-button color="accent" onclick="load();">Load</button> -->
+                      <mat-form-field ppearance="outline" style="width: 80px;" >
+                        <mat-label>Load</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let Lista of Lista" >  
+                            <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="cargar(Lista.NOMBRE,Lista.log)" onclick="load();">{{Lista.NOMBRE}}</button>
+                            <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="eliminar(Lista.NOMBRE)" ><mat-icon>delete_outline</mat-icon></button>
+                
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                
+                
+                      <h3>{{name}}</h3>       
+                      <p>Modelo en formato JSON:</p>
+                    </div>
               <textarea id="mySavedModel" style="width:100%;height:240px">{ "class": "go.GraphLinksModel",
             "nodeDataArray": [
           {"key":"Fred", "text":"Fred: Patron", "isGroup":true, "loc":"0 0", "duration":9},
@@ -55,3 +70,22 @@
         </div>
     </mat-card>
 </div>
+</article>
+
+<div class="overlay" id="overlay">
+  <div class="popup" id="popup">
+    <h3>Guardado</h3>
+    <form class="form" method="post" action="#">
+    <form [formGroup]="form">
+      <div class="contenedor-inputs">
+        <input type="text" placeholder="Nombre" formControlName="NAME" >
+      </div>
+      <input type="submit"  id="btn-cerrar-popup" class="btn-submit" value="Enviar" (click)="Saved()">
+      <input type="submit"  id="btn-cerrar-popup_" class="btn-submit" value="Cerrar">
+    </form>
+  </form>
+  </div>
+</div>
+
+</div>
+

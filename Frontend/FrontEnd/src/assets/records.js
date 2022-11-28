@@ -139,10 +139,20 @@ function init() {
   }
 
   function save() {
+    overlay = document.getElementById('overlay'),
+  popup = document.getElementById('popup'),
+  overlay.classList.add('active');
+  popup.classList.add('active');
+
     document.getElementById("mySavedModel").value = myDiagram.model.toJson();
     myDiagram.isModified = false;
   }
-  function load() {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function load() {
+  await sleep(300);
     myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
   }
 

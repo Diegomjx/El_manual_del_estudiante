@@ -1,3 +1,5 @@
+<div class="contenedor">
+  <article> 
 <div>   
     <mat-card>
         <div id="myDiagramDiv" style="border: 1px solid black; width: 100%; height: 300px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); cursor: auto;"><canvas tabindex="0" width="1054" height="298" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1054px; height: 298px; cursor: auto;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 1054px; height: 298px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
@@ -15,9 +17,22 @@
               </mat-expansion-panel-header>
         
         <div>
-              <button mat-raised-button id="SaveButton" onclick="save()">Save</button>
-              <button mat-raised-button onclick="load()">Load</button>
-              Diagram Model saved in JSON format:
+              <button mat-raised-button id="saveModel" onclick="save()">Save</button>
+              <mat-form-field ppearance="outline" style="width: 80px;" >
+            
+        <mat-label>Load</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let Lista of Lista" >  
+            <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="cargar(Lista.NOMBRE,Lista.log)" onclick="load();">{{Lista.NOMBRE}}</button>
+            <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="eliminar(Lista.NOMBRE)" ><mat-icon>delete_outline</mat-icon></button>
+
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <h3>{{name}}</h3>       
+      <p>Modelo en formato JSON:</p>
             </div>
         <div>
           Diagram Model saved in JSON format, automatically updated after each change or undo or redo:
@@ -46,3 +61,23 @@
         <button mat-raised-button color="primary" onclick="saveSvg()">Guardar en formato .SVG</button>
     </mat-card>
 </div>
+
+</article>
+
+<div class="overlay" id="overlay">
+  <div class="popup" id="popup">
+    <h3>Guardado</h3>
+    <form class="form" method="post" action="#">
+    <form [formGroup]="form">
+      <div class="contenedor-inputs">
+        <input type="text" placeholder="Nombre" formControlName="NAME" >
+      </div>
+      <input type="submit"  id="btn-cerrar-popup" class="btn-submit" value="Enviar" (click)="Saved()">
+      <input type="submit"  id="btn-cerrar-popup_" class="btn-submit" value="Cerrar">
+    </form>
+  </form>
+  </div>
+</div>
+
+</div>
+
