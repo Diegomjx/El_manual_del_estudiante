@@ -26,6 +26,18 @@ CREATE TABLE Apuntes (
 
 );
 
+CREATE TABLE Diagramas (
+	ID_Diag bigint identity(1,123) primary key,
+	ID bigint,
+	NOMBRE varchar(100),
+	TYPE_ int, /* 1: 2: 3: 4: 5: 6: 7: 8: */
+	log nvarchar(max),
+	fecha datetime not null default(current_timestamp),
+
+	FOREIGN KEY(ID) REFERENCES Perfil ON DELETE CASCADE,
+
+);
+
 CREATE TABLE Lista (
 	ID_LISTA bigint identity(1,123) primary key,
 	ID bigint,

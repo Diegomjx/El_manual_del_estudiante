@@ -267,23 +267,7 @@ export class MapsEditorComponent implements OnInit {
    // 'BR' : { value:  8, extra: { 'Fittipaldi': '1972, 1974', 'Senna': '1988, 1990-1991', 'Piquet': '1981, 1983, 1987' } },
   //  'AR' : { value:  5, extra: { 'Fangio': '1951, 1954-1957' } },
    // 'FI' : { value:  4, extra: { 'Häkkinen': '1998-1999', 'Räikkönen': '2007', 'Rosberg, K.': '1982' } },
-  //  'AU' : { value:  4, extra: { 'Brabham': '1959-1960, 1966', 'Jones': '1980' } },
-  //  'AT' : { value:  4, extra: { 'Lauda': '1975, 1977, 1984', 'Rindt': '1970' } },
-  //  'FR' : { value:  4, extra: { 'Prost': '1985-1986, 1989, 1993' } },
-  //  'IT' : { value:  3, extra: { 'Ascari': '1952-1953', 'Farina': '1950' } },
- //   'US' : { value:  2, extra: { 'Hill, P.': '1961', 'Andretti': '1978' } },
-   // 'ES' : { value:  2, extra: { 'Alonso': '2005-2006' } },
-  //  'NZ' : { value:  1, extra: { 'Hulme': '1967' } },
-   // 'ZA' : { value:  1, extra: { 'Scheckter': '1979' } },
-   // 'CA' : { value:  1, extra: { 'Villeneuve': '1997' } },
-  //  'PT' : { value:  7, extra: { 'Monteiro':  '---'} },
-   // 'MX' : { value:  7, extra: { 'Pérez': '---' } },
- //   'RU' : { value:  7, extra: { 'Petrov': '---', 'Kviat': '---' } },
-  //  'IN' : { value:  7, extra: { 'Chandhok': '---', 'Karthikeiyan': '---' } },
-  //  'JP' : { value:  7, extra: { 'Sato': '---', 'Yamamoto': '---' } },
-  //  'MY' : { value:  7, extra: { 'Yoong': '---' } },
-  //  'GT' : { value:  7, extra: { 'Data': 'Guatemala' } },
-    //'SV' : { value:  7, extra: { 'Data': 'El Salvador' } },
+
   }; 
 
   ngOnInit(): void {

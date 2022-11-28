@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { addUser, adminPeticion, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, IDSeguidorandIDSiguiendo, ID_LISTAandID_PDFItem,  ID_LISTAiTEM,  ID_PDFItem,  ListItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  responseSeguir,  siguiendo,  UpdateApuntesItem,  userList, USUARIOID } from '../models/models';
+import { addUser, adminPeticion, ApuntesList, IDandID_ListItem, IDandID_PDFItem, IDItem, IDSeguidorandIDSiguiendo, ID_LISTAandID_PDFItem,  ID_LISTAiTEM,  ID_Name_type,  ID_PDFItem,  ListItem,  ListItemsend, ListList, LIstofListwhithPDF, LoginUser, response,  responseJSON,  responseSeguir,  siguiendo,  UpdateApuntesItem,  userList, USUARIOID } from '../models/models';
 
 
 const BE_API = environment.urlBackend;
@@ -173,6 +173,21 @@ export class BackendService {
   return this.http.post<response>(url,body,httpOptions);
  }
 
+ addJS(body:FormData){
+  let url: string = BE_API+"/JS";
+  console.log(body);
+  return this.http.post<response>(url,body);
+ }
+ dellJS(body:ID_Name_type){
+  let url: string = BE_API+"/JS/dell";
+  console.log(body);
+  return this.http.post<response>(url,body,httpOptions);
+ }
+
+ getJS(body:ID_Name_type){
+  let url: string = BE_API+"/JS/get";
+  return this.http.post<responseJSON>(url,body,httpOptions);
+ }
 
 
 

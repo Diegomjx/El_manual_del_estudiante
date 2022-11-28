@@ -119,7 +119,7 @@ import { RecordsComponent } from './components/records/records.component';
     MatGridListModule,
     MatMenuModule,
     MatCheckboxModule,
-    CountriesMapModule
+    CountriesMapModule,
 
   ],
   providers: [

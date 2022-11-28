@@ -31,6 +31,17 @@ export class IDItem{
     }
 }
 
+export class ID_Name_type{
+    ID: number;
+    NAME:string;
+    TYPE_:number;
+    constructor(ID:number, NAME:string, TYPE_:number){
+        this.ID = ID;
+        this.NAME=NAME;
+        this.TYPE_ = TYPE_;
+    }
+}
+
 export class adminPeticion{
     Revised:number;
     ID:number;
@@ -364,3 +375,35 @@ export class siguiendo{
 }
 
 
+export class itemresponsejSON{
+    ID_Diag: number;
+    ID: number;
+    NOMBRE:string;
+    TYPE_:number;
+    log:string;
+    constructor( ID_Diag: number,
+        ID: number,
+        NOMBRE:string,
+        TYPE_:number,
+        log:string){
+            this.ID = ID;
+            this.ID_Diag= ID_Diag;
+            this.NOMBRE=NOMBRE;
+            this.TYPE_=TYPE_;
+            this.log = log;
+        }
+}
+
+
+export class responseJSON{
+    status: number;
+    msg: string;
+    result:Array<itemresponsejSON>;
+    constructor(status:number,
+                msg:string,
+                result:Array<itemresponsejSON>) {
+                        this.status=status;
+                        this.msg=msg;
+                        this.result = result;
+    }
+}

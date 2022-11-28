@@ -149,6 +149,23 @@ export class AppComponent  implements OnInit {
     this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
   }
 
+  statemap(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/statemap');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+  draw(){
+    if(localStorage.getItem("id") != null)
+    this.router.navigateByUrl('/draw');
+    else
+    this.ngxToastService.onWarning('Fail','por favor iniciar sesión');
+  }
+
+
+
+
+
 
 
 

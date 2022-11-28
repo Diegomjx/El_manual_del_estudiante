@@ -1,4 +1,5 @@
-
+<div class="contenedor">
+  <article> 
 <div>
   <mat-card>
 
@@ -23,30 +24,44 @@
 
   <div>
     <div>
-      <button mat-button id="saveModel" onclick="save()">Save</button>
-      <button mat-raised-button color="accent" onclick="load()">Load</button>
+      <button mat-button id="saveModel" onclick="save();">Save</button>
+      <!-- <button mat-raised-button color="accent" onclick="load();">Load</button> -->
+      <mat-form-field ppearance="outline" style="width: 80px;" >
+        <mat-label>Load</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let Lista of Lista" >  
+            <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="cargar(Lista.NOMBRE,Lista.log)" onclick="load();">{{Lista.NOMBRE}}</button>
+            <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="eliminar(Lista.NOMBRE)" ><mat-icon>delete_outline</mat-icon></button>
+
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <h3>{{name}}</h3>       
       <p>Modelo en formato JSON:</p>
     </div>
+
     <textarea id="mySavedModel" style="width:1300px;height:400px">{ "class": "go.GraphLinksModel",
-  "linkFromPortIdProperty": "fromPort",
-  "linkToPortIdProperty": "toPort",
-  "nodeDataArray": [
-{"category":"input", "key":"input1", "loc":"-150 -80" },
-{"category":"or", "key":"or1", "loc":"-70 0" },
-{"category":"not", "key":"not1", "loc":"10 0" },
-{"category":"xor", "key":"xor1", "loc":"100 0" },
-{"category":"or", "key":"or2", "loc":"200 0" },
-{"category":"output", "key":"output1", "loc":"200 -100" }
- ],
-  "linkDataArray": [
-{"from":"input1", "fromPort":"out", "to":"or1", "toPort":"in1"},
-{"from":"or1", "fromPort":"out", "to":"not1", "toPort":"in"},
-{"from":"not1", "fromPort":"out", "to":"or1", "toPort":"in2"},
-{"from":"not1", "fromPort":"out", "to":"xor1", "toPort":"in1"},
-{"from":"xor1", "fromPort":"out", "to":"or2", "toPort":"in1"},
-{"from":"or2", "fromPort":"out", "to":"xor1", "toPort":"in2"},
-{"from":"xor1", "fromPort":"out", "to":"output1", "toPort":""}
- ]}
+      "linkFromPortIdProperty": "fromPort",
+      "linkToPortIdProperty": "toPort",
+      "nodeDataArray": [
+    {"category":"input", "key":"input1", "loc":"-150 -80" },
+    {"category":"or", "key":"or1", "loc":"-70 0" },
+    {"category":"not", "key":"not1", "loc":"10 0" },
+    {"category":"xor", "key":"xor1", "loc":"100 0" },
+    {"category":"or", "key":"or2", "loc":"200 0" },
+    {"category":"output", "key":"output1", "loc":"200 -100" }
+     ],
+      "linkDataArray": [
+    {"from":"input1", "fromPort":"out", "to":"or1", "toPort":"in1"},
+    {"from":"or1", "fromPort":"out", "to":"not1", "toPort":"in"},
+    {"from":"not1", "fromPort":"out", "to":"or1", "toPort":"in2"},
+    {"from":"not1", "fromPort":"out", "to":"xor1", "toPort":"in1"},
+    {"from":"xor1", "fromPort":"out", "to":"or2", "toPort":"in1"},
+    {"from":"or2", "fromPort":"out", "to":"xor1", "toPort":"in2"},
+    {"from":"xor1", "fromPort":"out", "to":"output1", "toPort":""}
+     ]}
     </textarea>
     
   </div>
@@ -60,3 +75,23 @@
 
 </mat-card>
 </div>
+   
+  </article>
+
+  <div class="overlay" id="overlay">
+    <div class="popup" id="popup">
+      <h3>Guardado</h3>
+      <form class="form" method="post" action="#">
+      <form [formGroup]="form">
+        <div class="contenedor-inputs">
+          <input type="text" placeholder="Nombre" formControlName="NAME" >
+        </div>
+        <input type="submit"  id="btn-cerrar-popup" class="btn-submit" value="Enviar" (click)="Saved()">
+        <input type="submit"  id="btn-cerrar-popup_" class="btn-submit" value="Cerrar">
+      </form>
+    </form>
+    </div>
+  </div>
+ 
+</div>
+

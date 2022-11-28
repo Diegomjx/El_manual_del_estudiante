@@ -55,11 +55,21 @@ function init() {
 
   // save a model to and load a model from Json text, displayed below the Diagram
   function save() {
+    overlay = document.getElementById('overlay'),
+  popup = document.getElementById('popup'),
+  overlay.classList.add('active');
+  popup.classList.add('active');
+
     var str = '{ "position": "' + go.Point.stringify(myDiagram.position) + '",\n  "model": ' + myDiagram.model.toJson() + ' }';
-    document.getElementById("mySavedDiagram").value = str;
+    document.getElementById("mySavedModel").value = str;
   }
-  function load() {
-    var str = document.getElementById("mySavedDiagram").value;
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function load() {
+  await sleep(900);
+    var str = document.getElementById("mySavedModel").value;
     try {
       var json = JSON.parse(str);
       myDiagram.initialPosition = go.Point.parse(json.position || "0 0");
