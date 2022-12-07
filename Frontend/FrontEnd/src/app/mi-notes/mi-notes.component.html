@@ -29,7 +29,7 @@
         -->
           <mat-card-actions>
             <button mat-button  class="btn btn-sm m-2" (click)="MeGusta(Apuntes)" [class.myClass]="Apuntes.Megusta.toLowerCase() === 'true'"  >LIKE</button>
-            <button mat-button>SHARE</button>
+            <button mat-button [cdkCopyToClipboard]="SHARE(Apuntes)">SHARE</button>
             <button mat-button (click)="SHOW(Apuntes)" >SHOW</button>
 
            <button mat-button [matMenuTriggerFor]="menu"><mat-icon >more_verti</mat-icon></button>

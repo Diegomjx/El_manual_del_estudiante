@@ -66,7 +66,13 @@ export class VisitanteComponent implements OnInit {
     this.backend.addPDFenHistorial(new IDandID_PDFItem( parseInt(localStorage.getItem("id")||"0"),APUNTE.ID_PDF)).subscribe((res)=>{});
     this.router.navigateByUrl(`/LookPDF?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}&PDF=${APUNTE.PDF}&MEGUSTA=${APUNTE.Megusta}&APRUBE=${APUNTE.APRUBE}`);
   }
-
+  SHARE(APUNTE:ApuntesItem){
+    return `http://localhost:4200//LookPDF?NOMBRE=${APUNTE.NOMBRE}&ID_PDF=${APUNTE.ID_PDF}&PDF=${APUNTE.PDF}&MEGUSTA=${APUNTE.Megusta}&APRUBE=${APUNTE.APRUBE}`
+  }
+  SHARE2(){
+    return window.location.href;
+  }
+  
   MeGusta(APUNTE:ApuntesItem){
     if((localStorage.getItem("id")||"0") != "0"){
       if(APUNTE.Megusta.toLowerCase() === 'true'){

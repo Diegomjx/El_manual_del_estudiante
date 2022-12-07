@@ -59,7 +59,7 @@ import { MapsEditorComponent } from './components/maps-editor/maps-editor.compon
 import { CountriesMapModule } from 'countries-map';
 import { SequenceComponent } from './components/sequence/sequence.component';
 import { RecordsComponent } from './components/records/records.component';
-
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
@@ -120,6 +120,7 @@ import { RecordsComponent } from './components/records/records.component';
     MatMenuModule,
     MatCheckboxModule,
     CountriesMapModule,
+    ClipboardModule
 
   ],
   providers: [

@@ -118,7 +118,7 @@
               <button mat-button  class="btn btn-sm m-2" (click)="AprobadooNo(element)" [class.myClass]="element.APRUBE === 1">	
                 <mat-icon>verified_user</mat-icon>
             </button>
-                <button mat-button>SHARE</button>
+            <button mat-button [cdkCopyToClipboard]="SHARE(element)">SHARE</button>
                 <button mat-button (click)="SHOW(element)" >SHOW</button>
     
                  </td>

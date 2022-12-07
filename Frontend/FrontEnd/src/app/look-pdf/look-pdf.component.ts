@@ -115,7 +115,9 @@ export class LookPDFComponent implements OnInit,PipeTransform {
     }
   }
 
-
+  SHARE(){
+    return window.location.href;
+  }
   
 
 

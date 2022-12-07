@@ -118,7 +118,7 @@
           <h2>Fecha de creación: {{element.fecha | date:'mediumDate'  }}
           </h2>
           <button mat-button  class="btn btn-sm m-2" (click)="MeGusta(element)" [class.myClass]="element.Megusta.toLowerCase() === 'true'"  >LIKE</button>
-            <button mat-button>SHARE</button>
+          <button mat-button [cdkCopyToClipboard]="SHARE(element)">SHARE</button>
             <button mat-button (click)="SHOW(element)" >SHOW</button>
 
              </td>
