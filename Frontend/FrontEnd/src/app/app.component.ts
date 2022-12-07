@@ -17,7 +17,7 @@ export class AppComponent  implements OnInit {
   title = 'FrontEnd';
   panelOpenState = false;
   showAlert = false;
-  name = localStorage.getItem('name') || 'User';
+  name = localStorage.getItem('name') || 'Registrate o Logueate';
   Rol=localStorage.getItem('Rol')||"";
   Lista: ListItem[];
   siguiendo:USUARIOID[];
@@ -37,7 +37,7 @@ export class AppComponent  implements OnInit {
 
   login(){
     this.router.navigateByUrl('/login');
-    this.name = localStorage.getItem('name') || 'User';
+    this.name = localStorage.getItem('name') || 'Registrate o Logueate';
   }
 
   home(){
@@ -117,7 +117,7 @@ export class AppComponent  implements OnInit {
     localStorage.removeItem("id");
         localStorage.removeItem("Rol");
         localStorage.removeItem("name");
-        this.name = 'User';
+        this.name = 'Registrate o Logueate';
         this.Rol = '';
     }
     this.router.navigateByUrl('/');

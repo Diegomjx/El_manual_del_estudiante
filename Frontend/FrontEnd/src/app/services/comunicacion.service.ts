@@ -19,7 +19,7 @@ export class ComunicacionService {
   currentList = this.ListSource.asObservable();
 
   constructor() {
-    this.name = 'USER';
+    this.name = 'Registrate o Logueate';
    }
 
   enviarnombre(nombre:string){

@@ -710,7 +710,7 @@ export const getPDFalHistorial = async(req, res) => {
       const result = await pool
       .request()
       .input("ID", sql.BigInt, ID)
-      .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM  Historial h, Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE h.ID_PDF = A.ID_PDF and h.ID =@ID and Private = 0 ORDER BY h.fecha DESC;");
+      .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM  Historial h, Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE h.ID_PDF = A.ID_PDF and h.ID =@ID and Private = 0 ORDER BY h.fecha DESC;");
       return res.json({ status:1, msg: "ok",result:result.recordset });
   }catch(error){
       res.status(500);
@@ -765,7 +765,7 @@ export const getPDFalMeGusta = async(req, res) => {
       const result = await pool
       .request()
       .input("ID", sql.BigInt, ID)
-      .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM   Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and A.ID = @ID WHERE M.ID_PDF = A.ID_PDF and M.ID =@ID ORDER BY M.fecha DESC;");
+      .query("SELECT A.* , IIF(M.ID is null, 'false', 'true')  Megusta FROM   Apuntes A LEFT OUTER JOIN MeGusta M ON M.ID_PDF = A.ID_PDF and M.ID = @ID WHERE M.ID_PDF = A.ID_PDF and M.ID =@ID ORDER BY M.fecha DESC;");
       return res.json({ status:1, msg: "ok",result:result.recordset });
   }catch(error){
       res.status(500);

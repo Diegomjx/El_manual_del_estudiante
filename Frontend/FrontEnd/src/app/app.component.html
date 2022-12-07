@@ -27,6 +27,7 @@
       <h1>{{name}}</h1>
       
       <mat-list>
+          <ng-template [ngIf]="name != 'Registrate o Logueate'">
           <mat-list-item><button mat-button (click)="upload()">Upload</button></mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item><button mat-button (click)="textEditor()">Editor de Texto</button></mat-list-item>
@@ -56,10 +57,12 @@
           <mat-list-item><button mat-button (click)="CreateList()">Crear lista</button></mat-list-item>
           <mat-divider></mat-divider>
 
-
+        </ng-template>
           <!--Ver Mas-->
         </mat-list>
+
         <p>
+          <ng-template [ngIf]="name != 'Registrate o Logueate'">
         <h2>Mis listas</h2>
         <mat-list *ngFor="let Lista of Lista">
           <mat-list-item>
@@ -75,8 +78,9 @@
           <!----------->
 
           <!--fin-->
-        </mat-list>
 
+        </mat-list>
+      
         <h2>Siguiendo</h2>
         <mat-list *ngFor="let siguiendo of siguiendo">
           <mat-list-item>
@@ -88,8 +92,9 @@
         </mat-list>
         <mat-divider></mat-divider>
         <button mat-button (click)="Logout()" color="warn"><mat-icon>exit_to_app</mat-icon>Logout</button>
+      </ng-template>
       </mat-drawer>
-  
+    
     <div class="example-sidenav-content">
     <router-outlet> </router-outlet>
 
