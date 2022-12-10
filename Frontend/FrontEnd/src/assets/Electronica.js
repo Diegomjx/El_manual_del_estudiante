@@ -390,6 +390,16 @@ function saveSvg() {
   document.body.removeChild(downloadLink);
 }
 
+function loadNewMap(){
+  const default_json ={ "class": "GraphLinksModel",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [],
+  "linkDataArray": []}
+
+  myDiagram.model = go.Model.fromJson(default_json);
+}
+
 init();
 
 //window.addEventListener();

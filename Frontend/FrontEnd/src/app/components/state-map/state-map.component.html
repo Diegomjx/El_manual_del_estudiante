@@ -24,10 +24,12 @@
     
           <div>
             <div>
-              <button mat-button id="saveModel" style="margin-left: 10px;" onclick="save();">Save</button>
+              <button mat-raised-button color="primary" onclick="default_map()">Nuevo Mapa</button> &nbsp; 
+              <br>
+              <button mat-raised-button id="saveModel" onclick="save();">Guardarbutton>
               <!-- <button mat-raised-button color="accent" onclick="load();">Load</button> -->
               <mat-form-field ppearance="outline" style="width: 80px; margin-left: 10px;" >
-                <mat-label>Load</mat-label>
+                <mat-label>Cargar</mat-label>
                 <mat-select>
                   <mat-option *ngFor="let Lista of Lista" >  
                     <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="cargar(Lista.NOMBRE,Lista.log)" onclick="load();">{{Lista.NOMBRE}}</button>
@@ -36,7 +38,7 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <button mat-raised-button color="accent" style="margin-left: 10px;" onclick="default_map()">Nuevo Mapa</button>
+
         
               <h3>{{name}}</h3>       
               <p>Modelo en formato JSON:</p>
