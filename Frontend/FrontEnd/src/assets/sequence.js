@@ -52,7 +52,9 @@ function init() {
           $(go.TextBlock,
             {
               margin: 5,
-              font: "400 10pt Source Sans Pro, sans-serif"
+              font: "400 10pt Source Sans Pro, sans-serif",
+              editable: true,
+              wrap: go.TextBlock.WrapFit
             },
             new go.Binding("text", "text"))
         ),
@@ -265,5 +267,6 @@ async function load() {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 }
+//myDiagram.nodeTemplateMap.add("group", inputTemplate);
 
 init();

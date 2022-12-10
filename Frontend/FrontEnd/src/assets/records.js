@@ -40,11 +40,12 @@ function init() {
             margin: new go.Margin(0, 5), column: 1, font: "bold 13px sans-serif",
             alignment: go.Spot.Left,
             // and disallow drawing links from or to this text:
-            fromLinkable: false, toLinkable: false
+            fromLinkable: false, toLinkable: false,
+            editable: true
           },
           new go.Binding("text", "name")),
         $(go.TextBlock,
-          { margin: new go.Margin(0, 5), column: 2, font: "13px sans-serif", alignment: go.Spot.Left },
+          { margin: new go.Margin(0, 5), column: 2, font: "13px sans-serif", alignment: go.Spot.Left,editable: true },
           new go.Binding("text", "info"))
       );
 
@@ -69,7 +70,8 @@ function init() {
                 margin: 3,
                 stroke: "white",
                 textAlign: "center",
-                font: "bold 12pt sans-serif"
+                font: "bold 12pt sans-serif",
+                editable: true
               },
               new go.Binding("text", "key"))),
           // this Panel holds a Panel for each item object in the itemArray;
