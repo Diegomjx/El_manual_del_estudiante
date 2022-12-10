@@ -18,16 +18,7 @@
     <label><input type="checkbox" onclick="myDiagram.allowReshape = !myDiagram.allowReshape; updateAllAdornments()" checked="checked"> Cambiar Forma</label> &nbsp;
     <label><input type="checkbox" onclick="myDiagram.allowRotate = !myDiagram.allowRotate; updateAllAdornments()" checked="checked"> Rotar</label> &nbsp;
   </div>
-
-  <p>
-    Click derecho para dibujar 
-  </p>
-  <p>
-    El modo de "Seleccionar" le da al puntero la funcionalidad de poder seleccionar una figura donde se puede rotar y deformar.
-  </p>
-
-
-
+<br>
   <mat-accordion>
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
@@ -77,7 +68,22 @@
           Cómo usar el Diagrama/Mapa
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <p>This is the primary content of the panel.</p>
+      <ul>
+        <li>Click derecho para dibujar.</li>
+        <li>Eliminar Dibujo: en modo seleccionar seleccione el Dibujo y presione backspace o presione Nuevo Dibujo o limpiar si desea eliminar todos los dibujos .</li>
+        <li>Copiar Dibujo: en modo seleccionar seleccione un dibujo y presione Ctrl+c.</li>
+        <li>Pegar dibujo: en modo seleccionar seleccione un dibujo y presione Ctrl+v.</li>
+        <li>Deshacer la acción anterior: presione Ctrl+z.</li>
+        <li>Rehacer una acción eliminada: presione Ctrl+y.</li>
+        <li>Crear Diagrama/Mapa desde cero: opciones avanzadas -> Nuevo Diagrama</li>
+        <li>Guardar Diagrama/Mapa: opciones avanzadas -> Guardar -> Agregar nombre -> Enviar</li>
+        <li>Cargar Diagrama/Mapa: opciones avanzadas -> load -> seleccione el que desea.</li>
+        <li>Modificar Diagrama/Mapa guardado: opciones avanzadas -> Guardar -> usar el mismo nombre del Diagrama/Mapa -> Enviar.</li>
+        <li>Eliminar Diagrama/Mapa guardado: opciones avanzadas -> load -> seleccione el icono del basurero al Diagrama/Mapa que desea eliminar. </li>
+        <li>El modo de "Seleccionar" le da al puntero la funcionalidad de poder seleccionar una figura donde se puede rotar y deformar.</li>
+        <li>El modo de "Dibujar" le da al puntero la funcionalidad de poder dibujar.</li>
+        <li>Seleccionar un gran numero de dibujos: presione en un sitio que no toque los dibujos y mantenga presionado, eso hara que aparezca un cuadro de color morado en el que si mueve su mous, seguidamente deja de precionar, seleccionara todos los dibujos que estan dentro del cuadro.</li>
+      </ul>
     </mat-expansion-panel>
     
     </mat-accordion>

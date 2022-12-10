@@ -12,7 +12,19 @@ function init() {
           "ModelChanged": e => {
             if (e.isTransactionFinished) showModel();
           },
-          "undoManager.isEnabled": true
+          validCycle: go.Diagram.CycleNotDirected,  // don't allow loops
+          "clickCreatingTool.archetypeNodeData": {
+            key: "Record1",
+            fields: [
+                { name: "fieldA", info: "", color: "#FFB900", figure: "Diamond" },
+                { name: "fieldB", info: "", color: "#F25022", figure: "Rectangle" },
+                { name: "fieldC", info: "", color: "#7FBA00", figure: "Diamond" },
+                { name: "fieldD", info: "fourth", color: "#00BCF2", figure: "Rectangle" }
+            ],
+            loc: "0 0"
+          },
+          "undoManager.isEnabled": true,
+          
         });
 
     // This template is a Panel that is used to represent each item in a Panel.itemArray.
@@ -31,7 +43,7 @@ function init() {
           {
             width: 12, height: 12, column: 0, strokeWidth: 2, margin: 4,
             // but disallow drawing links from or to this shape:
-            fromLinkable: false, toLinkable: false
+            fromLinkable: false, toLinkable: false,
           },
           new go.Binding("figure", "figure"),
           new go.Binding("fill", "color")),
@@ -52,7 +64,7 @@ function init() {
     // This template represents a whole "record".
     myDiagram.nodeTemplate =
       $(go.Node, "Auto",
-        { copyable: false, deletable: false },
+        { copyable: true, deletable: true },
         new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
         // this rectangular shape surrounds the content of the node
         $(go.Shape,
