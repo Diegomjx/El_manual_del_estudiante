@@ -139,23 +139,17 @@ function init() {
     myDiagram.contextMenu =
       $("ContextMenu",
         $("ContextMenuButton",
-          $(go.TextBlock, "Paste"),
+          $(go.TextBlock, "Pegar"),
           { click: (e, obj) => e.diagram.commandHandler.pasteSelection(e.diagram.toolManager.contextMenuTool.mouseDownPoint) },
           new go.Binding("visible", "", o => o.diagram && o.diagram.commandHandler.canPasteSelection(o.diagram.toolManager.contextMenuTool.mouseDownPoint)).ofObject()),
         $("ContextMenuButton",
-          $(go.TextBlock, "Undo"),
+          $(go.TextBlock, "Deshacer"),
           { click: (e, obj) => e.diagram.commandHandler.undo() },
           new go.Binding("visible", "", o => o.diagram && o.diagram.commandHandler.canUndo()).ofObject()),
         $("ContextMenuButton",
-          $(go.TextBlock, "Redo"),
+          $(go.TextBlock, "Rehacer"),
           { click: (e, obj) => e.diagram.commandHandler.redo() },
-          new go.Binding("visible", "", o => o.diagram && o.diagram.commandHandler.canRedo()).ofObject()),
-        $("ContextMenuButton",
-          $(go.TextBlock, "Save"),
-          { click: (e, obj) => save() }),
-        $("ContextMenuButton",
-          $(go.TextBlock, "Load"),
-          { click: (e, obj) => load() })
+          new go.Binding("visible", "", o => o.diagram && o.diagram.commandHandler.canRedo()).ofObject())
       );
 
     myDiagram.addDiagramListener("SelectionMoved", e => {
