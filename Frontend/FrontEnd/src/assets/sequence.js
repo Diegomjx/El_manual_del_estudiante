@@ -7,9 +7,10 @@ function init() {
     myDiagram =
       $(go.Diagram, "myDiagramDiv", // must be the ID or reference to an HTML DIV
         {
-          allowCopy: false,
+          allowCopy: true,
           linkingTool: $(MessagingTool),  // defined below
           "resizingTool.isGridSnapEnabled": true,
+          "clickCreatingTool.archetypeNodeData": {text:"NUEVA SECUENCIA",isGroup:true,loc:"0 0",duration: 9},
           draggingTool: $(MessageDraggingTool),  // defined below
           "draggingTool.gridSnapCellSize": new go.Size(1, 20 / 4),
           "draggingTool.isGridSnapEnabled": true,
@@ -267,6 +268,14 @@ async function load() {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 }
-//myDiagram.nodeTemplateMap.add("group", inputTemplate);
+
+function loadNewMap(){
+  const default_json ={ "class": "GraphLinksModel",
+  "nodeDataArray": [],
+  "linkDataArray": []}
+
+  myDiagram.model = go.Model.fromJson(default_json);
+}
+
 
 init();

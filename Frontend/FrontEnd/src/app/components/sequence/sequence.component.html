@@ -21,10 +21,12 @@
 
                   <div>
                     <div>
-                      <button mat-button id="saveModel" onclick="save();">Save</button>
+                      <button mat-raised-button color="primary" onclick="loadNewMap()">Nuevo Diagrama</button>&nbsp; 
+                      <br>
+                      <button mat-button id="saveModel" onclick="save();">Guardar</button>&nbsp; 
                       <!-- <button mat-raised-button color="accent" onclick="load();">Load</button> -->
                       <mat-form-field ppearance="outline" style="width: 80px;" >
-                        <mat-label>Load</mat-label>
+                        <mat-label>Cargar</mat-label>
                         <mat-select>
                           <mat-option *ngFor="let Lista of Lista" >  
                             <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="cargar(Lista.NOMBRE,Lista.log)" onclick="load();">{{Lista.NOMBRE}}</button>
@@ -38,27 +40,27 @@
                       <h3>{{name}}</h3>       
                       <p>Modelo en formato JSON:</p>
                     </div>
-              <textarea id="mySavedModel" style="width:100%;height:240px">{ "class": "go.GraphLinksModel",
-            "nodeDataArray": [
-          {"key":"Fred", "text":"Fred: Patron", "isGroup":true, "loc":"0 0", "duration":9},
-          {"key":"Bob", "text":"Bob: Waiter", "isGroup":true, "loc":"100 0", "duration":9},
-          {"key":"Hank", "text":"Hank: Cook", "isGroup":true, "loc":"200 0", "duration":9},
-          {"key":"Renee", "text":"Renee: Cashier", "isGroup":true, "loc":"300 0", "duration":9},
-          {"group":"Bob", "start":1, "duration":2},
-          {"group":"Hank", "start":2, "duration":3},
-          {"group":"Fred", "start":3, "duration":1},
-          {"group":"Bob", "start":5, "duration":1},
-          {"group":"Fred", "start":6, "duration":2},
-          {"group":"Renee", "start":8, "duration":1}
-           ],
-            "linkDataArray": [
-          {"from":"Fred", "to":"Bob", "text":"order", "time":1},
-          {"from":"Bob", "to":"Hank", "text":"order food", "time":2},
-          {"from":"Bob", "to":"Fred", "text":"serve drinks", "time":3},
-          {"from":"Hank", "to":"Bob", "text":"finish cooking", "time":5},
-          {"from":"Bob", "to":"Fred", "text":"serve food", "time":6},
-          {"from":"Fred", "to":"Renee", "text":"pay", "time":8}
-           ]}
+              <textarea id="mySavedModel" style="width:100%;height:240px">{ "class": "GraphLinksModel",
+                "nodeDataArray": [
+              {"key":"Fred","text":"Fred: Patron","isGroup":true,"loc":"0 0","duration":9},
+              {"key":"Bob","text":"Bob: Waiter","isGroup":true,"loc":"121 0","duration":9},
+              {"key":"Hank","text":"Hank: Cook","isGroup":true,"loc":"253 0","duration":9},
+              {"key":"Renee","text":"Renee: Cashier","isGroup":true,"loc":"373 0","duration":9},
+              {"group":"Bob","start":1,"duration":2,"key":-5},
+              {"group":"Hank","start":2,"duration":3,"key":-6},
+              {"group":"Fred","start":3,"duration":1,"key":-7},
+              {"group":"Bob","start":5,"duration":1,"key":-8},
+              {"group":"Fred","start":6,"duration":2,"key":-9},
+              {"group":"Renee","start":8,"duration":1,"key":-10}
+              ],
+                "linkDataArray": [
+              {"from":"Fred","to":"Bob","text":"ordena","time":1},
+              {"from":"Bob","to":"Hank","text":"ordena comida","time":2},
+              {"from":"Bob","to":"Fred","text":"sirve las bebidas","time":3},
+              {"from":"Hank","to":"Bob","text":"termina de cocinar","time":5},
+              {"from":"Bob","to":"Fred","text":"sirve la comida","time":6},
+              {"from":"Fred","to":"Renee","text":"paga","time":8}
+              ]}
               </textarea>
             </div>
             
