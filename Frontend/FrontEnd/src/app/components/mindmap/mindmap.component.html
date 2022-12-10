@@ -26,10 +26,10 @@
                       <br>
                       <button mat-raised-button color="warning" onclick="layoutAll()">Posicion Automatica</button>
                       &nbsp;
-                      <button mat-button id="saveModel" onclick="save()">Save</button>
+                      <button mat-button id="saveModel" onclick="save()">Guardar</button>
                       <!-- <button mat-raised-button color="accent" onclick="load();">Load</button> -->
                       <mat-form-field ppearance="outline" style="width: 80px; margin-left: 10px;" >
-                        <mat-label>Load</mat-label>
+                        <mat-label>Cargar</mat-label>
                         <mat-select>
                           <mat-option *ngFor="let Lista of Lista" >  
                             <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="cargar(Lista.NOMBRE,Lista.log)" onclick="load();">{{Lista.NOMBRE}}</button>
