@@ -129,7 +129,9 @@ function init() {
           { strokeWidth: 3 },
           new go.Binding("stroke", "toNode", n => {
             if (n.data.brush) return n.data.brush;
-            return "black";
+            var colour_new = generateRandomColor();
+            n.data.brush = colour_new;
+            return colour_new;
           }).ofObject())
       );
 
@@ -298,6 +300,13 @@ function init() {
     myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
   }
 
+  function loadNewMap(){
+    const default_json ={ "class": "TreeModel",
+    "nodeDataArray": [{"key":0,"text":"Nuevo Mapa","loc":"0 0"}]}
+
+    myDiagram.model = go.Model.fromJson(default_json);
+  }
+
   function printDiagram() {
     var svgWindow = window.open();
     if (!svgWindow) return;  // failure to open a new Window
@@ -346,6 +355,19 @@ function init() {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+}
+
+function generateRandomColor(){
+  let maxVal = 0xFFFFFF; // 16777215
+  let randomNumber = Math.random() * maxVal; 
+  randomNumber = Math.floor(randomNumber);
+  randomNumber = randomNumber.toString(16);
+  let randColor = randomNumber.padStart(6, 0);   
+  return `#${randColor.toUpperCase()}`
+}
+
+function changeColour(){
+
 }
 
   init();
