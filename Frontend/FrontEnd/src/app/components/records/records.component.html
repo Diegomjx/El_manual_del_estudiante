@@ -68,9 +68,24 @@
                   Cómo usar el Diagrama/Mapa
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <p>This is the primary content of the panel.</p>
+              <ul>
+                <li>Agregar registro: doble click dentro de la pizarra.</li>
+                <li>Eliminar registro : seleccione un registro  y presione backspace.</li>
+                <li>Copiar registro : seleccione un registro  y presione Ctrl+c.</li>
+                <li>Pegar registro : presione Ctrl+v.</li>
+                <li>Deshacer la acción anterior: presione Ctrl+z.</li>
+                <li>Rehacer una acción eliminada: presione Ctrl+y.</li>
+                <li>Crear Diagrama/Mapa desde cero: opciones avanzadas -> Nuevo Diagrama</li>
+                <li>Guardar Diagrama/Mapa: opciones avanzadas -> Guardar -> Agregar nombre -> Enviar</li>
+                <li>Cargar Diagrama/Mapa: opciones avanzadas -> load -> seleccione el que desea.</li>
+                <li>Modificar Diagrama/Mapa guardado: opciones avanzadas -> Guardar -> usar el mismo nombre del Diagrama/Mapa -> Enviar.</li>
+                <li>Eliminar Diagrama/Mapa guardado: opciones avanzadas -> load -> seleccione el icono del basurero al Diagrama/Mapa que desea eliminar. </li>
+                <li>Cambiar el texto de un registro: doble click en el texto, le dará opción de modificar el texto. </li>
+                <li>Conectar registro : seleccione alguno de los campo del registro  que quiere Conectar y mantenga presionado , si lo hizo bien, al mover el mouse una flecha lo seguirá. Ahora posicione el mouse en algún campo del otro registro  que quiere conectar y deje de presionar.</li>
+                <li>Seleccionar un gran numero de registros: presione en un sitio que no toque los registros y mantenga presionado, eso hara que aparezca un cuadro de color morado en el que si mueve su mous, seguidamente deja de precionar, seleccionara todos los registros que estan dentro del cuadro. </li>
+              </ul>
             </mat-expansion-panel>
-            
+
         </mat-accordion>
         <button mat-raised-button color="warn" onclick="printDiagram()">Imprimir en formato .PDF</button> &nbsp;
         <button mat-raised-button color="primary" onclick="saveSvg()">Guardar en formato .SVG</button>
