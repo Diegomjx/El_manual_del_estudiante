@@ -266,11 +266,11 @@ function init() {
 
           nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
           model: new go.GraphLinksModel([  // specify the contents of the Palette
-            { category: "Start", text: "Start" },
-            { text: "Step" },
+            { category: "Start", text: "INICIO" },
+            { text: "Paso" },
             { category: "Conditional", text: "???" },
-            { category: "End", text: "End" },
-            { category: "Comment", text: "Comment" }
+            { category: "End", text: "FIN" },
+            { category: "Comment", text: "Coment.." }
           ])
         });
 
@@ -360,5 +360,16 @@ function init() {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 }
+
+function loadNewMap(){
+  const default_json ={ "class": "GraphLinksModel",
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [],
+  "linkDataArray": []}
+
+  myDiagram.model = go.Model.fromJson(default_json);
+}
+
 
   init();
