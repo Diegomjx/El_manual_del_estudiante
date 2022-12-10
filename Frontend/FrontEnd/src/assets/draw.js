@@ -34,8 +34,9 @@ function init() {
     // create drawing tool for myDiagram, defined in FreehandDrawingTool.js
     var tool = new FreehandDrawingTool();
     // provide the default JavaScript object for a new polygon in the model
+    var new_colour = generateRandomColor();
     tool.archetypePartData =
-      { stroke: "green", strokeWidth: 3, category: "FreehandDrawing" };
+      { stroke: new_colour, strokeWidth: 3, category: "FreehandDrawing" };
     // allow the tool to start on top of an existing Part
     tool.isBackgroundOnly = false;
     // install as first mouse-move-tool
@@ -139,5 +140,16 @@ function default_draw(){
 myDiagram.model = go.Model.fromJson(default_json);
 
 }
+
+function generateRandomColor(){
+  let maxVal = 0xFFFFFF; // 16777215
+  let randomNumber = Math.random() * maxVal; 
+  randomNumber = Math.floor(randomNumber);
+  randomNumber = randomNumber.toString(16);
+  let randColor = randomNumber.padStart(6, 0);   
+  return `#${randColor.toUpperCase()}`
+}
+
+
 
   init();

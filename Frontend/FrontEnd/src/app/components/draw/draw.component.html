@@ -8,7 +8,8 @@
 <div id="sample">
   <div id="myDiagramDiv" style="background-color: rgb(230, 230, 199); border: 1px solid black; width: 100%; height: 800px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"><canvas tabindex="0" width="1054" height="598" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1054px; height: 598px;">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 1054px; height: 598px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
   <div id="buttons">
-    <button mat-raised-button color="primary" onclick="loadNewMap()">Nuevo Dibujo</button> &nbsp;
+    <button mat-raised-button color="primary" onclick="default_draw()">Nuevo Dibujo</button> &nbsp;
+    <br>
     <br>
     <button mat-stroked-button mat-r onclick="mode(false)">Modo Seleccionar</button> &nbsp;
     <button mat-stroked-button onclick="mode(true)">Modo Dibujar</button> &nbsp;
@@ -39,10 +40,10 @@
       </mat-expansion-panel-header>
       <div>
         <div>
-          <button mat-button id="saveModel" onclick="save();">Save</button>
+          <button mat-raised-button id="saveModel" onclick="save();">Guardar</button> &nbsp; 
           <!-- <button mat-raised-button color="accent" onclick="load();">Load</button> -->
           <mat-form-field ppearance="outline" style="width: 80px;" >
-            <mat-label>Load</mat-label>
+            <mat-label>Cargar</mat-label>
             <mat-select>
               <mat-option *ngFor="let Lista of Lista" >  
                 <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="cargar(Lista.NOMBRE,Lista.log)" onclick="load();">{{Lista.NOMBRE}}</button>
