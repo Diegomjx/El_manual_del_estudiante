@@ -360,8 +360,5 @@ function generateRandomColor(){
   return `#${randColor.toUpperCase()}`
 }
 
-function changeColour(){
-
-}
 
   init();

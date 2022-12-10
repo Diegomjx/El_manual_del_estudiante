@@ -19,10 +19,10 @@
         <div>
           <button mat-raised-button color="primary" onclick="loadNewMap()">Nuevo Mapa</button>&nbsp; 
           <br>
-              <button mat-raised-button id="saveModel" onclick="save()">Save</button>&nbsp; &nbsp; 
+              <button mat-raised-button id="saveModel" onclick="save()">Guardar</button>&nbsp; &nbsp; 
               <mat-form-field ppearance="outline" >
             
-        <mat-label>Load</mat-label>
+        <mat-label>Cargar</mat-label>
         <mat-select>
           <mat-option *ngFor="let Lista of Lista" >  
             <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="cargar(Lista.NOMBRE,Lista.log)" onclick="load();">{{Lista.NOMBRE}}</button>
